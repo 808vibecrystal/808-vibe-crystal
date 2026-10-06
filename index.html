@@ -9,22 +9,23 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             cosmic: {
-              900: '#070b12',
-              800: '#0d131f',
-              700: '#141c2e',
-              card: '#111827e6'
+              950: '#04070d',
+              900: '#070b14',
+              850: '#0c1220',
+              800: '#111827',
+              card: '#0f172ae6'
             },
-            accent: {
+            neon: {
               cyan: '#00f2fe',
-              neonPurple: '#b347ff',
+              purple: '#b347ff',
               magenta: '#ff2a85',
               gold: '#ffd166',
               emerald: '#05d59e'
@@ -32,6 +33,7 @@
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+            serif: ['"Noto Serif TC"', 'serif']
           }
         }
       }
@@ -40,499 +42,694 @@
 
   <style>
     body {
-      background-color: #070b12;
+      background-color: #04070d;
       color: #e2e8f0;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
-    .cosmic-gradient {
-      background: radial-gradient(circle at 50% 10%, rgba(179, 71, 255, 0.18) 0%, rgba(0, 242, 254, 0.08) 35%, rgba(7, 11, 18, 0.95) 70%);
+    #spaceCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
     }
-    .neon-border-cyan {
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
-      border: 1px solid rgba(0, 242, 254, 0.5);
+    .neon-glow-cyan {
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
+      border: 1px solid rgba(0, 242, 254, 0.6);
     }
-    .neon-border-purple {
-      box-shadow: 0 0 25px rgba(179, 71, 255, 0.25);
-      border: 1px solid rgba(179, 71, 255, 0.45);
+    .neon-glow-purple {
+      box-shadow: 0 0 30px rgba(179, 71, 255, 0.35);
+      border: 1px solid rgba(179, 71, 255, 0.6);
     }
-    .glass-panel {
-      background: rgba(16, 24, 39, 0.75);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .neon-ring {
+      box-shadow: 0 0 18px #00f2fe, inset 0 0 18px #b347ff;
+    }
+    .glass-card {
+      background: rgba(12, 18, 32, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .shimmer-text {
-      background: linear-gradient(135deg, #ffffff 20%, #ffd166 45%, #00f2fe 80%, #b347ff 100%);
+      background: linear-gradient(135deg, #ffffff 15%, #ffd166 40%, #00f2fe 75%, #b347ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    .text-glow-cyan {
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+    }
   </style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col cosmic-gradient">
+<body class="font-sans antialiased min-h-screen flex flex-col relative">
 
-  <!-- 1. Top Alert Announcement -->
-  <div class="bg-gradient-to-r from-purple-950 via-slate-900 to-teal-950 border-b border-teal-500/30 text-xs md:text-sm py-2 px-4 text-center tracking-wide font-medium flex items-center justify-center gap-2">
-    <span class="inline-block w-2 h-2 rounded-full bg-accent-cyan animate-ping"></span>
-    <span>全店滿 <strong class="text-accent-gold">HK$500</strong> 享順豐站/智能櫃免運費 ❤️ ｜ 出貨前店主親自使用秘魯聖木 ✕ 白水晶深度調頻消磁</span>
-  </div>
+  <!-- Interactive Space Canvas (Animated Stars, Stardust, Nebulas) -->
+  <canvas id="spaceCanvas"></canvas>
 
-  <!-- 2. Navbar -->
-  <header class="sticky top-0 z-50 glass-panel border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-accent-neonPurple via-indigo-600 to-accent-cyan flex items-center justify-center font-black text-xl text-white shadow-lg shadow-purple-500/30 group-hover:scale-105 transition-all">
-          808
-        </div>
-        <div>
-          <span class="text-xl font-bold tracking-wider text-white block">808_VIBE_CRYSTAL</span>
-          <span class="text-[10px] text-teal-400 font-mono tracking-widest block uppercase">High Vibration Metaphysics</span>
-        </div>
-      </a>
+  <!-- Content Wrapper -->
+  <div class="relative z-10 flex flex-col min-h-screen">
 
-      <!-- Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#calculator" class="hover:text-accent-cyan transition-colors">🔮 生命靈數測算</a>
-        <a href="#products" class="hover:text-accent-cyan transition-colors">💎 水晶手串 & 碎石</a>
-        <a href="#energy-guide" class="hover:text-accent-cyan transition-colors">🌿 聖木淨化與保養</a>
-        <a href="#order-policy" class="hover:text-accent-cyan transition-colors">📦 寄送與儲貨政策</a>
-      </nav>
+    <!-- 1. Top Alert Announcement -->
+    <div class="bg-gradient-to-r from-purple-950/90 via-slate-900/90 to-teal-950/90 border-b border-teal-400/30 text-xs md:text-sm py-2 px-4 text-center tracking-wide font-medium flex items-center justify-center gap-2">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-neon-cyan animate-ping"></span>
+      <span>全店滿 <strong class="text-neon-gold">HK$500</strong> 享順豐站/智能櫃免運費 ❤️ ｜ 出貨前店主親自使用秘魯聖木煙燻 ✕ 白水晶深度調頻消磁</span>
+    </div>
 
-      <!-- Cart Button & Social -->
-      <div class="flex items-center gap-4">
-        <a href="https://instagram.com/808_vibe_crystal" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-500/40 text-xs font-semibold text-purple-300 hover:bg-purple-900/30 transition-all">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram
+    <!-- 2. Navbar -->
+    <header class="sticky top-0 z-50 glass-card border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Brand Profile & Avatar -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="relative">
+            <div class="w-13 h-13 sm:w-14 sm:h-14 rounded-full p-[2px] bg-gradient-to-tr from-neon-purple via-neon-cyan to-neon-magenta animate-pulse">
+              <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center font-black text-xl text-white tracking-widest neon-ring">
+                808
+              </div>
+            </div>
+            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-slate-950 rounded-full"></span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-lg sm:text-xl font-black tracking-wider text-white group-hover:text-neon-cyan transition-colors">808_VIBE_CRYSTAL</span>
+              <svg class="w-4 h-4 text-sky-400 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7l-4.1-4.1 1.4-1.4 2.7 2.7 6.4-6.4 1.4 1.4-7.8 7.8z"/></svg>
+            </div>
+            <span class="text-[11px] text-teal-300 font-mono tracking-widest uppercase block">Natural Crystals & Metaphysics</span>
+          </div>
         </a>
-        <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 transition-all">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-          <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-accent-magenta text-white font-black text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
+          <a href="#calculator" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
+            <span>🔮</span> 生命靈數測算
+          </a>
+          <a href="#products" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
+            <span>💎</span> 晶石庫存目錄
+          </a>
+          <a href="#cleansing" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
+            <span>🌿</span> 聖木煙燻消磁
+          </a>
+          <a href="#faq" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
+            <span>📦</span> 順豐與儲貨須知
+          </a>
+        </nav>
+
+        <!-- Right Side Actions -->
+        <div class="flex items-center gap-3">
+          <a href="https://www.instagram.com/808_vibe_crystal?stkn=YXJkYTcycDA2MnB4&utm_source=qr" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-purple-500/50 bg-purple-950/40 text-xs font-bold text-purple-200 hover:bg-purple-900/60 hover:border-neon-cyan transition-all">
+            <svg class="w-4 h-4 fill-current text-purple-300" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>關注店舖 IG</span>
+          </a>
+
+          <!-- Cart Trigger -->
+          <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-neon-cyan text-white transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-neon-magenta text-white font-black text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. Hero Section (Reels Cosmic Aesthetic) -->
+    <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal-400/40 bg-teal-950/50 text-teal-300 text-xs font-bold mb-6 backdrop-blur-md">
+        <span>★ 808 宇宙星雲 ✕ 霓虹晶簇 高頻能量調頻 ★</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-tight">
+        每一串水晶，<br>
+        <span class="shimmer-text">皆是一場專屬的頻率共振</span>
+      </h1>
+      <p class="max-w-3xl mx-auto text-slate-300 text-base sm:text-lg mb-10 leading-relaxed font-light">
+        我們不只依眼緣挑選，更結合生命靈數、脈輪特質與專業原礦挑選。<br class="hidden sm:inline">
+        嚴選天然原石與手串，標明真實珠體直徑（mm）與品質等級，出貨前親自使用秘魯聖木深度消磁歸零。
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#calculator" class="px-8 py-4 rounded-xl bg-gradient-to-r from-neon-cyan via-teal-400 to-emerald-400 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-105 transition-all">
+          🔮 免費線上測算生命靈數
+        </a>
+        <a href="#products" class="px-8 py-4 rounded-xl glass-card text-white font-bold text-sm hover:border-neon-cyan transition-all border border-slate-700">
+          💎 瀏覽 808 庫存手串
+        </a>
+      </div>
+    </section>
+
+        <!-- 4. Interactive Numerology & Zodiac Calculator (High-Conversion WhatsApp Funnel) -->
+    <section id="calculator" class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+      <div class="glass-card p-6 sm:p-10 rounded-3xl neon-glow-purple relative overflow-hidden">
+        <div class="text-center mb-8">
+          <span class="text-neon-gold text-xs font-black tracking-widest uppercase block mb-1">✦ 雙重維度精準能量調頻 ✦</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">【 12 星座 ✕ 生命靈數 】命定頻率測算</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">結合西方占星太陽能量與生命靈數，深度剖析你的性格盲點與當季運勢轉機！</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1">出生年份 (西曆)</label>
+            <input type="number" id="calcYear" placeholder="例如: 1998" min="1930" max="2026" class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition-all">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1">出生月份</label>
+            <input type="number" id="calcMonth" placeholder="例如: 10" min="1" max="12" class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition-all">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1">出生日期</label>
+            <input type="number" id="calcDay" placeholder="例如: 24" min="1" max="31" class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition-all">
+          </div>
+        </div>
+
+        <button onclick="calculateNumerology()" class="w-full py-4 rounded-xl bg-gradient-to-r from-neon-purple via-fuchsia-600 to-neon-magenta text-white font-black tracking-wider text-sm shadow-lg shadow-purple-600/30 hover:opacity-95 transition-all">
+          ★ 即刻解鎖：雙重能量性格與運程分析 ★
         </button>
+
+        <!-- Result Box (Partially visible + Gated Teaser Funnel) -->
+        <div id="calcResult" class="hidden mt-8 pt-6 border-t border-slate-700/60">
+          <div class="p-6 rounded-2xl bg-slate-950/90 border border-neon-cyan/50 space-y-5">
+            
+            <!-- Result Header -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pb-4 border-b border-slate-800">
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span id="resZodiacBadge" class="px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-black border border-sky-500/40"></span>
+                  <span id="resNumBadge" class="px-3 py-1 rounded-full bg-amber-400/20 text-neon-gold text-xs font-black border border-amber-400/40"></span>
+                </div>
+                <h3 id="resComboTitle" class="text-2xl font-black text-white"></h3>
+              </div>
+              <div class="text-right">
+                <span class="text-[11px] text-slate-400 block font-mono">靈數推演公式</span>
+                <span id="resFormula" class="font-mono text-neon-cyan text-xs font-bold"></span>
+              </div>
+            </div>
+
+            <!-- Visible Analysis: Personality & Trait Dynamics -->
+            <div class="space-y-3 text-xs sm:text-sm">
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                <h4 class="text-teal-300 font-bold mb-1.5 flex items-center gap-1.5">
+                  <span>✦</span> 【 雙重能量性格解讀 】
+                </h4>
+                <p id="resComboDesc" class="text-slate-300 leading-relaxed"></p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/20">
+                  <span class="text-emerald-400 font-bold block mb-1">【 先天高頻優勢 】</span>
+                  <p id="resPros" class="text-slate-300 leading-relaxed"></p>
+                </div>
+                <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/20">
+                  <span class="text-rose-400 font-bold block mb-1">【 當前能量卡點與盲點 】</span>
+                  <p id="resCons" class="text-slate-300 leading-relaxed"></p>
+                </div>
+              </div>
+
+              <!-- Fortune Trend Teaser -->
+              <div class="p-4 rounded-xl bg-purple-950/40 border border-purple-500/30">
+                <span class="text-purple-300 font-bold block mb-1">【 近期運程能量走向 】</span>
+                <p id="resFortuneTeaser" class="text-slate-200 leading-relaxed"></p>
+              </div>
+            </div>
+
+            <!-- GATED / TEASER SECTION (Blurred + High-Converting WhatsApp Lock) -->
+            <div class="relative pt-3">
+              <!-- Blurred background simulation -->
+              <div class="filter blur-[6px] select-none opacity-40 p-4 rounded-xl bg-slate-900 border border-slate-700 pointer-events-none space-y-2">
+                <div class="h-4 bg-teal-400/40 rounded w-3/4"></div>
+                <div class="h-4 bg-purple-400/40 rounded w-full"></div>
+                <div class="h-4 bg-amber-400/40 rounded w-5/6"></div>
+                <p class="text-xs text-slate-400">【後半段隱藏報告】：你個人的專屬破局契機月份、如何運用左進右出晶石吸納貴人運、精準避開職場小人消耗、以及店主專門為你調配的天然手串配置……</p>
+              </div>
+
+              <!-- Overlay Card with WhatsApp Action -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-slate-950/80 backdrop-blur-[3px] rounded-xl border border-neon-cyan/40 shadow-2xl">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neon-magenta/20 text-pink-300 text-xs font-black mb-2 border border-pink-500/30">
+                  <span>🔒 專屬後半段深度報告已鎖定</span>
+                </div>
+                <h4 class="text-base sm:text-lg font-black text-white mb-1">想知道你的「轉運破局點」與「專屬命定手串」？</h4>
+                <p class="text-slate-300 text-xs max-w-md mb-4 leading-relaxed">
+                  後半段包含：<strong class="text-neon-gold">深層脈輪修補指南 ✕ 下半年破局轉運時機 ✕ 左右手排濁調配</strong>。即刻 WhatsApp 聯絡店主，免費一對一領取完整解析！
+                </p>
+                
+                <button onclick="unlockViaWhatsApp()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-neon-cyan text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                  <span>📲 WhatsApp 免費領取完整報告 ✕ 命定手串推薦</span>
+                </button>
+                <span class="text-[10px] text-slate-400 mt-2">（點擊將自動填入你的專屬星座靈數代碼，店主即時親自解答）</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-  </header>
+    </section>
 
-  <!-- 3. Hero Section -->
-  <section class="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-teal-400/30 bg-teal-950/40 text-teal-300 text-xs font-semibold mb-6">
-      <span>✦ 808 宇宙星雲 ✕ 高頻能量調頻專門店 ✦</span>
-    </div>
-    <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
-      不只看眼緣，<br><span class="shimmer-text">找到真正契合你氣場的命定水晶</span>
-    </h1>
-    <p class="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg mb-10 leading-relaxed font-light">
-      每個人出生的那一刻，宇宙已設定好專屬頻率。透過生命靈數與脈輪測算，為你精準配對專屬天然手串與深層消磁礦石，回歸純淨高頻狀態。
-    </p>
-    <div class="flex flex-wrap items-center justify-center gap-4">
-      <a href="#calculator" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-accent-cyan via-teal-500 to-accent-emerald text-slate-950 font-bold text-sm tracking-wide shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-105 transition-all">
-        🔮 立即免費計算生命靈數
-      </a>
-      <a href="#products" class="px-8 py-3.5 rounded-xl glass-panel text-white font-semibold text-sm hover:bg-slate-800 transition-all border border-slate-700">
-        瀏覽水晶臻品
-      </a>
-    </div>
-  </section>
-
-  <!-- 4. Interactive Numerology Calculator -->
-  <section id="calculator" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-    <div class="glass-panel p-8 sm:p-12 rounded-3xl neon-border-purple relative overflow-hidden">
-      <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-accent-neonPurple/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div class="text-center mb-8">
-        <span class="text-accent-gold text-xs font-bold tracking-widest uppercase block mb-2">✦ 3 秒線上能量解析 ✦</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">計算你的生命靈數 ✕ 命定手串推薦</h2>
-        <p class="text-slate-400 text-sm">輸入你的西曆出生年月日，系統將自動解析你的核心性格特質與脈輪缺口。</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+    <!-- 5. Product Catalog (Based on 808 Spreadsheet Data & IG Showcase) -->
+    <section id="products" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-10">
         <div>
-          <label class="block text-xs font-semibold text-slate-400 mb-1">出生年份 (西曆)</label>
-          <input type="number" id="calcYear" placeholder="例: 1998" min="1930" max="2026" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-cyan transition-all">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-3 h-3 rounded-full bg-neon-cyan"></span>
+            <span class="text-xs font-mono text-teal-400 uppercase tracking-widest">Master Inventory Archive</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">808 現貨水晶庫存目錄</h2>
+          <p class="text-slate-400 text-sm mt-1">根據主庫存表標明真實珠徑（mm）、原礦品質與專屬定價</p>
         </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-400 mb-1">出生月份</label>
-          <input type="number" id="calcMonth" placeholder="例: 12" min="1" max="12" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-cyan transition-all">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-400 mb-1">出生日期</label>
-          <input type="number" id="calcDay" placeholder="例: 24" min="1" max="31" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent-cyan transition-all">
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterCatalog('all')" class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold bg-neon-cyan text-slate-950 border border-neon-cyan transition-all">全部款式</button>
+          <button onclick="filterCatalog('featured')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 border border-slate-700 hover:border-neon-cyan transition-all">絕礦/收藏級</button>
+          <button onclick="filterCatalog('bracelet')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 border border-slate-700 hover:border-neon-cyan transition-all">天然手串</button>
+          <button onclick="filterCatalog('raw')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 border border-slate-700 hover:border-neon-cyan transition-all">油膽閃靈/原石</button>
+          <button onclick="filterCatalog('cleanse')" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-slate-300 border border-slate-700 hover:border-neon-cyan transition-all">聖木/碎石消磁</button>
         </div>
       </div>
 
-      <button onclick="calculateNumerology()" class="w-full py-4 rounded-xl bg-gradient-to-r from-accent-neonPurple via-fuchsia-600 to-accent-magenta text-white font-bold tracking-wide shadow-lg shadow-purple-600/30 hover:opacity-95 transition-all">
-        ★ 即刻生成專屬能量報告 ★
-      </button>
+      <!-- Product Cards Grid -->
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
 
-      <!-- Calculator Result Area -->
-      <div id="calcResult" class="hidden mt-8 pt-8 border-t border-slate-700/60 transition-all">
-        <div class="p-6 rounded-2xl bg-slate-900/90 border border-accent-cyan/40">
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
-            <div>
-              <span id="resNumBadge" class="inline-block px-3 py-1 rounded-full bg-amber-400/20 text-accent-gold text-xs font-black tracking-wider uppercase mb-1"></span>
-              <h3 id="resArchetype" class="text-2xl font-bold text-white"></h3>
-            </div>
-            <div class="text-right">
-              <span class="text-xs text-slate-400 block">計算公式歷程</span>
-              <span id="resFormula" class="font-mono text-accent-cyan text-sm font-semibold"></span>
+    <!-- 6. Cleansing Ritual & Left/Right Hand Energy Guide -->
+    <section id="cleansing" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <div class="glass-card p-8 sm:p-12 rounded-3xl neon-glow-cyan">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-teal-400 text-xs font-black tracking-widest uppercase block mb-1">✦ 808 能量養護指引 ✦</span>
+          <h2 class="text-3xl font-black text-white">秘魯聖木深度消磁 ✕ 左右手佩戴法則</h2>
+          <p class="text-slate-300 text-sm mt-1">正確認知能量流向與淨化方式，讓晶石頻率長保通透靈動。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="p-6 rounded-2xl bg-slate-950/80 border border-slate-700/80">
+            <h3 class="text-base font-bold text-neon-gold mb-3 flex items-center gap-2">
+              <span>🤲 水晶左右手氣場流動法則</span>
+            </h3>
+            <div class="space-y-3 text-xs sm:text-sm">
+              <div class="p-3.5 rounded-xl bg-teal-950/40 border border-teal-500/20">
+                <strong class="text-teal-300 block mb-1">【左手 · 吸納滋養】</strong>
+                <p class="text-slate-300">調節內在磁場與潛意識。適合佩戴招財、貴人人緣、自愛療癒（如：金髮晶、魔鬼海藍寶、馬粉、拉長石）。</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-purple-950/40 border border-purple-500/20">
+                <strong class="text-purple-300 block mb-1">【右手 · 釋放防護】</strong>
+                <p class="text-slate-300">氣場向外投射與排出濁氣。適合辟邪擋煞、化解小人、消除體內沉重雜氣（如：黑銀鈦、極致銀曜石、黑曜石）。</p>
+              </div>
             </div>
           </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 text-sm">
-            <div class="p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
-              <span class="text-emerald-400 font-bold block mb-1">【核心天賦 / 優點】</span>
-              <p id="resPros" class="text-slate-200"></p>
-            </div>
-            <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/30">
-              <span class="text-rose-400 font-bold block mb-1">【先天盲點 / 內耗缺口】</span>
-              <p id="resCons" class="text-slate-200"></p>
-            </div>
-          </div>
 
-          <div class="p-4 rounded-xl bg-purple-950/30 border border-purple-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <span class="text-purple-300 font-bold block text-sm">【專屬命定調頻水晶】</span>
-              <span id="resCrystal" class="text-accent-gold font-bold text-base"></span>
-            </div>
-            <button onclick="filterByCrystal()" class="px-5 py-2 rounded-xl bg-accent-cyan text-slate-950 font-bold text-xs hover:bg-cyan-300 transition-all">
-              檢視推薦款式 →
-            </button>
+          <div class="p-6 rounded-2xl bg-slate-950/80 border border-slate-700/80">
+            <h3 class="text-base font-bold text-neon-emerald mb-3 flex items-center gap-2">
+              <span>🌿 秘魯聖木 3 步消磁法（808出貨標準）</span>
+            </h3>
+            <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+              <li class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                <span class="text-neon-cyan font-bold mr-1">1. 點燃木條：</span>點燃聖木約 30 秒後吹熄，釋放天然甜美白色乳香。
+              </li>
+              <li class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                <span class="text-neon-cyan font-bold mr-1">2. 煙燻水晶：</span>手串在煙霧上方 10-15cm 順時針轉動 1-2 分鐘，分解負能量記憶。
+              </li>
+              <li class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                <span class="text-neon-cyan font-bold mr-1">3. 自然消散：</span>木條放入耐熱器皿自然熄滅，並打開窗戶排散低頻雜氣。
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 5. Product Catalog Section -->
-  <section id="products" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
-      <div>
-        <h2 class="text-3xl font-black text-white tracking-tight">精選高頻天然水晶</h2>
-        <p class="text-slate-400 text-sm mt-1">每件均為天然無染色礦石，出貨前專屬煙燻淨化與客製手圍</p>
+    <!-- 7. Shipping, Hold Policy & Payment FAQ -->
+    <section id="faq" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm">
+        <div class="glass-card p-6 rounded-2xl border border-slate-800">
+          <div class="text-neon-cyan text-2xl mb-2">🚚</div>
+          <h4 class="font-bold text-white text-base mb-1">滿 HK$500 包郵</h4>
+          <p class="text-slate-400 leading-relaxed">全單滿 HK$500 即享順豐站／智能櫃免運費；未滿 HK$500 以順豐到付形式寄出。</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-slate-800">
+          <div class="text-neon-gold text-2xl mb-2">📦</div>
+          <h4 class="font-bold text-white text-base mb-1">免費儲貨一個月</h4>
+          <p class="text-slate-400 leading-relaxed">完成付款後可安排免費儲貨（最長一個月）。之後若需一同寄出請在下單時備註通知！</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-slate-800">
+          <div class="text-neon-magenta text-2xl mb-2">💳</div>
+          <h4 class="font-bold text-white text-base mb-1">支援本地 3 大支付</h4>
+          <p class="text-slate-400 leading-relaxed">支援香港轉數快 (FPS)、PayMe、支付寶 (AlipayHK) 轉賬，下單後專員即時核對並安排手圍客製。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="mt-auto border-t border-slate-800 py-10 px-4 text-center text-xs text-slate-500">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-neon-purple to-neon-cyan flex items-center justify-center text-white font-black text-xs">808</div>
+          <span class="text-slate-300 font-bold">808 Vibe Crystal · 香港天然高頻水晶專門店</span>
+        </div>
+        <div class="text-slate-400">
+          Instagram: <a href="https://www.instagram.com/808_vibe_crystal?stkn=YXJkYTcycDA2MnB4&utm_source=qr" target="_blank" class="text-neon-cyan hover:underline">@808_vibe_crystal</a> ｜ 查詢電話: +852 9443 2331
+        </div>
+        <div class="text-slate-500">
+          © 2026 808 Vibe Crystal. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- 9. Slide-out Cart Drawer -->
+    <div id="cartBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <div id="cartDrawer" class="fixed right-0 top-0 bottom-0 w-full sm:w-[460px] bg-slate-950 border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 flex flex-col p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <span>🛒 你的選購清單</span>
+          <span id="drawerCount" class="text-xs px-2.5 py-0.5 rounded-full bg-slate-900 text-teal-400 border border-teal-500/30">0 件</span>
+        </h3>
+        <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-white p-2 text-lg">✕</button>
       </div>
 
-      <!-- Categories Filter -->
-      <div class="flex flex-wrap items-center gap-2">
-        <button onclick="filterCategory('all')" class="cat-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-white border border-slate-700 hover:border-accent-cyan transition-all">全部商品</button>
-        <button onclick="filterCategory('bracelet')" class="cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:border-accent-cyan transition-all">天然手串</button>
-        <button onclick="filterCategory('raw')" class="cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:border-accent-cyan transition-all">油膽閃靈 / 原石碎石</button>
-        <button onclick="filterCategory('cleanse')" class="cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:border-accent-cyan transition-all">聖木消磁週邊</button>
-      </div>
-    </div>
+      <!-- Items List -->
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-4 space-y-3"></div>
 
-    <!-- Product Grid -->
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Injected by JavaScript -->
-    </div>
-  </section>
-
-  <!-- 6. Energy Cleansing & Left/Right Hand Guide -->
-  <section id="energy-guide" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="glass-panel p-8 sm:p-12 rounded-3xl neon-border-cyan">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-teal-400 text-xs font-bold tracking-widest uppercase block mb-2">✦ 專業能量養護指南 ✦</span>
-        <h2 class="text-3xl font-bold text-white mb-3">左進右出 ✕ 秘魯聖木深度排濁</h2>
-        <p class="text-slate-300 text-sm">正確的佩戴方向與定期歸零消磁，才能讓水晶能量時刻保持在最高振頻。</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Left vs Right Hand -->
-        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-700">
-          <h3 class="text-lg font-bold text-accent-gold mb-4 flex items-center gap-2">
-            <span>🤲 水晶左右手配戴法則</span>
-          </h3>
-          <div class="space-y-4 text-sm">
-            <div class="p-4 rounded-xl bg-teal-950/40 border border-teal-500/20">
-              <strong class="text-teal-300 block mb-1">【左手 · 吸納正向頻率】</strong>
-              <p class="text-slate-300">掌管潛意識與內在氣場。適合佩戴招財、招貴人、療癒內心及提升智慧的手串（如：金髮晶、海藍寶、馬粉、烏拉圭紫晶）。</p>
-            </div>
-            <div class="p-4 rounded-xl bg-purple-950/40 border border-purple-500/20">
-              <strong class="text-purple-300 block mb-1">【右手 · 釋放排濁與防護】</strong>
-              <p class="text-slate-300">掌管氣場投射與排出負能。適合佩戴深層辟邪、擋小人、化煞及排解病氣濁氣的晶石（如：銀曜石、金曜石、黑髮晶）。</p>
-            </div>
+      <!-- Options & Calculation -->
+      <div class="pt-4 border-t border-slate-800 space-y-3">
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="text-slate-300 font-semibold">出貨處理方式：</span>
+            <select id="dispatchMode" class="bg-slate-950 border border-slate-700 rounded px-2.5 py-1 text-white text-xs">
+              <option value="直接寄出 (順豐速運)">直接寄出 (順豐速運)</option>
+              <option value="安排免費儲貨 (最長1個月)">安排免費儲貨 (最長 1 個月)</option>
+              <option value="與之前儲貨一同寄出">與之前儲貨一同寄出</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-300 font-semibold">客製貼手圍：</span>
+            <input type="text" id="wristSizeInput" placeholder="例: 15cm (貼手圍)" class="bg-slate-950 border border-slate-700 rounded px-2.5 py-1 text-white text-xs w-44 text-right">
           </div>
         </div>
 
-        <!-- Palo Santo Cleansing -->
-        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-700">
-          <h3 class="text-lg font-bold text-accent-emerald mb-4 flex items-center gap-2">
-            <span>🌿 秘魯聖木 3 步排濁教學</span>
-          </h3>
-          <ol class="space-y-3 text-sm text-slate-300 list-decimal list-inside">
-            <li class="p-2.5 rounded-lg bg-slate-800/60"><strong class="text-white">點燃聖木：</strong> 點燃聖木木條約 30 秒，輕輕吹熄明火，讓純淨白色香煙升起。</li>
-            <li class="p-2.5 rounded-lg bg-slate-800/60"><strong class="text-white">煙燻手串：</strong> 將手串置於煙霧上方約 10–15 厘米處，順時針轉動 1–2 分鐘，徹底分解負面記憶。</li>
-            <li class="p-2.5 rounded-lg bg-slate-800/60"><strong class="text-white">開窗通風：</strong> 將聖木放置於耐熱皿中自然熄滅，並打開窗戶讓帶走的沉重雜氣自然消散。</li>
-          </ol>
+        <div class="space-y-1.5 text-xs sm:text-sm">
+          <div class="flex justify-between text-slate-400">
+            <span>貨品總計</span>
+            <span id="subtotalVal" class="font-mono text-white">HK$ 0</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>順豐運費狀態</span>
+            <span id="shippingVal" class="font-mono text-teal-400 font-bold">滿 $500 包郵</span>
+          </div>
+          <div class="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
+            <span>應付總額</span>
+            <span id="totalVal" class="font-mono text-neon-gold text-lg">HK$ 0</span>
+          </div>
+        </div>
+
+        <!-- Checkout Buttons -->
+        <div class="grid grid-cols-2 gap-2 pt-2">
+          <button onclick="checkoutToOrder('whatsapp')" class="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
+            <span>📲 WhatsApp 一鍵下單</span>
+          </button>
+          <button onclick="checkoutToOrder('instagram')" class="py-3 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
+            <span>📋 複製訂單傳送 IG</span>
+          </button>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- 7. Shipping, Hold Policy & Payment Notice -->
-  <section id="order-policy" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-      <div class="glass-panel p-6 rounded-2xl border border-slate-800">
-        <div class="text-accent-cyan text-2xl mb-3">🚚</div>
-        <h4 class="font-bold text-white text-base mb-2">滿 HK$500 包郵</h4>
-        <p class="text-slate-400">訂單滿 HK$500 即享順豐站／智能櫃免運費；未滿 HK$500 運費以順豐到付形式寄出。</p>
-      </div>
-
-      <div class="glass-panel p-6 rounded-2xl border border-slate-800">
-        <div class="text-accent-gold text-2xl mb-3">📦</div>
-        <h4 class="font-bold text-white text-base mb-2">免費儲貨一個月</h4>
-        <p class="text-slate-400">付款後如想繼續等心水新品，可提供免費儲貨服務（最長一個月）。儲貨後需一同寄出請備註。</p>
-      </div>
-
-      <div class="glass-panel p-6 rounded-2xl border border-slate-800">
-        <div class="text-accent-magenta text-2xl mb-3">💳</div>
-        <h4 class="font-bold text-white text-base mb-2">靈活支援 3 種付款</h4>
-        <p class="text-slate-400">支援香港轉數快 (FPS)、PayMe、支付寶 (AlipayHK) 轉賬，落單後提供專屬付款連結及截圖確認。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. Footer -->
-  <footer class="mt-auto border-t border-slate-800 py-10 px-4 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <div class="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-[10px]">808</div>
-        <span class="text-slate-300 font-semibold">808 Vibe Crystal · 香港天然水晶專門店</span>
-      </div>
-      <div>
-        <span>出貨前秘魯聖木煙燻深度調頻 ｜ 專屬手圍客製</span>
-      </div>
-      <div class="text-slate-400">
-        © 2026 808 Vibe Crystal. All Rights Reserved.
-      </div>
-    </div>
-  </footer>
-
-  <!-- 9. Slide-out Cart Drawer -->
-  <div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
-  <div id="cartDrawer" class="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-slate-900 border-l border-slate-700 z-50 transform translate-x-full transition-transform duration-300 flex flex-col p-6 shadow-2xl">
-    <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-      <h3 class="text-lg font-bold text-white flex items-center gap-2">
-        <span>🛒 你的選購清單</span>
-        <span id="drawerBadge" class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-teal-400 border border-teal-500/30">0 件商品</span>
-      </h3>
-      <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white p-2">✕</button>
-    </div>
-
-    <!-- Cart Items Container -->
-    <div id="cartItemsList" class="flex-1 overflow-y-auto py-4 space-y-4">
-      <!-- Empty state / Items injected by JS -->
-    </div>
-
-    <!-- Checkout Options & Summary -->
-    <div class="pt-4 border-t border-slate-800 space-y-4">
-      <!-- Delivery / Storage Option -->
-      <div class="p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-xs space-y-2">
-        <div class="flex items-center justify-between">
-          <span class="text-slate-300 font-semibold">處理方式：</span>
-          <select id="orderDispatchMode" class="bg-slate-900 border border-slate-600 rounded px-2 py-1 text-white text-xs">
-            <option value="直接寄出">直接寄出 (順豐速運)</option>
-            <option value="安排儲貨 (最長1個月)">安排儲貨 (最長 1 個月)</option>
-            <option value="與之前儲貨一同寄出">與之前儲貨一同寄出</option>
-          </select>
-        </div>
-        <div class="flex items-center justify-between">
-          <span class="text-slate-300 font-semibold">手圍尺寸備註：</span>
-          <input type="text" id="orderWristSize" placeholder="例: 15cm (貼手圍)" class="bg-slate-900 border border-slate-600 rounded px-2 py-1 text-white text-xs w-48 text-right">
-        </div>
-      </div>
-
-      <!-- Pricing Summary -->
-      <div class="space-y-1 text-sm">
-        <div class="flex justify-between text-slate-400">
-          <span>貨品總額</span>
-          <span id="cartSubtotal" class="font-mono text-white">HK$ 0</span>
-        </div>
-        <div class="flex justify-between text-slate-400">
-          <span>順豐運費</span>
-          <span id="cartShipping" class="font-mono text-teal-300">滿 $500 包郵</span>
-        </div>
-        <div class="flex justify-between text-lg font-bold text-white pt-2 border-t border-slate-800">
-          <span>應付總額</span>
-          <span id="cartTotal" class="font-mono text-accent-gold">HK$ 0</span>
-        </div>
-      </div>
-
-      <!-- One-click Order Closing via WhatsApp / DM -->
-      <div class="grid grid-cols-2 gap-2">
-        <button onclick="generateOrderMessage('whatsapp')" class="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all">
-          <span>📲 WhatsApp 一鍵落單</span>
-        </button>
-        <button onclick="generateOrderMessage('copy')" class="py-3 px-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all">
-          <span>📋 複製訂單傳送 IG</span>
-        </button>
-      </div>
-      <p class="text-[11px] text-center text-slate-500">點擊後將自動帶入 808 格式化訂購範本，無縫核對付款與手圍！</p>
-    </div>
   </div>
 
   <!-- JavaScript Core -->
   <script>
-    // Product Database
-    const products = [
+    // 1. Dynamic Space Canvas Animation (Starfield matching the Reels cosmic background)
+    const canvas = document.getElementById('spaceCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let stars = [];
+
+    function resizeCanvas() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = [];
+      const numStars = Math.floor((w * h) / 3200);
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          radius: Math.random() * 1.5 + 0.5,
+          color: Math.random() > 0.3 ? '#ffffff' : (Math.random() > 0.5 ? '#00f2fe' : '#b347ff'),
+          alpha: Math.random(),
+          speed: Math.random() * 0.02 + 0.005
+        });
+      }
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function drawSpace() {
+      ctx.clearRect(0, 0, w, h);
+      // Soft cosmic nebulae
+      const g1 = ctx.createRadialGradient(w * 0.2, h * 0.3, 50, w * 0.2, h * 0.3, w * 0.5);
+      g1.addColorStop(0, 'rgba(179, 71, 255, 0.08)');
+      g1.addColorStop(1, 'rgba(4, 7, 13, 0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(0, 0, w, h);
+
+      const g2 = ctx.createRadialGradient(w * 0.8, h * 0.7, 50, w * 0.8, h * 0.7, w * 0.5);
+      g2.addColorStop(0, 'rgba(0, 242, 254, 0.06)');
+      g2.addColorStop(1, 'rgba(4, 7, 13, 0)');
+      ctx.fillStyle = g2;
+      ctx.fillRect(0, 0, w, h);
+
+      // Stars
+      for (let s of stars) {
+        s.alpha += s.speed;
+        const currentAlpha = 0.3 + 0.7 * Math.abs(Math.sin(s.alpha));
+        ctx.fillStyle = s.color;
+        ctx.globalAlpha = currentAlpha;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1.0;
+      requestAnimationFrame(drawSpace);
+    }
+    requestAnimationFrame(drawSpace);
+
+    // 2. 808 Inventory Database (Derived from master spreadsheet records)
+    const inventory = [
       {
-        id: 'p1',
-        title: '天然巴基斯坦油膽閃靈鑽碎石',
-        category: 'raw',
-        price: 168,
-        spec: '高頻原石 100g 裝',
-        tags: ['能量高鐵', 'UV螢光反應', '深層消磁'],
-        desc: '封存億年遠古天然石油，雙尖完整切面。在 365nm UV 紫光下折射霓虹黃綠螢光，破除手串能量疲乏！',
-        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
-        matchNumbers: [1, 7, 9, 11, 33]
-      },
-      {
-        id: 'p2',
-        title: '頂級藍光拉長石手串 (灰月光)',
-        category: 'bracelet',
-        price: 368,
-        spec: '約 8mm / 適合 14-16cm 手圍',
-        tags: ['修補氣場', '安神助眠', '抵擋負能'],
-        desc: '神秘深邃藍光暈，修補因過度共情造成的氣場破洞，防止自身精力外洩，2號人與高敏感體質必備。',
-        image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80',
-        matchNumbers: [2, 7, 11]
-      },
-      {
-        id: 'p3',
-        title: '天然馬達加斯加粉晶手串',
-        category: 'bracelet',
-        price: 288,
-        spec: '約 9mm / 柔潤果凍粉',
-        tags: ['溫柔自愛', '舒緩心輪', '好人緣'],
-        desc: '粉嫩水潤質地，對應心輪能量。提醒你先學會好好愛自己，軟化緊繃防備心，吸引懂得珍惜你的優質貴人。',
-        image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80',
-        matchNumbers: [2, 6, 33]
-      },
-      {
-        id: 'p4',
-        title: '天然海藍寶透亮手串',
-        category: 'bracelet',
-        price: 428,
-        spec: '約 8.5mm / 冰透水藍色',
-        tags: ['勇敢說不', '喉輪溝通', '心理護盾'],
-        desc: '如同清澈海洋的守護力量，平衡過度妥協與內耗，幫助溫柔堅定地表達內心真實想法。',
-        image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
-        matchNumbers: [2, 5, 33]
-      },
-      {
-        id: 'p5',
-        title: '閃耀金髮晶滿絲手串',
-        category: 'bracelet',
-        price: 688,
-        spec: '約 9mm / 粗絲貓眼效應',
-        tags: ['招正偏財', '決斷魄力', '開創氣場'],
-        desc: '鈦晶滿絲反光，水晶界尊貴招財之王。增強個人自信與領袖魄力，突破事業瓶頸與財運格局。',
+        id: 'sk_black_silver_titanium',
+        name: '頂級絕礦 · 天然黑銀鈦手串',
+        category: 'featured',
+        price: 1880,
+        priceTier: 'HK$ 1,680 - 3,280',
+        beadSize: '約 9.5mm - 10.5mm',
+        tags: ['確定絕礦', '職場防小人', '突破僵局'],
+        desc: '產區已全面封礦！滿絲銀黑金屬反光，刺目閃耀。反彈小人是非、激發決策魄力，自帶暗黑尊貴氣場。',
         image: 'https://images.unsplash.com/photo-1611591475152-4783113960ba?auto=format&fit=crop&w=600&q=80',
         matchNumbers: [1, 8, 22]
       },
       {
-        id: 'p6',
-        title: '極致銀曜石排濁防小人手串',
+        id: 'sk_devil_aquamarine',
+        name: '深海之息 · 魔鬼海藍寶手串',
         category: 'bracelet',
-        price: 298,
-        spec: '約 10mm / 雙面銀沙眼',
-        tags: ['右手排濁', '化煞擋小人', '氣場防護'],
-        desc: '在光線下閃爍如銀河般璀璨的銀沙眼。專門配戴於右手，急速將體內吸收的他人口舌、負能量排濁釋放。',
+        price: 528,
+        priceTier: 'HK$ 468 - 688',
+        beadSize: '約 8.5mm - 9.0mm',
+        tags: ['唱片海報同款', '平息情緒', '喉輪表達'],
+        desc: '深邃濃郁的墨藍與冰透棉絮，微晃手腕折射出如同月下海浪的貓眼絲絹光澤。平息焦慮、勇敢發聲。',
+        image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80',
+        matchNumbers: [2, 5, 33]
+      },
+      {
+        id: 'sk_petroleum_herkimer',
+        name: '巴基斯坦天然油膽閃靈鑽碎石',
+        category: 'raw',
+        price: 168,
+        priceTier: 'HK$ 168 (100g 裝)',
+        beadSize: '天然雙尖高頻原石',
+        tags: ['能量高鐵', '365nm UV螢光', '深層充電'],
+        desc: '封存億年遠古天然石油！在 UV 紫光燈下折射出耀眼霓虹黃綠螢光。混入碎石盤中迅速打破手串能量疲乏。',
+        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
+        matchNumbers: [1, 7, 9, 11, 33]
+      },
+      {
+        id: 'sk_silver_sheen_obsidian',
+        name: '深層排濁 · 極致銀曜石手串',
+        category: 'bracelet',
+        price: 248,
+        priceTier: 'HK$ 198 - 298',
+        beadSize: '約 8mm / 10mm',
+        tags: ['右手排濁', '化煞擋小人', '雙面銀沙'],
+        desc: '光線下閃爍如銀河般璀璨的雙面銀沙眼。專門佩戴於右手，急速將體內吸收的他人口舌與病氣濁氣排出。',
         image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80',
         matchNumbers: [1, 4, 8]
       },
       {
-        id: 'p7',
-        title: '正宗秘魯聖木原木條 (Palo Santo)',
-        category: 'cleanse',
-        price: 128,
-        spec: '精選 50g 裝 (約 5-6 條)',
-        tags: ['深層排濁', '純淨白煙', '空間淨化'],
-        desc: '南美天然倒木油脂豐富，點燃散發天然甜美木質乳香。出貨前店主深層淨化手串同款用料！',
-        image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
-        matchNumbers: [1,2,3,4,5,6,7,8,9,11,22,33]
+        id: 'sk_labradorite_blue',
+        name: '頂級藍光 · 拉長石手串 (灰月光)',
+        category: 'bracelet',
+        price: 388,
+        priceTier: 'HK$ 368 - 480',
+        beadSize: '約 7.5mm - 8.5mm',
+        tags: ['2號人命定', '修補氣場', '安神助眠'],
+        desc: '深邃清澈的藍光暈！修補因過度共情造成的氣場破洞，防止精力被他人吸乾，高敏感族群必備。',
+        image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80',
+        matchNumbers: [2, 7, 11]
       },
       {
-        id: 'p8',
-        title: '天然烏拉圭深紫晶原礦水滴手串',
+        id: 'sk_gold_rutilated',
+        name: '招財霸主 · 金髮晶滿絲手串',
+        category: 'featured',
+        price: 780,
+        priceTier: 'HK$ 580 - 1,280',
+        beadSize: '約 8.5mm - 10mm',
+        tags: ['正偏財運', '領袖魄力', '貓眼粗絲'],
+        desc: '晶體清透，金髮絲粗且順，折射出耀眼金屬光芒。尊貴招財之王，強化自信與決斷魄力。',
+        image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80',
+        matchNumbers: [1, 8, 22]
+      },
+      {
+        id: 'sk_madagascar_rose',
+        name: '天然馬達加斯加粉晶手串',
         category: 'bracelet',
-        price: 498,
-        spec: '約 8.5mm / 濃郁星空紫',
-        tags: ['頂輪智慧', '深度直覺', '平復心神'],
-        desc: '色澤深邃濃郁的烏拉圭紫晶，啟動頂輪與眉心輪。幫助思緒清晰、平復過度焦慮，帶來高維靈性啟發。',
+        price: 298,
+        priceTier: 'HK$ 268 - 350',
+        beadSize: '約 8mm - 9.5mm',
+        tags: ['溫柔自愛', '舒緩心輪', '真誠貴人'],
+        desc: '柔潤果凍粉質地，對應心輪能量。提醒你先學會好好愛自己，軟化緊繃心防，吸引真誠貴人。',
         image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=600&q=80',
-        matchNumbers: [7, 9, 11]
+        matchNumbers: [2, 6, 33]
+      },
+      {
+        id: 'sk_palo_santo_pack',
+        name: '正宗秘魯聖木原木條 (Palo Santo)',
+        category: 'cleanse',
+        price: 128,
+        priceTier: 'HK$ 128 (50g 裝)',
+        beadSize: '約 5-6 條天然老倒木',
+        tags: ['純淨白煙', '深層排濁', '出貨同款'],
+        desc: '南美天然倒木，油脂豐厚。點燃散發天然甜美木質乳香，徹底分解依附在手串上的低頻雜氣。',
+        image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+        matchNumbers: [1,2,3,4,5,6,7,8,9,11,22,33]
       }
     ];
 
-    // Numerology Database
+        // 3. Zodiac & Numerology Integration System
+    function getZodiacSign(month, day) {
+      const zodiacs = [
+        { name: "摩羯座", icon: "♑", start: [1, 1], end: [1, 19], trait: "務實深沉 · 意志堅定" },
+        { name: "水瓶座", icon: "♒", start: [1, 20], end: [2, 18], trait: "跳脫前衛 · 崇尚獨立" },
+        { name: "雙魚座", icon: "♓", start: [2, 19], end: [3, 20], trait: "靈性直覺 · 溫柔共情" },
+        { name: "白羊座", icon: "♈", start: [3, 21], end: [4, 19], trait: "開創勇氣 · 熱情直接" },
+        { name: "金牛座", icon: "♉", start: [4, 20], end: [5, 20], trait: "沈穩執著 · 重視踏實" },
+        { name: "雙子座", icon: "♊", start: [5, 21], end: [6, 21], trait: "思維敏捷 · 多元求變" },
+        { name: "巨蟹座", icon: "♋", start: [6, 22], end: [7, 22], trait: "細膩敏銳 · 守護防衛" },
+        { name: "獅子座", icon: "♌", start: [7, 23], end: [8, 22], trait: "自信領導 · 光芒四射" },
+        { name: "處女座", icon: "♍", start: [8, 23], end: [9, 22], trait: "嚴謹條理 · 追求極致" },
+        { name: "天秤座", icon: "♎", start: [9, 23], end: [10, 23], trait: "和諧協調 · 重視平衡" },
+        { name: "天蠍座", icon: "♏", start: [10, 24], end: [11, 22], trait: "洞察深邃 · 專注執著" },
+        { name: "射手座", icon: "♐", start: [11, 23], end: [12, 21], trait: "崇尚真理 · 樂觀探索" },
+        { name: "摩羯座", icon: "♑", start: [12, 22], end: [12, 31], trait: "務實深沉 · 意志堅定" }
+      ];
+
+      for (let z of zodiacs) {
+        if (
+          (month === z.start[0] && day >= z.start[1]) ||
+          (month === z.end[0] && day <= z.end[1])
+        ) {
+          return z;
+        }
+      }
+      return zodiacs[0];
+    }
+
     const numerologyData = {
-      1: { archetype: "開創領袖 · 獨立先鋒", pros: "獨立自主、決斷力強、魄力十足", cons: "獨斷專行、易急躁、難以妥協", crystal: "金髮晶 / 銅髮晶" },
-      2: { archetype: "共情協調 · 溫柔夥伴", pros: "心思細膩、極具同理心、善於合作", cons: "過度共情、心軟難拒絕、易精神內耗", crystal: "天然海藍寶 / 馬達加斯加粉晶 / 藍光拉長石" },
-      3: { archetype: "創意表達 · 樂觀精靈", pros: "熱情幽默、靈感豐富、感染力極強", cons: "缺乏專注、情緒起伏大、容易三分鐘熱度", crystal: "黃水晶 / 葡萄石" },
-      4: { archetype: "穩健建構 · 秩序基石", pros: "務實可靠、自律嚴謹、組織力強", cons: "固執保守、缺乏安全感、害怕變動", crystal: "黑曜石 / 綠幽靈" },
-      5: { archetype: "自由冒險 · 變革先鋒", pros: "適應力強、崇尚自由、思維靈活", cons: "浮躁不定、任性衝動、難以持之以恆", crystal: "天然海藍寶 / 天河石 / 藍虎眼" },
-      6: { archetype: "博愛奉獻 · 溫暖療癒", pros: "責任感強、樂於照顧人、重視和諧", cons: "要求過高、過度控制、容易背負他人負擔", crystal: "馬達加斯加粉晶 / 摩根石 / 白月光石" },
-      7: { archetype: "哲思探尋 · 智慧獨行", pros: "洞察敏銳、邏輯嚴密、直覺極佳", cons: "孤傲多疑、過度理性冷漠、難以打開心扉", crystal: "烏拉圭深紫晶 / 藍光拉長石" },
-      8: { archetype: "豐盛成就 · 權威統馭", pros: "野心勃勃、商業眼光敏銳、執行力爆發", cons: "物質導向、控制慾強、承受巨大壓抑", crystal: "金髮晶 / 黑金超七 / 金運石" },
-      9: { archetype: "慈悲大愛 · 靈性通透", pros: "理想主義、包容寬廣、靈性覺知高", cons: "不切實際、多愁善感、容易幻滅迷茫", crystal: "巴基斯坦油膽閃靈鑽 / 烏拉圭紫晶 / 白阿塞" },
-      11: { archetype: "直覺先知 · 靈感導師 (卓越數)", pros: "超強第六感、高維洞察力、啟發他人", cons: "極度敏感焦慮、內在矛盾拉扯、神經緊繃", crystal: "藍光拉長石 / 巴基斯坦油膽閃靈鑽 / 超級七" },
-      22: { archetype: "大師建構者 · 夢想實踐家 (卓越數)", pros: "兼具宏大視野與務實手腕、成就大格局", cons: "自我要求過高、背負巨大壓力、恐懼失敗", crystal: "金髮晶 / 黑銀鈦 / 骨幹太陽" },
-      33: { archetype: "宇宙大愛 · 靈性療癒師 (卓越數)", pros: "無條件包容奉獻、深層撫慰人心、極致慈悲", cons: "犧牲奉獻過度、易被情緒壓垮、忘記照顧自己", crystal: "天然海藍寶 / 馬達加斯加粉晶 / 油膽閃靈鑽" }
+      1: { 
+        archetype: "開創領袖 · 獨立先鋒", 
+        pros: "開創力強、行動果斷、具備獨立魄力與不屈意志", 
+        cons: "獨斷急躁、容易自我中心、不願示弱而獨自承擔過多壓力", 
+        fortune: "近期事業氣場正處於轉型關鍵期，新的機會已經萌芽，但切忌急於求成或單打獨鬥，需要學會借助外在能量場與貴人加持。",
+        crystal: "金髮晶 / 銅髮晶" 
+      },
+      2: { 
+        archetype: "共情協調 · 溫柔夥伴", 
+        pros: "心思極其細膩、直覺感知強、擅長察覺他人情緒與促進和諧", 
+        cons: "容易過度共情成為情緒海綿、心軟不懂拒絕、容易陷入精神內耗", 
+        fortune: "當前人際磁場存在輕微能量耗損，容易受到身邊負面情緒干擾，現階段首要任務是築起能量護盾，學會保護自身氣場。",
+        crystal: "魔鬼海藍寶 / 馬達加斯加粉晶 / 頂級藍光拉長石" 
+      },
+      3: { 
+        archetype: "創意表達 · 樂觀精靈", 
+        pros: "思維活躍跳脫、具備強烈感染力、擅長溝通與自我表達", 
+        cons: "容易三分鐘熱度、專注力分散、情緒起伏大且容易自我懷疑", 
+        fortune: "靈感爆發的時期，社交運正在回升，但需提防因口直心快而招惹是非，適當平復喉輪能量有助將創意轉化為實質回報。",
+        crystal: "黃水晶 / 葡萄石" 
+      },
+      4: { 
+        archetype: "穩健建構 · 秩序基石", 
+        pros: "務實穩重、自律嚴謹、具備極強的規劃力與可靠度", 
+        cons: "害怕突如其來的變動、容易因缺乏安全感而過度固執保守", 
+        fortune: "整體基礎正在夯實，適合按部就班推進重要計劃；近期應避免過度焦慮未來，將沉重濁氣及時排出才能迎來財庫突破。",
+        crystal: "極致銀曜石 / 綠幽靈" 
+      },
+      5: { 
+        archetype: "自由冒險 · 變革先鋒", 
+        pros: "適應力超強、熱愛挑戰未知、具備突破框架的敏捷思維", 
+        cons: "容易浮躁不定、耐性不足、面對約束容易產生抗拒叛逆心態", 
+        fortune: "變動能量充沛，近期可能有出行、換環境或業務拓展機會；需穩定自身下三輪磁場，防止心浮氣躁錯失良機。",
+        crystal: "魔鬼海藍寶 / 天河石 / 藍虎眼" 
+      },
+      6: { 
+        archetype: "博愛奉獻 · 溫暖療癒", 
+        pros: "極具責任感、富有同理心、天生具備照顧與療癒他人的天賦", 
+        cons: "對人對己要求過高、容易背負他人課題、犧牲過度而忽略自愛", 
+        fortune: "家庭與重要人際關係正在重組，付出的努力將逐漸被看見，但切忌將所有責任攬上身，先修補好自愛磁場才能持續發光。",
+        crystal: "馬達加斯加粉晶 / 摩根石 / 白月光石" 
+      },
+      7: { 
+        archetype: "哲思探尋 · 智慧獨行", 
+        pros: "洞察力極其敏銳、邏輯嚴密、直覺力高、善於看透事物本質", 
+        cons: "孤傲多疑、內心築起高牆難以信任他人、容易陷入過度思考", 
+        fortune: "智慧與精神層面提升的契機期，適合學習、研究與獨處覆盤；留意過度冷漠會阻擋貴人靠近，適當打開心門有驚喜機遇。",
+        crystal: "烏拉圭深紫晶 / 頂級藍光拉長石" 
+      },
+      8: { 
+        archetype: "豐盛成就 · 權威統馭", 
+        pros: "商業嗅覺敏銳、目標感極強、具備成大事的魄力與執行力", 
+        cons: "控制慾強、容易受物質與成敗束縛、承受巨大精神高壓而不自知", 
+        fortune: "財富與權力格局正在放大，但也伴隨著極大的競爭與挑戰；近期需特別注意防禦職場小人暗算，穩固個人金屬磁場護盾。",
+        crystal: "頂級絕礦黑銀鈦 / 金髮晶 / 金運石" 
+      },
+      9: { 
+        archetype: "慈悲大愛 · 靈性通透", 
+        pros: "格局寬廣大度、包容心強、具備高維度的靈性覺知與博愛情懷", 
+        cons: "容易脫離實際、多愁善感、在現實與理想拉扯間容易迷茫消沉", 
+        fortune: "一個重要週期的結尾與重生之時，過去未解的執念需要徹底清理放下；借助高頻能量排濁歸零，即將迎來全新的起點。",
+        crystal: "巴基斯坦油膽閃靈鑽 / 白阿塞" 
+      },
+      11: { 
+        archetype: "直覺先知 · 靈感導師 (卓越數)", 
+        pros: "天生擁有高靈感應與第六感、能敏銳察覺他人能量流動與高維指引", 
+        cons: "神經極度緊繃脆弱、容易受外界磁場雜音干擾、內在衝突強烈", 
+        fortune: "靈性能量正在覺醒，直覺會比大腦思考更加準確；近期應避免前往磁場雜亂環境，佩戴高頻晶石能大幅減少精神內耗。",
+        crystal: "頂級藍光拉長石 / 巴基斯坦油膽閃靈鑽" 
+      },
+      22: { 
+        archetype: "大師建構者 · 夢想實踐家 (卓越數)", 
+        pros: "兼具宏大視野與腳踏實地的實踐手腕、具備成就大型事業的潛能", 
+        cons: "給予自己的期待過高、背負沈重使命感、在追求完美的過程中容易焦慮", 
+        fortune: "人生大格局建構的關鍵轉折點，身邊資源正在匯聚；需學會借力借勢，保持內心定力，避免因急功近利而損耗身心。",
+        crystal: "頂級絕礦黑銀鈦 / 金髮晶" 
+      },
+      33: { 
+        archetype: "宇宙大愛 · 靈性療癒師 (卓越數)", 
+        pros: "無條件慈悲包容、自帶溫暖光芒、能深層撫慰與啟發他人靈魂", 
+        cons: "過度燃燒自己照亮他人、容易被集體負能量淹沒、常忘記照顧自己", 
+        fortune: "療癒與奉獻的高峰期，周圍人都渴望從你身上獲得能量；學會先將愛與保護留給自己，能量才不會被持續掏空。",
+        crystal: "魔鬼海藍寶 / 馬達加斯加粉晶 / 油膽閃靈鑽" 
+      }
     };
 
-    let cart = [];
-
-    // Render Products
-    function renderProducts(items) {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = items.map(p => `
-        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-600 transition-all flex flex-col group">
-          <div class="relative h-48 overflow-hidden bg-slate-950">
-            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90">
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-900/80 backdrop-blur-md text-teal-300 border border-teal-500/30">
-              ${p.spec}
-            </span>
-          </div>
-          <div class="p-5 flex-1 flex flex-col justify-between">
-            <div>
-              <div class="flex flex-wrap gap-1 mb-2">
-                ${p.tags.map(t => `<span class="text-[10px] px-2 py-0.5 rounded bg-purple-950/60 text-purple-300 border border-purple-800/40">${t}</span>`).join('')}
-              </div>
-              <h3 class="font-bold text-white text-base group-hover:text-accent-cyan transition-colors mb-1">${p.title}</h3>
-              <p class="text-slate-400 text-xs line-clamp-2 mb-4 leading-relaxed">${p.desc}</p>
-            </div>
-            
-            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-              <div>
-                <span class="text-xs text-slate-400">專屬能量價</span>
-                <div class="text-xl font-black text-accent-gold font-mono">HK$ ${p.price}</div>
-              </div>
-              <button onclick="addToCart('${p.id}')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-accent-cyan hover:text-slate-950 text-white text-xs font-bold transition-all border border-slate-700">
-                + 加入選購
-              </button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // Category Filter
-    function filterCategory(cat) {
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.classList.remove('active', 'bg-accent-cyan', 'text-slate-950');
-        btn.classList.add('bg-slate-800', 'text-slate-300');
-      });
-      event.target.classList.add('active', 'bg-accent-cyan', 'text-slate-950');
-      event.target.classList.remove('bg-slate-800', 'text-slate-300');
-
-      if (cat === 'all') {
-        renderProducts(products);
-      } else {
-        renderProducts(products.filter(p => p.category === cat));
-      }
-    }
-
-    // Numerology Calculation
-    let currentCalculatedNum = null;
+    let userCalcData = null;
 
     function calculateNumerology() {
       const y = parseInt(document.getElementById('calcYear').value);
@@ -544,6 +741,10 @@
         return;
       }
 
+      // 1. Calculate Zodiac
+      const zodiac = getZodiacSign(m, d);
+
+      // 2. Calculate Numerology
       const digitsStr = `${y}${m < 10 ? '0' + m : m}${d < 10 ? '0' + d : d}`;
       const digits = digitsStr.split('').map(Number);
       const sum1 = digits.reduce((a, b) => a + b, 0);
@@ -551,7 +752,6 @@
       let finalNum = sum1;
       let formulaLog = `${digits.join('+')} = ${sum1}`;
 
-      // Master numbers check: 11, 22, 33
       if (sum1 === 11 || sum1 === 22 || sum1 === 33) {
         finalNum = sum1;
       } else {
@@ -561,122 +761,204 @@
           const nextSum = nextDigits.reduce((a, b) => a + b, 0);
           formulaLog += ` ➔ ${nextDigits.join('+')} = ${nextSum}`;
           current = nextSum;
-          if (current === 11 || current === 22 || current === 33) {
-            break;
-          }
+          if (current === 11 || current === 22 || current === 33) break;
         }
         finalNum = current;
       }
 
-      currentCalculatedNum = finalNum;
-      const data = numerologyData[finalNum] || numerologyData[9];
+      const numInfo = numerologyData[finalNum] || numerologyData[9];
 
+      userCalcData = {
+        birthDate: `${y}年${m}月${d}日`,
+        zodiac: zodiac,
+        number: finalNum,
+        archetype: numInfo.archetype,
+        crystal: numInfo.crystal
+      };
+
+      // Populate UI
+      document.getElementById('resZodiacBadge').innerText = `${zodiac.icon} ${zodiac.name}`;
       document.getElementById('resNumBadge').innerText = finalNum >= 11 ? `卓越數 【 ${finalNum} 號人 】` : `生命靈數 【 ${finalNum} 號人 】`;
-      document.getElementById('resArchetype').innerText = data.archetype;
+      document.getElementById('resComboTitle').innerText = `${zodiac.name} ✕ ${finalNum}號人 能量架構`;
       document.getElementById('resFormula').innerText = formulaLog;
-      document.getElementById('resPros').innerText = data.pros;
-      document.getElementById('resCons').innerText = data.cons;
-      document.getElementById('resCrystal').innerText = data.crystal;
 
-      const resBox = document.getElementById('calcResult');
-      resBox.classList.remove('hidden');
-      resBox.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('resComboDesc').innerText = `身為【${zodiac.name}】，你天生具備「${zodiac.trait}」的太陽能量；而在生命靈數中身為【${finalNum}號人 (${numInfo.archetype})】，兩者交織出極具辨識度的個人氣場。當兩股頻率和諧時能發揮強大天賦，但若能量失衡，則容易放大內在拉扯。`;
+      document.getElementById('resPros').innerText = numInfo.pros;
+      document.getElementById('resCons').innerText = numInfo.cons;
+      document.getElementById('resFortuneTeaser').innerText = numInfo.fortune;
+
+      const resArea = document.getElementById('calcResult');
+      resArea.classList.remove('hidden');
+      resArea.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function filterByCrystal() {
-      if (!currentCalculatedNum) return;
-      const filtered = products.filter(p => p.matchNumbers.includes(currentCalculatedNum));
-      renderProducts(filtered.length ? filtered : products);
-      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Cart Operations
-    function addToCart(productId) {
-      const prod = products.find(p => p.id === productId);
-      if (!prod) return;
-      const existing = cart.find(item => item.id === productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({ ...prod, qty: 1 });
-      }
-      updateCartUI();
-      toggleCartDrawer(true);
-    }
-
-    function changeQty(productId, delta) {
-      const item = cart.find(i => i.id === productId);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) {
-        cart = cart.filter(i => i.id !== productId);
-      }
-      updateCartUI();
-    }
-
-    function updateCartUI() {
-      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      
-      const badge = document.getElementById('cartCountBadge');
-      const drawerBadge = document.getElementById('drawerBadge');
-      if (totalQty > 0) {
-        badge.innerText = totalQty;
-        badge.classList.remove('hidden');
-        drawerBadge.innerText = `${totalQty} 件商品`;
-      } else {
-        badge.classList.add('hidden');
-        drawerBadge.innerText = `0 件商品`;
-      }
-
-      document.getElementById('cartSubtotal').innerText = `HK$ ${subtotal}`;
-      const shippingEl = document.getElementById('cartShipping');
-      if (subtotal >= 500) {
-        shippingEl.innerText = '已享免運費 (順豐站/櫃)';
-        shippingEl.className = 'font-mono text-teal-400 font-bold';
-      } else if (subtotal === 0) {
-        shippingEl.innerText = '滿 $500 包郵';
-        shippingEl.className = 'font-mono text-slate-400';
-      } else {
-        shippingEl.innerText = `順豐到付 (差 HK$ ${500 - subtotal} 包郵)`;
-        shippingEl.className = 'font-mono text-amber-400';
-      }
-
-      document.getElementById('cartTotal').innerText = `HK$ ${subtotal}`;
-
-      const list = document.getElementById('cartItemsList');
-      if (cart.length === 0) {
-        list.innerHTML = `
-          <div class="h-64 flex flex-col items-center justify-center text-slate-500 space-y-3">
-            <svg class="w-12 h-12 stroke-current opacity-40" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-            <p class="text-sm">購物車內暫無水晶商品</p>
-          </div>
-        `;
+    // High-Converting Gated Funnel: WhatsApp Unlock Action
+    function unlockViaWhatsApp() {
+      if (!userCalcData) {
+        alert('請先在上方輸入出生日期進行測算！');
         return;
       }
 
-      list.innerHTML = cart.map(item => `
-        <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-between gap-3">
-          <img src="${item.image}" alt="${item.title}" class="w-14 h-14 rounded-lg object-cover bg-slate-900">
-          <div class="flex-1 min-w-0">
-            <h4 class="font-bold text-white text-xs truncate">${item.title}</h4>
-            <span class="text-[11px] text-accent-gold font-mono block">HK$ ${item.price}</span>
+      const message = `你好 808 店主！我啱啱喺官網測完雙重能量：
+🔮 我的測算結果：【${userCalcData.zodiac.name} ✕ ${userCalcData.number}號人】
+📅 出生日期：${userCalcData.birthDate}
+
+想免費解鎖領取後半段深度分析：
+1️⃣ 下半年「轉運破局點」與貴人時機分析
+2️⃣ 針對我個人脈輪缺口的專屬命定手串推薦
+3️⃣ 正確的左進右出佩戴與聖木消磁指引
+
+麻煩店主為我解鎖分析，謝謝你！✨`;
+
+      const encoded = encodeURIComponent(message);
+      window.open(`https://wa.me/85294432331?text=${encoded}`, '_blank');
+    }
+
+    // 4. Render Product Catalog
+    function renderCatalog(items) {
+      const container = document.getElementById('productGrid');
+      container.innerHTML = items.map(item => `
+        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-neon-cyan transition-all flex flex-col group">
+          <div class="relative h-52 overflow-hidden bg-slate-950">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90">
+            <div class="absolute top-3 left-3 flex flex-col gap-1">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-slate-950/80 backdrop-blur-md text-teal-300 border border-teal-500/40">
+                珠徑: ${item.beadSize}
+              </span>
+            </div>
           </div>
-          <div class="flex items-center gap-2 bg-slate-900 px-2 py-1 rounded-lg border border-slate-700">
-            <button onclick="changeQty('${item.id}', -1)" class="text-slate-400 hover:text-white text-xs px-1">－</button>
-            <span class="text-xs text-white font-mono font-bold">${item.qty}</span>
-            <button onclick="changeQty('${item.id}', 1)" class="text-slate-400 hover:text-white text-xs px-1">＋</button>
+
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                ${item.tags.map(t => `<span class="text-[10px] px-2 py-0.5 rounded bg-purple-950/80 text-purple-300 border border-purple-800/40">${t}</span>`).join('')}
+              </div>
+              <h3 class="font-bold text-white text-base group-hover:text-neon-cyan transition-colors mb-1">${item.name}</h3>
+              <p class="text-slate-400 text-xs line-clamp-2 mb-4 leading-relaxed">${item.desc}</p>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block font-mono">試算表參考價</span>
+                <div class="text-lg font-black text-neon-gold font-mono">${item.priceTier}</div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <a href="https://www.instagram.com/808_vibe_crystal?stkn=YXJkYTcycDA2MnB4&utm_source=qr" target="_blank" title="在 IG 睇實拍影片" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-purple-300 border border-purple-500/30 text-xs transition-all">
+                  ▶ 實拍
+                </a>
+                <button onclick="addToCart('${item.id}')" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-neon-cyan hover:text-slate-950 text-white text-xs font-bold transition-all border border-slate-700">
+                  + 選購
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       `).join('');
     }
 
-    function toggleCartDrawer(forceOpen = null) {
-      const drawer = document.getElementById('cartDrawer');
-      const backdrop = document.getElementById('cartDrawerBackdrop');
-      const isOpen = !drawer.classList.contains('translate-x-full');
+    function filterCatalog(category) {
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        btn.classList.remove('active', 'bg-neon-cyan', 'text-slate-950');
+        btn.classList.add('bg-slate-900', 'text-slate-300');
+      });
+      event.target.classList.add('active', 'bg-neon-cyan', 'text-slate-950');
+      event.target.classList.remove('bg-slate-900', 'text-slate-300');
 
-      if (forceOpen === true || !isOpen) {
+      if (category === 'all') {
+        renderCatalog(inventory);
+      } else {
+        renderCatalog(inventory.filter(i => i.category === category));
+      }
+    }
+
+    // 5. Shopping Cart & Drawer Management
+    let cart = [];
+
+    function addToCart(productId) {
+      const item = inventory.find(i => i.id === productId);
+      if (!item) return;
+      const exist = cart.find(c => c.id === productId);
+      if (exist) {
+        exist.qty += 1;
+      } else {
+        cart.push({ ...item, qty: 1 });
+      }
+      updateCartDisplay();
+      toggleCartDrawer(true);
+    }
+
+    function changeCartQty(productId, delta) {
+      const item = cart.find(c => c.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(c => c.id !== productId);
+      }
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const totalQty = cart.reduce((acc, cur) => acc + cur.qty, 0);
+      const subtotal = cart.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
+
+      const badge = document.getElementById('cartCountBadge');
+      const drawerCount = document.getElementById('drawerCount');
+      if (totalQty > 0) {
+        badge.innerText = totalQty;
+        badge.classList.remove('hidden');
+        drawerCount.innerText = `${totalQty} 件`;
+      } else {
+        badge.classList.add('hidden');
+        drawerCount.innerText = `0 件`;
+      }
+
+      document.getElementById('subtotalVal').innerText = `HK$ ${subtotal}`;
+      const shippingEl = document.getElementById('shippingVal');
+      if (subtotal >= 500) {
+        shippingEl.innerText = '已享順豐免運費 (站/智能櫃)';
+        shippingEl.className = 'font-mono text-teal-400 font-bold';
+      } else if (subtotal === 0) {
+        shippingEl.innerText = '滿 $500 包郵';
+        shippingEl.className = 'font-mono text-slate-400 font-bold';
+      } else {
+        shippingEl.innerText = `順豐到付 (差 HK$ ${500 - subtotal} 包郵)`;
+        shippingEl.className = 'font-mono text-amber-400 font-bold';
+      }
+
+      document.getElementById('totalVal').innerText = `HK$ ${subtotal}`;
+
+      const container = document.getElementById('cartItemsContainer');
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-64 flex flex-col items-center justify-center text-slate-500 space-y-2">
+            <svg class="w-12 h-12 stroke-current opacity-40" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            <p class="text-sm">尚未選購任何水晶</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between gap-3">
+          <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-lg object-cover bg-slate-950">
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold text-white text-xs truncate">${item.name}</h4>
+            <span class="text-[11px] text-teal-300 block">${item.beadSize}</span>
+            <span class="text-xs text-neon-gold font-mono font-bold">HK$ ${item.price}</span>
+          </div>
+          <div class="flex items-center gap-2 bg-slate-950 px-2 py-1 rounded-lg border border-slate-800">
+            <button onclick="changeCartQty('${item.id}', -1)" class="text-slate-400 hover:text-white px-1">－</button>
+            <span class="text-xs text-white font-mono font-bold">${item.qty}</span>
+            <button onclick="changeCartQty('${item.id}', 1)" class="text-slate-400 hover:text-white px-1">＋</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartBackdrop');
+      if (open) {
         drawer.classList.remove('translate-x-full');
         backdrop.classList.remove('hidden');
       } else {
@@ -685,25 +967,25 @@
       }
     }
 
-    // Generate Formatted Order Message
-    function generateOrderMessage(channel) {
+    // 6. Direct Order Template Generator
+    function checkoutToOrder(platform) {
       if (cart.length === 0) {
-        alert('請先選擇心水水晶商品！');
+        alert('請先挑選心水水晶加入清單！');
         return;
       }
 
-      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      const itemsListStr = cart.map(i => `• ${i.title} (${i.spec}) x ${i.qty} = HK$${i.price * i.qty}`).join('\n');
-      const dispatchMode = document.getElementById('orderDispatchMode').value;
-      const wristSize = document.getElementById('orderWristSize').value.trim() || '未備註 (請店主指導量度)';
+      const total = cart.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
+      const itemsListText = cart.map(i => `• ${i.name} (${i.beadSize}) x ${i.qty} ＝ HK$${i.price * i.qty}`).join('\n');
+      const dispatch = document.getElementById('dispatchMode').value;
+      const wrist = document.getElementById('wristSizeInput').value.trim() || '未備註 (請店主指導量度)';
 
-      const message = `多謝你支持 808_vibe_crystal！已為你預留好心水水晶手串 🔮✨
+      const orderTemplate = `多謝你支持 808_vibe_crystal！已為你預留好心水水晶手串 🔮✨
 請核對以下訂單資料及選擇合適的付款方式：
 
 📋 訂單確認
 訂購貨品：
-${itemsListStr}
-手圍尺寸：${wristSize}
+${itemsListText}
+手圍尺寸：${wrist}
 應付總額：HK$ ${total}
 
 💳 付款方式（支援以下 3 種）：
@@ -727,27 +1009,26 @@ IG 名：
 收件人名：
 電話號碼：
 順豐編號（站/櫃點碼）或順豐地址：
-處理方式：${dispatchMode}
+處理方式：${dispatch}
 之前有冇儲貨（有 / 冇）：
 
 🌿 貼心提醒：確認款項後，店主出貨前會親自使用秘魯聖木煙燻及白水晶為手串進行深度消磁與調頻，確保水晶以最純淨的高頻能量送到你手中！`;
 
-      if (channel === 'whatsapp') {
-        const encoded = encodeURIComponent(message);
-        // Replace with your real Hong Kong WhatsApp phone number (e.g. 852XXXXXXXX)
-        window.open(`https://wa.me/?text=${encoded}`, '_blank');
+      if (platform === 'whatsapp') {
+        const encoded = encodeURIComponent(orderTemplate);
+        window.open(`https://wa.me/85294432331?text=${encoded}`, '_blank');
       } else {
-        navigator.clipboard.writeText(message).then(() => {
-          alert('✅ 訂單範本已成功複製至剪貼簿！你可以直接傳送至 808_vibe_crystal Instagram 私訊箱完成下單與付款！');
+        navigator.clipboard.writeText(orderTemplate).then(() => {
+          alert('✅ 訂單範本已成功複製至剪貼簿！你可以直接私訊傳送至 @808_vibe_crystal Instagram 完成下單與付款！');
         }).catch(() => {
-          prompt('請手動複製以下訂單訊息：', message);
+          prompt('請複製以下訂單訊息：', orderTemplate);
         });
       }
     }
 
-    // Initialize
-    renderProducts(products);
-    updateCartUI();
+    // Init
+    renderCatalog(inventory);
+    updateCartDisplay();
   </script>
 </body>
 </html>
