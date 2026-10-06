@@ -94,7 +94,7 @@
     <!-- 1. Top Alert Announcement -->
     <div class="bg-gradient-to-r from-purple-950/90 via-slate-900/90 to-teal-950/90 border-b border-teal-400/30 text-xs md:text-sm py-2 px-4 text-center tracking-wide font-medium flex items-center justify-center gap-2">
       <span class="inline-block w-2.5 h-2.5 rounded-full bg-neon-cyan animate-ping"></span>
-      <span>全店滿 <strong class="text-neon-gold">HK$500</strong> 享順豐站/智能櫃免運費 ❤️ ｜ 出貨前店主親自使用秘魯聖木煙燻 ✕ 白水晶深度調頻消磁</span>
+      <span>全店滿 <strong class="text-neon-gold">HK$500</strong> 享順豐站/智能櫃免運費 ❤️ ｜ 天然水晶一物一圖 · 標價為系列區間 · 點選「聯絡店主」由店主為你提供實拍與確實報價</span>
     </div>
 
     <!-- 2. Navbar -->
@@ -143,10 +143,8 @@
             <span>關注店舖 IG</span>
           </a>
 
-          <!-- Cart Trigger -->
-          <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-neon-cyan text-white transition-all">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-            <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-neon-magenta text-white font-black text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+          <button onclick="contactDirectGeneral()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-teal-400 bg-teal-500/20 text-xs font-bold text-teal-300 hover:bg-teal-400 hover:text-slate-950 transition-all">
+            <span>💬 聯絡我們</span>
           </button>
         </div>
       </div>
@@ -163,7 +161,7 @@
       </h1>
       <p class="max-w-3xl mx-auto text-slate-300 text-base sm:text-lg mb-10 leading-relaxed font-light">
         我們不只依眼緣挑選，更結合生命靈數、西方占星與專業原礦挑選。<br class="hidden sm:inline">
-        全店 34 款天然原石與手串完整展示，標明真實珠體直徑（mm）與品質等級，出貨前親自使用秘魯聖木深度消磁歸零。
+        全店 34 款天然原石與手串完整展示，標示庫存實質定價區間。點選「聯絡店主挑選」由店主為你一對一提供現貨實拍影片與手圍客製！
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-4">
@@ -171,7 +169,7 @@
           🔮 免費測算【星座 ✕ 生命靈數】
         </a>
         <a href="#products" class="px-8 py-4 rounded-xl glass-card text-white font-bold text-sm hover:border-neon-cyan transition-all border border-slate-700">
-          💎 瀏覽 34 款水晶庫存
+          💎 瀏覽 34 款庫存目錄
         </a>
       </div>
     </section>
@@ -292,7 +290,7 @@
             <span class="text-xs font-mono text-teal-400 uppercase tracking-widest">34 Products Master Inventory</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">808 現貨水晶庫存目錄 (全 34 款)</h2>
-          <p class="text-slate-400 text-sm mt-1">根據主庫存表標明真實珠徑（mm）、原礦品質與專屬定價</p>
+          <p class="text-slate-400 text-sm mt-1">標價為 808 試算表實質定價區間。點選「聯絡店主挑選」由店主為你提供一物一圖實拍與確實報價！</p>
         </div>
 
         <!-- Filter Buttons -->
@@ -368,13 +366,13 @@
         <div class="glass-card p-6 rounded-2xl border border-slate-800">
           <div class="text-neon-gold text-2xl mb-2">📦</div>
           <h4 class="font-bold text-white text-base mb-1">免費儲貨一個月</h4>
-          <p class="text-slate-400 leading-relaxed">完成付款後可安排免費儲貨（最長一個月）。之後若需一同寄出請在下單時備註通知！</p>
+          <p class="text-slate-400 leading-relaxed">完成付款後可安排免費儲貨（最長一個月）。之後若需一同寄出請在溝通時告知店主！</p>
         </div>
 
         <div class="glass-card p-6 rounded-2xl border border-slate-800">
           <div class="text-neon-magenta text-2xl mb-2">💳</div>
           <h4 class="font-bold text-white text-base mb-1">支援本地 3 大支付</h4>
-          <p class="text-slate-400 leading-relaxed">支援香港轉數快 (FPS)、PayMe、支付寶 (AlipayHK) 轉賬，下單後專員即時核對並安排手圍客製。</p>
+          <p class="text-slate-400 leading-relaxed">支援香港轉數快 (FPS)、PayMe、支付寶 (AlipayHK) 轉賬，店主 1 對 1 即時為你確認現貨、手圍與出貨。</p>
         </div>
       </div>
     </section>
@@ -394,64 +392,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- 9. Slide-out Cart Drawer -->
-    <div id="cartBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden transition-opacity"></div>
-    <div id="cartDrawer" class="fixed right-0 top-0 bottom-0 w-full sm:w-[460px] bg-slate-950 border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 flex flex-col p-6 shadow-2xl">
-      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-        <h3 class="text-lg font-bold text-white flex items-center gap-2">
-          <span>🛒 你的選購清單</span>
-          <span id="drawerCount" class="text-xs px-2.5 py-0.5 rounded-full bg-slate-900 text-teal-400 border border-teal-500/30">0 件</span>
-        </h3>
-        <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-white p-2 text-lg">✕</button>
-      </div>
-
-      <!-- Items List -->
-      <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-4 space-y-3"></div>
-
-      <!-- Options & Calculation -->
-      <div class="pt-4 border-t border-slate-800 space-y-3">
-        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-2.5">
-          <div class="flex items-center justify-between">
-            <span class="text-slate-300 font-semibold">出貨處理方式：</span>
-            <select id="dispatchMode" class="bg-slate-950 border border-slate-700 rounded px-2.5 py-1 text-white text-xs">
-              <option value="直接寄出 (順豐速運)">直接寄出 (順豐速運)</option>
-              <option value="安排免費儲貨 (最長1個月)">安排免費儲貨 (最長 1 個月)</option>
-              <option value="與之前儲貨一同寄出">與之前儲貨一同寄出</option>
-            </select>
-          </div>
-          <div class="flex items-center justify-between">
-            <span class="text-slate-300 font-semibold">客製貼手圍：</span>
-            <input type="text" id="wristSizeInput" placeholder="例: 15cm (貼手圍)" class="bg-slate-950 border border-slate-700 rounded px-2.5 py-1 text-white text-xs w-44 text-right">
-          </div>
-        </div>
-
-        <div class="space-y-1.5 text-xs sm:text-sm">
-          <div class="flex justify-between text-slate-400">
-            <span>貨品總計</span>
-            <span id="subtotalVal" class="font-mono text-white">HK$ 0</span>
-          </div>
-          <div class="flex justify-between text-slate-400">
-            <span>順豐運費狀態</span>
-            <span id="shippingVal" class="font-mono text-teal-400 font-bold">滿 $500 包郵</span>
-          </div>
-          <div class="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
-            <span>應付總額</span>
-            <span id="totalVal" class="font-mono text-neon-gold text-lg">HK$ 0</span>
-          </div>
-        </div>
-
-        <!-- Checkout Buttons -->
-        <div class="grid grid-cols-2 gap-2 pt-2">
-          <button onclick="checkoutToOrder('whatsapp')" class="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
-            <span>📲 WhatsApp 一鍵下單</span>
-          </button>
-          <button onclick="checkoutToOrder('instagram')" class="py-3 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
-            <span>📋 複製訂單傳送 IG</span>
-          </button>
-        </div>
-      </div>
-    </div>
 
   </div>
 
@@ -512,16 +452,15 @@
     }
     requestAnimationFrame(drawSpace);
 
-    // 2. Complete 34 Items Master Database (Exact filenames from your images/ repository)
+    // 2. Complete 34 Items Master Database (Real price intervals from 808 Inventory Table)
     const inventory = [
       {
             "id": "p01_black_silver_titanium",
             "name": "頂級絕礦 · 天然黑銀鈦手串",
             "filename": "黑銀鈦.jpg",
             "category": "featured",
-            "price": 1880,
-            "priceTier": "HK$ 1,680 - 3,280",
-            "beadSize": "約 9.5mm - 10.5mm",
+            "priceTier": "HK$ 228 - 6,918",
+            "beadSize": "約 5mm+ - 11mm",
             "tags": [
                   "確定絕礦",
                   "職場防小人",
@@ -539,8 +478,7 @@
             "name": "孤品原石 · 黑銀鈦隨形手串",
             "filename": "黑銀鈦隨形.jpg",
             "category": "featured",
-            "price": 1480,
-            "priceTier": "HK$ 1,280 - 2,180",
+            "priceTier": "HK$ 388 - 2,180",
             "beadSize": "天然隨形大顆粒",
             "tags": [
                   "自然原態",
@@ -559,9 +497,8 @@
             "name": "深海之息 · 魔鬼海藍寶手串",
             "filename": "魔鬼海南寶.jpg",
             "category": "bracelet",
-            "price": 528,
-            "priceTier": "HK$ 468 - 688",
-            "beadSize": "約 8.5mm - 9.0mm",
+            "priceTier": "HK$ 88 - 688",
+            "beadSize": "約 7mm - 9.5mm",
             "tags": [
                   "唱片海報同款",
                   "平息情緒",
@@ -579,9 +516,8 @@
             "name": "老礦冰透 · 魔鬼海藍寶手串",
             "filename": "魔鬼海藍寶，舊.jpg",
             "category": "bracelet",
-            "price": 580,
-            "priceTier": "HK$ 520 - 720",
-            "beadSize": "約 8.0mm - 8.8mm",
+            "priceTier": "HK$ 128 - 688",
+            "beadSize": "約 7mm - 9mm",
             "tags": [
                   "老礦深藍",
                   "貓眼絲光",
@@ -599,9 +535,8 @@
             "name": "典藏老版 · 魔鬼海藍寶手串",
             "filename": "魔鬼海藍寶，舊版.jpg",
             "category": "featured",
-            "price": 628,
-            "priceTier": "HK$ 580 - 780",
-            "beadSize": "約 9.0mm - 9.8mm",
+            "priceTier": "HK$ 228 - 688",
+            "beadSize": "約 8.5mm - 10mm",
             "tags": [
                   "大珠典藏",
                   "深海墨藍",
@@ -619,9 +554,8 @@
             "name": "冰透清澈 · 天然海藍寶手串",
             "filename": "海藍寶.jpg",
             "category": "bracelet",
-            "price": 388,
-            "priceTier": "HK$ 328 - 480",
-            "beadSize": "約 8.0mm - 9.0mm",
+            "priceTier": "HK$ 88 - 248",
+            "beadSize": "約 7mm - 9mm",
             "tags": [
                   "水潤透亮",
                   "旅行平安",
@@ -638,9 +572,8 @@
             "name": "能量霸主 · 黑金超七手串 (新版)",
             "filename": "黑金超七新版.jpg",
             "category": "featured",
-            "price": 980,
-            "priceTier": "HK$ 880 - 1,880",
-            "beadSize": "約 8.5mm - 11mm",
+            "priceTier": "HK$ 198 - 638",
+            "beadSize": "約 8mm - 11mm",
             "tags": [
                   "全方位調頻",
                   "金銅黑雲母",
@@ -659,9 +592,8 @@
             "name": "滿礦閃片 · 黑金超七手串",
             "filename": "黑金超七.jpg",
             "category": "featured",
-            "price": 880,
-            "priceTier": "HK$ 780 - 1,580",
-            "beadSize": "約 8.0mm - 9.5mm",
+            "priceTier": "HK$ 198 - 638",
+            "beadSize": "約 7.5mm - 9.5mm",
             "tags": [
                   "轉運辟邪",
                   "高頻共振",
@@ -680,8 +612,7 @@
             "name": "招財魄力 · 頂級銅鈦晶手串",
             "filename": "銅鈦晶.jpg",
             "category": "featured",
-            "price": 850,
-            "priceTier": "HK$ 680 - 1,480",
+            "priceTier": "HK$ 668 - 698",
             "beadSize": "約 8.5mm - 10mm",
             "tags": [
                   "強勢招財",
@@ -699,9 +630,8 @@
             "name": "招財霸主 · 金髮晶滿絲手串",
             "filename": "金髮晶.jpg",
             "category": "featured",
-            "price": 780,
-            "priceTier": "HK$ 580 - 1,280",
-            "beadSize": "約 8.5mm - 10mm",
+            "priceTier": "HK$ 388 - 1,288",
+            "beadSize": "約 8mm - 11mm",
             "tags": [
                   "正偏財運",
                   "領袖魄力",
@@ -719,9 +649,8 @@
             "name": "領袖辟邪 · 天然黑髮晶手串",
             "filename": "黑髮晶.jpg",
             "category": "bracelet",
-            "price": 420,
-            "priceTier": "HK$ 360 - 580",
-            "beadSize": "約 8.0mm - 10mm",
+            "priceTier": "HK$ 168 - 388",
+            "beadSize": "約 8mm - 10mm",
             "tags": [
                   "防小人是非",
                   "領袖石",
@@ -739,9 +668,8 @@
             "name": "黑馬逆襲 · 金運石手串 (紫蘇輝石)",
             "filename": "金運石.jpg",
             "category": "bracelet",
-            "price": 360,
-            "priceTier": "HK$ 320 - 480",
-            "beadSize": "約 8mm - 10mm",
+            "priceTier": "HK$ 468 - 1,288",
+            "beadSize": "約 8mm - 11mm+",
             "tags": [
                   "極致偏財",
                   "古埃及護身符",
@@ -758,9 +686,8 @@
             "name": "深層排濁 · 極致銀曜石手串",
             "filename": "銀曜石.jpg",
             "category": "bracelet",
-            "price": 248,
-            "priceTier": "HK$ 198 - 298",
-            "beadSize": "約 8mm / 10mm",
+            "priceTier": "HK$ 68 - 198",
+            "beadSize": "約 8mm - 10mm",
             "tags": [
                   "右手排濁",
                   "化煞擋小人",
@@ -775,12 +702,11 @@
       },
       {
             "id": "p14_silver_sheen_obsidian_old",
-            "name": "聚光銀沙 · 銀曜石手串 (典藏版)",
+            "name": "聚光銀沙 · 銀曜石手串 (高品版)",
             "filename": "銀曜石，舊.jpg",
             "category": "bracelet",
-            "price": 268,
-            "priceTier": "HK$ 220 - 320",
-            "beadSize": "約 8.5mm - 9.5mm",
+            "priceTier": "HK$ 118 - 198",
+            "beadSize": "約 8mm",
             "tags": [
                   "銀沙凝聚",
                   "深層防護",
@@ -798,8 +724,7 @@
             "name": "頂級藍光 · 拉長石手串 (灰月光)",
             "filename": "拉長石.jpg",
             "category": "bracelet",
-            "price": 388,
-            "priceTier": "HK$ 368 - 480",
+            "priceTier": "HK$ 128 - 480",
             "beadSize": "約 7.5mm - 8.5mm",
             "tags": [
                   "2號人命定",
@@ -818,9 +743,8 @@
             "name": "溫暖生機 · 頂級金草莓太陽石手串",
             "filename": "太陽石.jpg",
             "category": "bracelet",
-            "price": 420,
-            "priceTier": "HK$ 380 - 580",
-            "beadSize": "約 8mm - 9.5mm",
+            "priceTier": "HK$ 58 - 628",
+            "beadSize": "約 8mm - 11mm",
             "tags": [
                   "正能量自信",
                   "驅散陰霾",
@@ -838,9 +762,8 @@
             "name": "正財聚富 · 頂級綠幽靈手串",
             "filename": "綠幽靈.jpg",
             "category": "featured",
-            "price": 680,
-            "priceTier": "HK$ 580 - 980",
-            "beadSize": "約 8.5mm - 10mm",
+            "priceTier": "HK$ 168 - 738",
+            "beadSize": "約 5mm+ - 10mm",
             "tags": [
                   "事業正財",
                   "聚寶盆景",
@@ -857,9 +780,8 @@
             "name": "老礦聚寶 · 綠幽靈手串 (舊版)",
             "filename": "綠幽靈，舊版.jpg",
             "category": "featured",
-            "price": 720,
-            "priceTier": "HK$ 620 - 1,180",
-            "beadSize": "約 9.0mm - 10.5mm",
+            "priceTier": "HK$ 168 - 738",
+            "beadSize": "約 6mm - 10.5mm",
             "tags": [
                   "深翠老綠",
                   "千層山景",
@@ -876,9 +798,8 @@
             "name": "靈性招貴人 · 極光紫幽靈手串",
             "filename": "極光紫幽靈.jpg",
             "category": "bracelet",
-            "price": 468,
-            "priceTier": "HK$ 420 - 580",
-            "beadSize": "約 7.5mm - 9mm",
+            "priceTier": "HK$ 98 - 478",
+            "beadSize": "約 7mm - 13mm",
             "tags": [
                   "開智慧靈感",
                   "頂輪眉心輪",
@@ -896,9 +817,8 @@
             "name": "精巧高頻 · 極光紫幽靈 (細珠版)",
             "filename": "極光紫幽靈，細.jpg",
             "category": "bracelet",
-            "price": 380,
-            "priceTier": "HK$ 330 - 450",
-            "beadSize": "約 6.5mm - 7.5mm",
+            "priceTier": "HK$ 98 - 158",
+            "beadSize": "約 7mm - 8mm",
             "tags": [
                   "精緻疊戴",
                   "啟迪靈思",
@@ -916,9 +836,8 @@
             "name": "深邃靈智 · 烏拉圭天然深紫水晶手串",
             "filename": "烏拉圭紫水晶.jpg",
             "category": "bracelet",
-            "price": 368,
-            "priceTier": "HK$ 320 - 460",
-            "beadSize": "約 8.0mm - 9.5mm",
+            "priceTier": "HK$ 128 - 238",
+            "beadSize": "約 6mm - 8mm",
             "tags": [
                   "智慧文昌",
                   "睡眠安穩",
@@ -935,8 +854,7 @@
             "name": "高頻覺醒 · 白阿塞斯特萊手串",
             "filename": "白阿塞.jpg",
             "category": "featured",
-            "price": 520,
-            "priceTier": "HK$ 450 - 680",
+            "priceTier": "HK$ 128 - 488",
             "beadSize": "約 8mm - 10mm",
             "tags": [
                   "高頻天花板",
@@ -955,9 +873,8 @@
             "name": "彩虹爆閃 · 白阿塞手串 (老料)",
             "filename": "白阿塞，舊.jpg",
             "category": "featured",
-            "price": 560,
-            "priceTier": "HK$ 490 - 720",
-            "beadSize": "約 8.5mm - 9.5mm",
+            "priceTier": "HK$ 128 - 488",
+            "beadSize": "約 9mm",
             "tags": [
                   "密集彩虹",
                   "通透如冰",
@@ -975,9 +892,8 @@
             "name": "幸運希望 · 冰透天河石手串",
             "filename": "天河石.jpg",
             "category": "bracelet",
-            "price": 288,
-            "priceTier": "HK$ 240 - 350",
-            "beadSize": "約 8mm - 9.5mm",
+            "priceTier": "HK$ 118 - 338",
+            "beadSize": "約 8mm - 11mm+",
             "tags": [
                   "自信希望",
                   "逢凶化吉",
@@ -994,9 +910,8 @@
             "name": "莫三比克天河石手串 (老料)",
             "filename": "天河石，舊.jpg",
             "category": "bracelet",
-            "price": 320,
-            "priceTier": "HK$ 270 - 380",
-            "beadSize": "約 8.0mm - 9.0mm",
+            "priceTier": "HK$ 118 - 338",
+            "beadSize": "約 8mm - 10mm",
             "tags": [
                   "白條紋路",
                   "舒緩神經",
@@ -1013,9 +928,8 @@
             "name": "無條件自愛 · 頂級紫鋰輝手串",
             "filename": "紫鋰輝.jpg",
             "category": "bracelet",
-            "price": 580,
-            "priceTier": "HK$ 480 - 750",
-            "beadSize": "約 8mm - 9.5mm",
+            "priceTier": "HK$ 208 - 248",
+            "beadSize": "約 7mm - 8mm",
             "tags": [
                   "暢通心輪",
                   "撫平創傷",
@@ -1033,9 +947,8 @@
             "name": "冰透粉紫 · 紫鋰輝手串 (早期料)",
             "filename": "紫鋰輝，舊.jpg",
             "category": "bracelet",
-            "price": 620,
-            "priceTier": "HK$ 520 - 790",
-            "beadSize": "約 8.5mm - 9.5mm",
+            "priceTier": "HK$ 208 - 248",
+            "beadSize": "約 7mm - 8mm",
             "tags": [
                   "貓眼絲絹",
                   "純淨通透",
@@ -1053,9 +966,8 @@
             "name": "柔潤甜美 · 天然馬卡龍摩根石手串",
             "filename": "摩根石.jpg",
             "category": "bracelet",
-            "price": 360,
-            "priceTier": "HK$ 298 - 450",
-            "beadSize": "約 8.0mm - 9.5mm",
+            "priceTier": "HK$ 168 - 368",
+            "beadSize": "約 8mm - 9.5mm",
             "tags": [
                   "馬卡龍色調",
                   "真誠姻緣",
@@ -1072,9 +984,8 @@
             "name": "好運招財 · 錦鯉膠花手串",
             "filename": "錦鯉膠花.jpg",
             "category": "bracelet",
-            "price": 398,
-            "priceTier": "HK$ 350 - 520",
-            "beadSize": "約 8mm - 10mm",
+            "priceTier": "HK$ 118 - 558",
+            "beadSize": "約 7mm - 8mm",
             "tags": [
                   "錦鯉開運",
                   "正偏財運",
@@ -1092,9 +1003,8 @@
             "name": "聚金生財 · 天然黃膠花手串",
             "filename": "黃膠花.jpg",
             "category": "bracelet",
-            "price": 380,
-            "priceTier": "HK$ 320 - 490",
-            "beadSize": "約 8.0mm - 9.5mm",
+            "priceTier": "HK$ 168 - 498",
+            "beadSize": "約 8mm - 9.5mm",
             "tags": [
                   "黃金花瓣",
                   "意外之財",
@@ -1111,9 +1021,8 @@
             "name": "聚財豐盛 · 巴西天然黃水晶手串",
             "filename": "黃水晶.jpg",
             "category": "bracelet",
-            "price": 350,
-            "priceTier": "HK$ 298 - 450",
-            "beadSize": "約 8mm - 9.5mm",
+            "priceTier": "HK$ 118 - 188",
+            "beadSize": "約 7mm - 8mm",
             "tags": [
                   "財富之石",
                   "自信活力",
@@ -1130,9 +1039,8 @@
             "name": "焦糖深蜜 · 天然黃水晶手串 (老款)",
             "filename": "黃水晶，舊.jpg",
             "category": "bracelet",
-            "price": 380,
-            "priceTier": "HK$ 320 - 480",
-            "beadSize": "約 8.5mm - 9.5mm",
+            "priceTier": "HK$ 118 - 188",
+            "beadSize": "約 7mm - 8mm",
             "tags": [
                   "濃蜜焦糖",
                   "充實財庫",
@@ -1149,9 +1057,8 @@
             "name": "柔和治癒 · 天然彩兔毛水晶手串",
             "filename": "彩兔毛.jpg",
             "category": "bracelet",
-            "price": 320,
-            "priceTier": "HK$ 280 - 420",
-            "beadSize": "約 8mm - 9.5mm",
+            "priceTier": "HK$ 458 - 478",
+            "beadSize": "約 6mm - 7mm",
             "tags": [
                   "細密發絲",
                   "溫和包容",
@@ -1168,9 +1075,8 @@
             "name": "高頻充電 · 巴基斯坦天然油膽閃靈鑽",
             "filename": "油膽閃靈鑽.jpg",
             "category": "raw",
-            "price": 168,
-            "priceTier": "HK$ 168 (100g 裝)",
-            "beadSize": "天然雙尖高頻原石",
+            "priceTier": "HK$ 128 - 198",
+            "beadSize": "天然雙尖高頻原石 (100g 裝)",
             "tags": [
                   "能量高鐵",
                   "365nm UV螢光",
@@ -1393,7 +1299,33 @@
       window.open(`https://wa.me/85294432331?text=${encoded}`, '_blank');
     }
 
-    // 4. Render Product Catalog (All 34 Items)
+    // Direct WhatsApp Consultation For Specific Crystal
+    function consultProduct(productId) {
+      const item = inventory.find(i => i.id === productId);
+      if (!item) return;
+
+      const message = `你好 808 店主！我喺官網睇中咗心水水晶：
+💎 產品款式：【${item.name}】
+📏 參考珠徑：${item.beadSize}
+🏷️ 參考定價區間：${item.priceTier}
+
+想向店主查詢：
+1️⃣ 現貨品相與一物一圖實拍影片 📸
+2️⃣ 目前在庫確實報價與手圍客製建議 ✨
+3️⃣ 是否適合我現時的能量狀態調頻 🔮
+
+麻煩店主，謝謝你！`;
+
+      const encoded = encodeURIComponent(message);
+      window.open(`https://wa.me/85294432331?text=${encoded}`, '_blank');
+    }
+
+    function contactDirectGeneral() {
+      const message = `你好 808 店主！我正在瀏覽 808 Vibe Crystal 官方網站，想了解手串現貨庫存、專屬手圍客製及能量調頻諮詢！🔮✨`;
+      window.open(`https://wa.me/85294432331?text=` + encodeURIComponent(message), '_blank');
+    }
+
+    // 4. Render Product Catalog (All 34 Items with 1-on-1 VIP WhatsApp Consultation)
     function renderCatalog(items) {
       const container = document.getElementById('productGrid');
       container.innerHTML = items.map(item => `
@@ -1418,15 +1350,15 @@
 
             <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
               <div>
-                <span class="text-[10px] text-slate-400 block font-mono">試算表參考價</span>
-                <div class="text-lg font-black text-neon-gold font-mono">${item.priceTier}</div>
+                <span class="text-[10px] text-slate-400 block font-mono">試算表參考區間</span>
+                <div class="text-base sm:text-lg font-black text-neon-gold font-mono">${item.priceTier}</div>
               </div>
               <div class="flex items-center gap-1.5">
                 <a href="https://www.instagram.com/808_vibe_crystal?stkn=YXJkYTcycDA2MnB4&utm_source=qr" target="_blank" title="在 IG 睇實拍影片" class="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-purple-300 border border-purple-500/30 text-xs transition-all">
                   ▶ 實拍
                 </a>
-                <button onclick="addToCart('${item.id}')" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-neon-cyan hover:text-slate-950 text-white text-xs font-bold transition-all border border-slate-700">
-                  + 選購
+                <button onclick="consultProduct('${item.id}')" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-neon-cyan hover:opacity-95 text-slate-950 text-xs font-black transition-all shadow-md shadow-teal-500/20">
+                  💬 聯絡店主
                 </button>
               </div>
             </div>
@@ -1450,164 +1382,8 @@
       }
     }
 
-    // 5. Shopping Cart & Drawer Management
-    let cart = [];
-
-    function addToCart(productId) {
-      const item = inventory.find(i => i.id === productId);
-      if (!item) return;
-      const exist = cart.find(c => c.id === productId);
-      if (exist) {
-        exist.qty += 1;
-      } else {
-        cart.push({ ...item, qty: 1 });
-      }
-      updateCartDisplay();
-      toggleCartDrawer(true);
-    }
-
-    function changeCartQty(productId, delta) {
-      const item = cart.find(c => c.id === productId);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) {
-        cart = cart.filter(c => c.id !== productId);
-      }
-      updateCartDisplay();
-    }
-
-    function updateCartDisplay() {
-      const totalQty = cart.reduce((acc, cur) => acc + cur.qty, 0);
-      const subtotal = cart.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
-
-      const badge = document.getElementById('cartCountBadge');
-      const drawerCount = document.getElementById('drawerCount');
-      if (totalQty > 0) {
-        badge.innerText = totalQty;
-        badge.classList.remove('hidden');
-        drawerCount.innerText = `${totalQty} 件`;
-      } else {
-        badge.classList.add('hidden');
-        drawerCount.innerText = `0 件`;
-      }
-
-      document.getElementById('subtotalVal').innerText = `HK$ ${subtotal}`;
-      const shippingEl = document.getElementById('shippingVal');
-      if (subtotal >= 500) {
-        shippingEl.innerText = '已享順豐免運費 (站/智能櫃)';
-        shippingEl.className = 'font-mono text-teal-400 font-bold';
-      } else if (subtotal === 0) {
-        shippingEl.innerText = '滿 $500 包郵';
-        shippingEl.className = 'font-mono text-slate-400 font-bold';
-      } else {
-        shippingEl.innerText = `順豐到付 (差 HK$ ${500 - subtotal} 包郵)`;
-        shippingEl.className = 'font-mono text-amber-400 font-bold';
-      }
-
-      document.getElementById('totalVal').innerText = `HK$ ${subtotal}`;
-
-      const container = document.getElementById('cartItemsContainer');
-      if (cart.length === 0) {
-        container.innerHTML = `
-          <div class="h-64 flex flex-col items-center justify-center text-slate-500 space-y-2">
-            <svg class="w-12 h-12 stroke-current opacity-40" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-            <p class="text-sm">尚未選購任何水晶</p>
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = cart.map(item => `
-        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between gap-3">
-          <img src="${getProductImageUrl(item.filename)}" alt="${item.name}" class="w-14 h-14 rounded-lg object-cover bg-slate-950">
-          <div class="flex-1 min-w-0">
-            <h4 class="font-bold text-white text-xs truncate">${item.name}</h4>
-            <span class="text-[11px] text-teal-300 block">${item.beadSize}</span>
-            <span class="text-xs text-neon-gold font-mono font-bold">HK$ ${item.price}</span>
-          </div>
-          <div class="flex items-center gap-2 bg-slate-950 px-2 py-1 rounded-lg border border-slate-800">
-            <button onclick="changeCartQty('${item.id}', -1)" class="text-slate-400 hover:text-white px-1">－</button>
-            <span class="text-xs text-white font-mono font-bold">${item.qty}</span>
-            <button onclick="changeCartQty('${item.id}', 1)" class="text-slate-400 hover:text-white px-1">＋</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function toggleCartDrawer(open) {
-      const drawer = document.getElementById('cartDrawer');
-      const backdrop = document.getElementById('cartBackdrop');
-      if (open) {
-        drawer.classList.remove('translate-x-full');
-        backdrop.classList.remove('hidden');
-      } else {
-        drawer.classList.add('translate-x-full');
-        backdrop.classList.add('hidden');
-      }
-    }
-
-    // 6. Direct Order Template Generator
-    function checkoutToOrder(platform) {
-      if (cart.length === 0) {
-        alert('請先挑選心水水晶加入清單！');
-        return;
-      }
-
-      const total = cart.reduce((acc, cur) => acc + (cur.price * cur.qty), 0);
-      const itemsListText = cart.map(i => `• ${i.name} (${i.beadSize}) x ${i.qty} ＝ HK$${i.price * i.qty}`).join('\n');
-      const dispatch = document.getElementById('dispatchMode').value;
-      const wrist = document.getElementById('wristSizeInput').value.trim() || '未備註 (請店主指導量度)';
-
-      const orderTemplate = `多謝你支持 808_vibe_crystal！已為你預留好心水水晶手串 🔮✨
-請核對以下訂單資料及選擇合適的付款方式：
-
-📋 訂單確認
-訂購貨品：
-${itemsListText}
-手圍尺寸：${wrist}
-應付總額：HK$ ${total}
-
-💳 付款方式（支援以下 3 種）：
-1️⃣ 轉數快 (FPS)
-FPS ID / 電話：[店主專屬FPS]
-戶口姓名：808 VIBE CRYSTAL
-
-2️⃣ PayMe
-付款連結：[在此填入PayMe連結]
-
-3️⃣ 支付寶 (AlipayHK)
-轉賬號碼：[在此填入Alipay電話]
-
-🚚 寄送及儲貨須知：
-• 滿 HK$500 即享包郵優惠（順豐站 / 智能櫃）❤️
-• 付款後可安排儲貨（期限最長為一個月）🥰
-• 如之前有儲貨並需要一同寄出，請必須備註，以免誤會！
-
-📦 付款後請提供截圖及填妥以下資料：
-IG 名：
-收件人名：
-電話號碼：
-順豐編號（站/櫃點碼）或順豐地址：
-處理方式：${dispatch}
-之前有冇儲貨（有 / 冇）：
-
-🌿 貼心提醒：確認款項後，店主出貨前會親自使用秘魯聖木煙燻及白水晶為手串進行深度消磁與調頻，確保水晶以最純淨的高頻能量送到你手中！`;
-
-      if (platform === 'whatsapp') {
-        const encoded = encodeURIComponent(orderTemplate);
-        window.open(`https://wa.me/85294432331?text=${encoded}`, '_blank');
-      } else {
-        navigator.clipboard.writeText(orderTemplate).then(() => {
-          alert('✅ 訂單範本已成功複製至剪貼簿！你可以直接私訊傳送至 @808_vibe_crystal Instagram 完成下單與付款！');
-        }).catch(() => {
-          prompt('請複製以下訂單訊息：', orderTemplate);
-        });
-      }
-    }
-
     // Init
     renderCatalog(inventory);
-    updateCartDisplay();
   </script>
 </body>
 </html>
