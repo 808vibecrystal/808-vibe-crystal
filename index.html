@@ -177,28 +177,40 @@
       </div>
     </section>
 
-        <!-- 4. Interactive Divination & Energy Diagnostic System (Dual High-Converting Funnel) -->
+            <!-- 4. 808 能量調頻實驗室 (4-in-1 High-Converting Funnel System) -->
     <section id="calculator" class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
       <div class="glass-card p-6 sm:p-10 rounded-3xl neon-glow-purple relative overflow-hidden">
         
-        <!-- Tab Switcher -->
-        <div class="flex justify-center mb-8">
-          <div class="inline-flex p-1.5 rounded-2xl bg-slate-950/90 border border-slate-800">
-            <button id="tabBtn1" onclick="switchToolTab('numerology')" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40">
-              🔮 星座 ✕ 生命靈數天賦測算
+        <!-- Lab Title -->
+        <div class="text-center mb-6">
+          <span class="text-neon-gold text-xs font-black tracking-widest uppercase block mb-1">✦ 808 FREQUENCY LAB · 能量調頻實驗室 ✦</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white">4 大趣味維度 · 測出你的專屬命定氣場</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">結合占星、靈數、五行、MBTI與脈輪感知，直擊你的能量卡點！</p>
+        </div>
+
+        <!-- 4 Tab Switcher -->
+        <div class="flex justify-center mb-8 overflow-x-auto pb-2">
+          <div class="inline-flex p-1.5 rounded-2xl bg-slate-950/90 border border-slate-800 gap-1">
+            <button id="tabBtn1" onclick="switchLabTab('numerology')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap">
+              🔮 星座 ✕ 靈數
             </button>
-            <button id="tabBtn2" onclick="switchToolTab('wuxing')" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white">
-              🌿 五行氣場 ✕ 脈輪能量自測
+            <button id="tabBtn2" onclick="switchLabTab('wuxing')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap">
+              🌿 五行 ✕ 季節
+            </button>
+            <button id="tabBtn3" onclick="switchLabTab('mbti')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap">
+              🧠 MBTI ✕ 命定石
+            </button>
+            <button id="tabBtn4" onclick="switchLabTab('chakra')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap">
+              👁️ 直覺脈輪 ✕ 左右手
             </button>
           </div>
         </div>
 
         <!-- MODULE 1: Numerology & Zodiac -->
         <div id="moduleNumerology">
-          <div class="text-center mb-8">
-            <span class="text-neon-gold text-xs font-black tracking-widest uppercase block mb-1">✦ 雙重維度精準能量調頻 ✦</span>
-            <h2 class="text-2xl sm:text-3xl font-black text-white">【 12 星座 ✕ 生命靈數 】命定頻率測算</h2>
-            <p class="text-slate-400 text-xs sm:text-sm mt-1">結合西方占星太陽能量與生命靈數，深度剖析你的性格盲點與當季運勢轉機！</p>
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-teal-300">【 12 星座 ✕ 生命靈數 】天賦命盤測算</h3>
+            <p class="text-slate-400 text-xs mt-1">西方占星太陽能量結合生命靈數，洞悉天賦強項與近期運勢轉機</p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
@@ -262,7 +274,7 @@
                 </div>
               </div>
 
-              <!-- Gated WhatsApp Lock -->
+              <!-- Gated WhatsApp Lock 1 -->
               <div class="relative pt-3">
                 <div class="filter blur-[6px] select-none opacity-40 p-4 rounded-xl bg-slate-900 border border-slate-700 pointer-events-none space-y-2">
                   <div class="h-4 bg-teal-400/40 rounded w-3/4"></div>
@@ -291,12 +303,11 @@
           </div>
         </div>
 
-        <!-- MODULE 2: Five Elements & Chakra Diagnostic (New!) -->
+        <!-- MODULE 2: Five Elements & Season -->
         <div id="moduleWuxing" class="hidden">
-          <div class="text-center mb-8">
-            <span class="text-teal-400 text-xs font-black tracking-widest uppercase block mb-1">✦ 氣場微循環 ✕ 五行生剋深度排盤 ✦</span>
-            <h2 class="text-2xl sm:text-3xl font-black text-white">【 五行氣場 ✕ 脈輪失衡 】能量缺失自測</h2>
-            <p class="text-slate-400 text-xs sm:text-sm mt-1">選出你近期最深刻的身心狀態，精準揪出氣場破洞與五行能量缺口！</p>
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-emerald-300">【 五行氣場 ✕ 季節相剋 】能量缺失自測</h3>
+            <p class="text-slate-400 text-xs mt-1">選出你出生的季節與日常卡點，精準定位五行虛旺與脈輪淤堵</p>
           </div>
 
           <div class="space-y-4 mb-6">
@@ -388,6 +399,183 @@
                     <span>📲 WhatsApp 免費領取【五行調頻完整報告】</span>
                   </button>
                   <span class="text-[10px] text-slate-400 mt-2">（點擊自動帶入你的五行缺失診斷代碼，店主即時親自解答）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE 3: MBTI 16 Personalities ✕ Crystal Match (NEW!) -->
+        <div id="moduleMbti" class="hidden">
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-pink-300">【 MBTI 16 型人格 ✕ 命定氣場水晶 】</h3>
+            <p class="text-slate-400 text-xs mt-1">選出你的 MBTI 人格，為你的靈魂頻率配對專屬水晶護甲與能量擴大器！</p>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-xs font-bold text-slate-300 mb-2">請選擇你的 MBTI 人格維度：</label>
+            <select id="mbtiSelector" class="w-full bg-slate-950/90 border border-slate-700 rounded-xl px-4 py-3.5 text-white text-xs sm:text-sm focus:outline-none focus:border-neon-cyan transition-all">
+              <optgroup label="🌱 外交家組 (NF型 · 理想高敏感)">
+                <option value="INFP">INFP 調停者 ➔ 溫柔高敏感、容易吸負能量、渴望安全感</option>
+                <option value="ENFP">ENFP 競選者 ➔ 熱情跳脫、靈感爆發、容易三分鐘熱度</option>
+                <option value="INFJ">INFJ 提倡者 ➔ 精神深邃、共情內耗、過度承擔他人課題</option>
+                <option value="ENFJ">ENFJ 主人公 ➔ 奉獻奉獻再奉獻、忽略自愛、社交疲憊</option>
+              </optgroup>
+              <optgroup label="🧠 分析家組 (NT型 · 邏輯高智謀)">
+                <option value="INTJ">INTJ 建築師 ➔ 獨立理性、防備心重、精神高壓緊繃</option>
+                <option value="INTP">INTP 邏輯學家 ➔ 腦內宇宙運轉、過度思考、行動力延遲</option>
+                <option value="ENTJ">ENTJ 指揮官 ➔ 魄力決策、追求極致掌控、易招職場小人是非</option>
+                <option value="ENTP">ENTP 辯論家 ➔ 思維敏捷、反骨突破、情緒容易急躁浮動</option>
+              </optgroup>
+              <optgroup label="🛡️ 守護者組 (SJ型 · 秩序穩健)">
+                <option value="ISFJ">ISFJ 守衛者 ➔ 默默付出、心軟難拒絕、壓抑委屈情緒</option>
+                <option value="ESFJ">ESFJ 執政官 ➔ 重視人際和諧、在乎評價、耗損個人能量</option>
+                <option value="ISTJ">ISTJ 物流師 ➔ 務實嚴謹、害怕失控變動、缺乏彈性放鬆</option>
+                <option value="ESTJ">ESTJ 總經理 ➔ 實踐力爆發、責任心極重、需釋放沉重濁氣</option>
+              </optgroup>
+              <optgroup label="⚡ 探險家組 (SP型 · 自由實踐)">
+                <option value="ISFP">ISFP 探險家 ➔ 內心藝術家、追求自由、面對衝突容易逃避</option>
+                <option value="ESFP">ESFP 表演者 ➔ 熱情派對焦點、需要即時肯定、理財容易衝動</option>
+                <option value="ISTP">ISTP 鑒賞家 ➔ 冷靜抽離、孤狼行動、偶感人際冷漠隔閡</option>
+                <option value="ESTP">ESTP 企業家 ➔ 冒險博弈、偏財靈敏、行事過於衝動冒進</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <button onclick="calculateMbti()" class="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-neon-cyan text-slate-950 font-black tracking-wider text-sm shadow-lg shadow-pink-500/20 hover:opacity-95 transition-all">
+            ★ 即刻生成：你的 MBTI 專屬命定水晶報告 ★
+          </button>
+
+          <!-- Result Box 3 -->
+          <div id="mbtiResult" class="hidden mt-8 pt-6 border-t border-slate-700/60">
+            <div class="p-6 rounded-2xl bg-slate-950/90 border border-pink-500/50 space-y-5">
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pb-4 border-b border-slate-800">
+                <div>
+                  <span id="mbtiTypeBadge" class="px-3 py-1 rounded-full bg-pink-950 text-pink-300 text-xs font-black border border-pink-500/40 uppercase mb-1 inline-block"></span>
+                  <h3 id="mbtiArchetitle" class="text-2xl font-black text-white"></h3>
+                </div>
+                <div class="text-right">
+                  <span class="text-[11px] text-slate-400 block font-mono">核心調頻關鍵字</span>
+                  <span id="mbtiKeywordBadge" class="font-mono text-neon-gold text-xs font-bold"></span>
+                </div>
+              </div>
+
+              <div class="space-y-3 text-xs sm:text-sm">
+                <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                  <h4 class="text-pink-300 font-bold mb-1.5 flex items-center gap-1.5">
+                    <span>✦</span> 【 人格能量痛點 ✕ 精神內耗陷阱 】
+                  </h4>
+                  <p id="mbtiTrapText" class="text-slate-300 leading-relaxed"></p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-purple-950/40 border border-purple-500/30">
+                  <strong class="text-purple-300 block mb-1">【 808 命定氣場防護水晶 】</strong>
+                  <p id="mbtiCrystalPrescription" class="text-slate-200 leading-relaxed"></p>
+                </div>
+              </div>
+
+              <!-- Gated WhatsApp Funnel 3 -->
+              <div class="relative pt-3">
+                <div class="filter blur-[6px] select-none opacity-40 p-4 rounded-xl bg-slate-900 border border-slate-700 pointer-events-none space-y-2">
+                  <div class="h-4 bg-pink-400/40 rounded w-3/4"></div>
+                  <div class="h-4 bg-purple-400/40 rounded w-full"></div>
+                  <div class="h-4 bg-teal-400/40 rounded w-5/6"></div>
+                  <p class="text-xs text-slate-400">【MBTI後半段專屬解析】：你的人格靈魂搭檔水晶組合、如何防止氣場被職場吸血鬼吸乾、出貨聖木深層煙燻消磁、以及店主 1 對 1 手圍專屬推薦……</p>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-slate-950/80 backdrop-blur-[3px] rounded-xl border border-pink-400/50 shadow-2xl">
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs font-black mb-2 border border-pink-500/30">
+                    <span>🔒 MBTI 破局搭檔指南已鎖定</span>
+                  </div>
+                  <h4 class="text-base sm:text-lg font-black text-white mb-1">想解鎖你 MBTI 的「能量搭檔手串」與避坑密碼？</h4>
+                  <p class="text-slate-300 text-xs max-w-md mb-4 leading-relaxed">
+                    後半段包含：<strong class="text-neon-gold">人格防禦護盾配置 ✕ 左進右出排濁指南 ✕ 店主 1 對 1 現貨影片挑選</strong>。即刻 WhatsApp 店主免費領取！
+                  </p>
+                  
+                  <button onclick="unlockMbtiViaWhatsApp()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-neon-cyan text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-pink-500/30 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    <span>📲 WhatsApp 免費領取【MBTI 命定水晶報告】</span>
+                  </button>
+                  <span class="text-[10px] text-slate-400 mt-2">（點擊自動帶入你的 MBTI 人格代碼，店主即時親自解答）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE 4: Intuitive Chakra Blind Choice & Left/Right Hand Diagnostic (NEW!) -->
+        <div id="moduleChakra" class="hidden">
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-neon-gold">【 直覺脈輪抽選 ✕ 左右手穿戴健檢 】</h3>
+            <p class="text-slate-400 text-xs mt-1">「人眼第一時間被吸引的色彩，正是當下最匱乏的頻率！」</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 mb-6 text-center">
+            <span class="text-xs text-neon-cyan font-bold block mb-3">✦ 閉上眼睛深呼吸 3 秒 · 憑第一眼直覺點擊最吸引你的發光晶球 ✦</span>
+            
+            <div class="grid grid-cols-7 gap-2 max-w-md mx-auto my-4">
+              <button onclick="pickChakraOrb(1)" title="海底輪" class="chakra-orb w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-red-600 to-rose-400 shadow-lg shadow-red-500/50 hover:scale-110 active:scale-95 transition-all mx-auto border border-white/20"></button>
+              <button onclick="pickChakraOrb(2)" title="臍輪" class="chakra-orb w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-amber-600 to-orange-400 shadow-lg shadow-orange-500/50 hover:scale-110 active:scale-95 transition-all mx-auto border border-white/20"></button>
+              <button onclick="pickChakraOrb(3)" title="太陽神經叢" class="chakra-orb w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-300 shadow-lg shadow-yellow-500/50 hover:scale-110 active:scale-95 transition-all mx-auto border border-white/20"></button>
+              <button onclick="pickChakraOrb(4)" title="心輪" class="chakra-orb w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-400 shadow-lg shadow-emerald-500/50 hover:scale-110 active:scale-95 transition-all mx-auto border border-white/20"></button>
+              <button onclick="pickChakraOrb(5)" title="喉輪" class="chakra-orb w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-sky-600 to-cyan-400 shadow-lg shadow-cyan-500/50 hover:scale-110 active:scale-95 transition-all mx-auto border border-white/20"></button>
+              <button onclick="pickChakraOrb(6)" title="眉心輪" class="chakra-orb w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-indigo-700 to-blue-500 shadow-lg shadow-indigo-500/50 hover:scale-110 active:scale-95 transition-all mx-auto border border-white/20"></button>
+              <button onclick="pickChakraOrb(7)" title="頂輪" class="chakra-orb w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-purple-700 to-fuchsia-400 shadow-lg shadow-purple-500/50 hover:scale-110 active:scale-95 transition-all mx-auto border border-white/20"></button>
+            </div>
+            <span class="text-[11px] text-slate-400">（由左至右：海底輪 ➔ 臍輪 ➔ 胃輪 ➔ 心輪 ➔ 喉輪 ➔ 眉心輪 ➔ 頂輪）</span>
+          </div>
+
+          <!-- Result Box 4 -->
+          <div id="chakraResult" class="hidden mt-6 pt-6 border-t border-slate-700/60">
+            <div class="p-6 rounded-2xl bg-slate-950/90 border border-amber-500/50 space-y-5">
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pb-4 border-b border-slate-800">
+                <div>
+                  <span id="ckNameBadge" class="px-3 py-1 rounded-full bg-amber-950 text-neon-gold text-xs font-black border border-amber-500/40 uppercase mb-1 inline-block"></span>
+                  <h3 id="ckTitle" class="text-2xl font-black text-white"></h3>
+                </div>
+                <div class="text-right">
+                  <span class="text-[11px] text-slate-400 block font-mono">推薦佩戴法則</span>
+                  <span id="ckHandLaw" class="font-mono text-neon-cyan text-xs font-bold"></span>
+                </div>
+              </div>
+
+              <div class="space-y-3 text-xs sm:text-sm">
+                <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                  <h4 class="text-neon-gold font-bold mb-1.5 flex items-center gap-1.5">
+                    <span>✦</span> 【 當前直覺潛意識診斷 】
+                  </h4>
+                  <p id="ckDesc" class="text-slate-300 leading-relaxed"></p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-teal-950/40 border border-teal-500/30">
+                  <strong class="text-teal-300 block mb-1">【 專屬對應調頻晶石 】</strong>
+                  <p id="ckCrystals" class="text-slate-200 leading-relaxed"></p>
+                </div>
+              </div>
+
+              <!-- Gated WhatsApp Funnel 4 -->
+              <div class="relative pt-3">
+                <div class="filter blur-[6px] select-none opacity-40 p-4 rounded-xl bg-slate-900 border border-slate-700 pointer-events-none space-y-2">
+                  <div class="h-4 bg-amber-400/40 rounded w-3/4"></div>
+                  <div class="h-4 bg-teal-400/40 rounded w-full"></div>
+                  <div class="h-4 bg-purple-400/40 rounded w-5/6"></div>
+                  <p class="text-xs text-slate-400">【左右手防反吸隱藏指南】：戴錯手恐將病氣雜氣吸入體內！店主親自為你核對目前手上的水晶穿戴順序、消磁頻率與手圍……</p>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-slate-950/80 backdrop-blur-[3px] rounded-xl border border-amber-400/50 shadow-2xl">
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 text-neon-gold text-xs font-black mb-2 border border-amber-500/30">
+                    <span>🔒 左右手氣場健檢已鎖定</span>
+                  </div>
+                  <h4 class="text-base sm:text-lg font-black text-white mb-1">擔心「戴錯手串」反吸濁氣？</h4>
+                  <p class="text-slate-300 text-xs max-w-md mb-4 leading-relaxed">
+                    後半段包含：<strong class="text-neon-gold">個人左右手排毒檢測 ✕ 聖木煙燻消磁時機 ✕ 店主 1 對 1 現貨影片挑選</strong>。即刻 WhatsApp 店主免費領取！
+                  </p>
+                  
+                  <button onclick="unlockChakraViaWhatsApp()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-teal-400 to-neon-cyan text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    <span>📲 WhatsApp 免費領取【左右手穿戴健檢】</span>
+                  </button>
+                  <span class="text-[10px] text-slate-400 mt-2">（點擊自動帶入你的脈輪抽測代碼，店主即時親自解答）</span>
                 </div>
               </div>
             </div>
@@ -1475,29 +1663,36 @@
     }
 
     
-    // Tab Switcher between Numerology and Wuxing
-    function switchToolTab(tab) {
-      const btn1 = document.getElementById('tabBtn1');
-      const btn2 = document.getElementById('tabBtn2');
-      const mod1 = document.getElementById('moduleNumerology');
-      const mod2 = document.getElementById('moduleWuxing');
+    
+    // 4-in-1 Lab Tab Switcher
+    function switchLabTab(tab) {
+      const tabs = ['numerology', 'wuxing', 'mbti', 'chakra'];
+      const buttons = [
+        document.getElementById('tabBtn1'),
+        document.getElementById('tabBtn2'),
+        document.getElementById('tabBtn3'),
+        document.getElementById('tabBtn4')
+      ];
+      const modules = [
+        document.getElementById('moduleNumerology'),
+        document.getElementById('moduleWuxing'),
+        document.getElementById('moduleMbti'),
+        document.getElementById('moduleChakra')
+      ];
 
-      if (tab === 'numerology') {
-        btn1.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40';
-        btn2.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white';
-        mod1.classList.remove('hidden');
-        mod2.classList.add('hidden');
-      } else {
-        btn2.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-teal-500 to-emerald-500 text-slate-950 shadow-lg shadow-teal-900/40';
-        btn1.className = 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white';
-        mod2.classList.remove('hidden');
-        mod1.classList.add('hidden');
-      }
+      tabs.forEach((t, index) => {
+        if (t === tab) {
+          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap';
+          modules[index].classList.remove('hidden');
+        } else {
+          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap';
+          modules[index].classList.add('hidden');
+        }
+      });
     }
 
     // Wuxing & Chakra Diagnostic Engine
     let userWuxingData = null;
-
     function calculateWuxing() {
       const season = document.getElementById('wuxingSeason').value;
       const issue = document.querySelector('input[name="wuxingIssue"]:checked').value;
@@ -1558,27 +1753,102 @@
       resBox.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // High-Converting Gated WhatsApp Unlock for Wuxing
     function unlockWuxingViaWhatsApp() {
       if (!userWuxingData) {
         alert('請先點擊上方按鈕生成五行診斷報告！');
         return;
       }
+      const message = `你好 808 店主！我啱啱喺官網完成【五行氣場 ✕ 脈輪能量自測】：\n🌿 我的診斷結果：【${userWuxingData.seasonName}生人 ✕ ${userWuxingData.issueTitle}】\n🔮 五行能量分析：${userWuxingData.elemDiag}\n🧘 失衡脈輪定位：${userWuxingData.chakra}\n\n想免費解鎖領取後半段深度調頻報告：\n1️⃣ 專屬五行相生手串疊戴法則（避開相剋禁忌）\n2️⃣ 針對我個人脈輪淤堵的現貨實拍影片與確實報價\n3️⃣ 808 秘魯聖木深層煙燻消磁的最佳時辰排盤\n\n麻煩店主為我 1 對 1 排盤分析，謝謝你！✨`;
+      window.open(`https://wa.me/85294432331?text=${encodeURIComponent(message)}`, '_blank');
+    }
 
-      const message = `你好 808 店主！我啱啱喺官網完成【五行氣場 ✕ 脈輪能量自測】：
-🌿 我的診斷結果：【${userWuxingData.seasonName}生人 ✕ ${userWuxingData.issueTitle}】
-🔮 五行能量分析：${userWuxingData.elemDiag}
-🧘 失衡脈輪定位：${userWuxingData.chakra}
+    // MBTI 16 Personalities Engine
+    const mbtiData = {
+      INFP: { name: "調停者 · 溫柔治癒者", kw: "修補心輪 · 抵禦情緒吸血", trap: "共情能力極強但缺乏氣場邊界，常把外界的悲傷或負能當作自己的情緒，造成身心疲憊與逃避退縮。", crystals: "頂級藍光拉長石（氣場修補盾）、紫鋰輝（自愛撫平創傷）、魔鬼海藍寶" },
+      ENFP: { name: "競選者 · 靈感冒險家", kw: "落實顯化 · 平息焦躁", trap: "點子極多但容易虎頭蛇尾，情緒起伏如過山車，需要把高頻靈感落地為實質財富。", crystals: "金運石（黑馬聚財）、天河石（幸運希望）、天然黃水晶" },
+      INFJ: { name: "提倡者 · 靈魂引路人", kw: "靈性先知 · 能量界線", trap: "過度為他人著想而透支自我，容易陷入精神潔癖與過度思考，神經系統長期緊繃。", crystals: "烏拉圭深紫水晶（平靜頂輪）、白阿塞（高維淨化）、魔鬼海藍寶" },
+      ENFJ: { name: "主人公 · 溫暖領袖", kw: "心輪滋養 · 拒絕耗損", trap: "天生的照顧者，害怕讓人失望，難以開口拒絕他人無理要求，把委屈吞進肚子。", crystals: "天然摩根石（溫柔姻緣）、馬達加斯加粉晶、彩兔毛水晶" },
+      INTJ: { name: "建築師 · 戰略謀士", kw: "打開格局 · 軟化心防", trap: "追求極致完美與邏輯條理，容易顯得孤傲冷酷，職場中容易引來暗處小人嫉恨暗算。", crystals: "頂級絕礦黑銀鈦（反彈小人是非）、黑金超七、金運石" },
+      INTP: { name: "邏輯學家 · 哲思獨行者", kw: "腦力調頻 · 加速行動", trap: "思維活躍但行動力遲緩，常陷入分析癱瘓，容易忽略身體的真實疲憊與情緒感受。", crystals: "巴基斯坦油膽閃靈鑽（能量高鐵）、烏拉圭深紫晶、綠幽靈" },
+      ENTJ: { name: "指揮官 · 商業霸主", kw: "權威統馭 · 消除狂躁", trap: "野心勃勃、掌控慾極強，承載高壓而不肯示弱，容易因性急而傷及身邊重要人際關係。", crystals: "招財金髮晶（事業霸主）、黑銀鈦、銅鈦晶" },
+      ENTP: { name: "辯論家 · 顛覆破局者", kw: "穩定磁場 · 行動聚焦", trap: "思維跳脫敏捷，討厭陳規，但容易口直心快招惹口舌是非，缺少沉下心來的定力。", crystals: "極致銀曜石（右手排濁防口舌）、天河石、太陽石" },
+      ISFJ: { name: "守衛者 · 堅定守護者", kw: "溫柔自愛 · 勇敢表達", trap: "默默扛下所有責任，不善於爭取個人利益，容易將委屈轉化為咽喉與肩頸的緊繃阻塞。", crystals: "魔鬼海藍寶（喉輪勇敢表達）、紫鋰輝、彩兔毛" },
+      ESFJ: { name: "執政官 · 和諧組織者", kw: "穩定人際 · 消除焦慮", trap: "過度在意外界的認同與評價，容易因他人的冷淡而陷入自我懷疑與情感內耗。", crystals: "摩根石（人緣貴人）、黃膠花、天然太陽石" },
+      ISTJ: { name: "物流師 · 實踐基石", kw: "穩健聚財 · 打開彈性", trap: "守規矩、責任感強，但面對突如其來的變故容易恐慌固執，給自己過多條條框框。", crystals: "頂級綠幽靈（事業正財）、銀曜石、金運石" },
+      ESTJ: { name: "總經理 · 實幹掌舵人", kw: "事業魄力 · 化解小人", trap: "行動力超強但容易忽略他人情緒感受，在職場衝鋒陷陣時背負過多濁氣與競爭壓力。", crystals: "黑銀鈦（化煞排濁）、金髮晶、黑髮晶" },
+      ISFP: { name: "探險家 · 靈性藝術家", kw: "守護內在 · 增強自信", trap: "內心敏銳善良，但面對現實利益衝突時容易逃避，缺乏堅決捍衛自己的決心。", crystals: "太陽石（點燃熱情自信）、魔鬼海藍寶、拉長石" },
+      ESFP: { name: "表演者 · 光芒發光體", kw: "聚財守庫 · 平穩情緒", trap: "熱愛享受當下，在人群中是開心果，但理財容易衝動揮霍，缺乏深層安全感。", crystals: "天然黃水晶（守護財庫）、錦鯉膠花、金運石" },
+      ISTP: { name: "鑒賞家 · 孤狼行者", kw: "冷靜破局 · 融通人際", trap: "動手能力極強，崇尚實用主義，但性格抽離冷淡，偶爾感到孤立無援、缺乏貴人指引。", crystals: "極光紫幽靈（貴人通透）、黑金超七、銅鈦晶" },
+      ESTP: { name: "企業家 · 冒險開拓者", kw: "偏財嗅覺 · 穩固底盤", trap: "極具商業嗅覺與冒險膽量，但容易衝動投機，需築牢海底輪以防止財來財去一場空。", crystals: "金運石（極致偏財）、黑髮晶（排除衝動雜念）、金髮晶" }
+    };
 
-想免費解鎖領取後半段深度調頻報告：
-1️⃣ 專屬五行相生手串疊戴法則（避開相剋禁忌）
-2️⃣ 針對我個人脈輪淤堵的現貨實拍影片與確實報價
-3️⃣ 808 秘魯聖木深層煙燻消磁的最佳時辰排盤
+    let userMbtiData = null;
+    function calculateMbti() {
+      const type = document.getElementById('mbtiSelector').value;
+      const data = mbtiData[type];
 
-麻煩店主為我 1 對 1 排盤分析，謝謝你！✨`;
+      userMbtiData = {
+        type: type,
+        name: data.name,
+        kw: data.kw,
+        trap: data.trap,
+        crystals: data.crystals
+      };
 
-      const encoded = encodeURIComponent(message);
-      window.open(`https://wa.me/85294432331?text=${encoded}`, '_blank');
+      document.getElementById('mbtiTypeBadge').innerText = `MBTI 【 ${type} 】`;
+      document.getElementById('mbtiArchetitle').innerText = data.name;
+      document.getElementById('mbtiKeywordBadge').innerText = data.kw;
+      document.getElementById('mbtiTrapText').innerText = data.trap;
+      document.getElementById('mbtiCrystalPrescription').innerText = `命定調頻晶石配置：${data.crystals}。精準撫平該人格的日常能耗！`;
+
+      const resBox = document.getElementById('mbtiResult');
+      resBox.classList.remove('hidden');
+      resBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function unlockMbtiViaWhatsApp() {
+      if (!userMbtiData) {
+        alert('請先選擇 MBTI 人格並生成報告！');
+        return;
+      }
+      const message = `你好 808 店主！我啱啱喺官網測完【MBTI 16型人格 ✕ 命定氣場水晶】：\n🧠 我的 MBTI：【${userMbtiData.type} · ${userMbtiData.name}】\n🔑 調頻關鍵字：${userMbtiData.kw}\n\n想免費解鎖領取後半段專屬解析：\n1️⃣ 適合我 MBTI 人格的「能量搭檔手串組合」\n2️⃣ 針對我容易內耗痛點的現貨實拍影片與手圍報價\n3️⃣ 出貨聖木深層煙燻調頻的專屬建議\n\n麻煩店主為我 1 對 1 解答，謝謝你！✨`;
+      window.open(`https://wa.me/85294432331?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // Intuitive Chakra Blind Pick Engine
+    const chakraData = {
+      1: { name: "第 1 脈輪 · 海底輪 (紅色/黑色)", title: "安全感 ✕ 實體根基 ✕ 排濁", law: "右手釋放排濁 ✕ 左手生機", desc: "第一眼被深紅/黑光吸引，代表你當前可能感到身心俱疲、缺乏深層安全感，或常出入雜亂環境吸收了過多病氣濁氣。", crystals: "頂級黑銀鈦、極致銀曜石、天然黑髮晶" },
+      2: { name: "第 2 脈輪 · 臍輪 (橙色)", title: "熱情活力 ✕ 情感流動 ✕ 自信", law: "配戴於左手 (吸納熱情)", desc: "第一眼被橙光吸引，代表你近期可能感到生活缺乏趣味與熱情，行動力低下、害怕展現真實魅力，需要點燃內在小太陽。", crystals: "頂級金草莓太陽石、錦鯉膠花、黃膠花" },
+      3: { name: "第 3 脈輪 · 太陽神經叢 (黃色)", title: "事業決策 ✕ 財庫野心 ✕ 魄力", law: "配戴於左手 (聚財納氣)", desc: "第一眼被金黃光吸引，代表你目前正處於財務或事業瓶頸期，渴望突破現狀、增強談判自信與賺錢商機。", crystals: "招財金髮晶、銅鈦晶、巴西天然黃水晶、金運石" },
+      4: { name: "第 4 脈輪 · 心輪 (綠色/粉色)", title: "溫柔自愛 ✕ 關係修復 ✕ 撫平傷痛", law: "配戴於左手 (滋養心靈)", desc: "第一眼被柔綠/果凍粉吸引，代表你的心輪防衛過重或過度透支，需要先學會好好愛自己，卸下沉重的心理防備。", crystals: "頂級綠幽靈（事業生機）、紫鋰輝（無條件自愛）、馬卡龍摩根石、彩兔毛" },
+      5: { name: "第 5 脈輪 · 喉輪 (青藍色)", title: "真實表達 ✕ 平息焦慮 ✕ 順暢溝通", law: "配戴於左手 (平復焦慮)", desc: "第一眼被深海幽藍吸引，代表你近期咽喉卡緊、想講不敢講、經常詞不達意或忍受委屈，需要溫和而堅定的發聲勇氣。", crystals: "深海之息 · 魔鬼海藍寶（唱片同款）、經典天然海藍寶、冰透天河石" },
+      6: { name: "第 6 脈輪 · 眉心輪 (靛藍色/彩光)", title: "直覺洞察 ✕ 氣場修補 ✕ 破除迷霧", law: "配戴於左手 (直覺靈感)", desc: "第一眼被深藍/彩光吸引，代表你神經緊繃、容易思慮過度或受身邊人情緒干擾，氣場出現微細破洞，需要防護盾。", crystals: "頂級藍光拉長石（修補氣場破洞）、極光紫幽靈" },
+      7: { name: "第 7 脈輪 · 頂輪 (紫色/白色)", title: "高維智慧 ✕ 靈性覺醒 ✕ 能量歸零", law: "左右手皆宜 (深層調頻)", desc: "第一眼被清透白/深紫吸引，代表你正在經歷心靈週期的轉變與覺醒，需要清理陳舊執念，讓頻率徹底放鬆與回歸初生純淨。", crystals: "高頻白阿塞（自帶彩虹光）、烏拉圭深紫水晶、巴基斯坦油膽閃靈鑽" }
+    };
+
+    let userChakraData = null;
+    function pickChakraOrb(chakraNum) {
+      const data = chakraData[chakraNum];
+      userChakraData = data;
+
+      document.getElementById('ckNameBadge').innerText = data.name;
+      document.getElementById('ckTitle').innerText = data.title;
+      document.getElementById('ckHandLaw').innerText = data.law;
+      document.getElementById('ckDesc').innerText = data.desc;
+      document.getElementById('ckCrystals').innerText = `命定調頻晶石家族：${data.crystals}。配合 ${data.law}，效果最佳！`;
+
+      const resBox = document.getElementById('chakraResult');
+      resBox.classList.remove('hidden');
+      resBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function unlockChakraViaWhatsApp() {
+      if (!userChakraData) {
+        alert('請先點擊上方脈輪色球進行直覺抽測！');
+        return;
+      }
+      const message = `你好 808 店主！我啱啱喺官網完成【直覺脈輪抽選 ✕ 左右手穿戴健檢】：\n👁️ 直覺抽測脈輪：【${userChakraData.name}】\n🎯 能量焦點：${userChakraData.title}\n🖐️ 佩戴法則提示：${userChakraData.law}\n\n想免費解鎖領取後半段深度解析：\n1️⃣ 免費為我目前的日常水晶進行「左右手防反吸健檢」\n2️⃣ 針對該脈輪缺口的專屬手串現貨影片與確實報價\n3️⃣ 808 秘魯聖木深度消磁最佳指引\n\n麻煩店主，謝謝你！✨`;
+      window.open(`https://wa.me/85294432331?text=${encodeURIComponent(message)}`, '_blank');
     }
 
     // 5. Shopping Cart & Drawer Management (Fully Restored)
