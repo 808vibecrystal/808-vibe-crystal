@@ -684,7 +684,8 @@
               </div>
 
               <!-- Tier 2: HK$50 Gated In-Depth Consultation (The High-Converting Funnel) -->
-              <div class="relative pt-2">
+              <!-- Locked State View -->
+              <div id="tarotLockedBox" class="relative pt-2">
                 <div class="filter blur-[6px] select-none opacity-40 p-5 rounded-xl bg-slate-900 border border-slate-700 pointer-events-none space-y-2">
                   <div class="h-4 bg-teal-400/40 rounded w-3/4"></div>
                   <div class="h-4 bg-purple-400/40 rounded w-full"></div>
@@ -714,9 +715,57 @@
                       <span>📲 WhatsApp 私訊店主諮詢</span>
                     </button>
                   </div>
-                  <span class="text-[10px] text-slate-400 mt-2">（點擊自動帶入所抽牌卡與具體問題，由店主一對一為你抽絲剝繭）</span>
+                  <div class="mt-3 flex items-center justify-center gap-2">
+                    <span class="text-[10px] text-slate-400">已在 Stripe 完成付款？</span>
+                    <button type="button" onclick="unlockTarotDirectly()" class="text-[10px] text-neon-cyan underline font-bold hover:text-white transition-colors">點此立即展示解鎖報告 ➔</button>
+                  </div>
                 </div>
               </div>
+
+              <!-- Unlocked Full Report View (Appears immediately after payment) -->
+              <div id="tarotUnlockedBox" class="hidden space-y-4 pt-3 border-t border-emerald-500/40">
+                <div class="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/50 flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-black text-sm">✓</span>
+                    <div>
+                      <h4 class="text-sm font-black text-white">HK$50 尊享深度解盤報告已全面解鎖</h4>
+                      <p class="text-[11px] text-emerald-300">808 宇宙能量已校準 · 包含未來時程推演與破局實操手冊</p>
+                    </div>
+                  </div>
+                  <span class="text-[10px] px-2.5 py-1 rounded-full bg-emerald-900/60 text-emerald-200 border border-emerald-500/40 font-mono">PAID VIP</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm">
+                  <div class="p-4 rounded-xl bg-slate-900 border border-teal-500/30">
+                    <span class="text-teal-300 font-bold block mb-1.5 flex items-center gap-1.5">
+                      <span>⏳</span> 【 未來 3-6 個月能量走向時程 】
+                    </span>
+                    <p id="unlockedTimeline" class="text-slate-300 leading-relaxed whitespace-pre-line"></p>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-slate-900 border border-rose-500/30">
+                    <span class="text-rose-400 font-bold block mb-1.5 flex items-center gap-1.5">
+                      <span>⚠️</span> 【 潛在暗流與核心盲點警示 】
+                    </span>
+                    <p id="unlockedObstacle" class="text-slate-300 leading-relaxed"></p>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-slate-900 border border-purple-500/30 text-xs sm:text-sm">
+                  <span class="text-purple-300 font-bold block mb-1.5 flex items-center gap-1.5">
+                    <span>🎯</span> 【 破局行動手冊 · Playbook 】
+                  </span>
+                  <p id="unlockedPlaybook" class="text-slate-300 leading-relaxed whitespace-pre-line"></p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-gradient-to-r from-purple-950/70 via-slate-900 to-teal-950/70 border border-neon-cyan/40 text-center space-y-2">
+                  <h5 class="text-xs sm:text-sm font-bold text-white">想讓店主親自傳送這條牌卡對應的水晶實拍現貨？</h5>
+                  <p class="text-[11px] text-slate-300">你已享有 VIP 優先諮詢通道，點擊即可帶入專屬解盤結果私訊店主！</p>
+                  <button type="button" onclick="consultTarotViaWhatsApp(true)" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black text-xs shadow-lg hover:scale-105 transition-all inline-flex items-center gap-1.5">
+                    <span>📲 WhatsApp 索取命定手串實拍影片 ✕ 手圍客製</span>
+                  </button>
+                </div>
+              </div></div>
 
             </div>
           </div>
@@ -2956,24 +3005,88 @@ IG 名：
       resStep.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Helper: Generate Deep Reading Content
+    function generateDeepReading(card, isUpright, topic, question) {
+      const topicNames = { love: '感情人際', career: '事業學業', wealth: '財富機遇', family: '家庭關係', health: '身心機能' };
+      const tn = topicNames[topic] || '當前課題';
+      
+      const timeline = isUpright 
+        ? `• 【第 1-2 個月 · 萌芽撥雲】：關於「${question}」，當前的迷茫將迅速消散。在${tn}維度將出現意料之外的正面轉機，身邊開始有貴人或關鍵資源靠攏。\n• 【第 3-4 個月 · 突破收穫】：付出的心力轉化為實質結果，自信大幅回升，佔據主導優勢。\n• 【第 5-6 個月 · 圓滿長青】：此階段能量沉澱築底，形成可持續的良性閉環。`
+        : `• 【第 1-2 個月 · 阻力清盤】：在「${question}」上，你正在經歷最後一波心智拉扯。逆位牌提示需先停止內耗，清理不健康的執念與外界雜音。\n• 【第 3-4 個月 · 破局反轉】：局勢出現新的視角！只要打破過往思維定勢，將迎來逆風翻盤的實質契機。\n• 【第 5-6 個月 · 重掌節奏】：卡點徹底疏通，你將以更成熟圓融的頻率主導局勢。`;
+
+      const obstacle = isUpright
+        ? `此時最大的阻礙並非外在挑戰，而是「過度思慮導致的拖延遲疑」！你的氣場目前非常充沛，切勿因為害怕失敗而不敢全速推進。`
+        : `當前最核心的盲點在於「過度承擔了不屬於你的責任」或「試圖用舊方法解決新問題」。學會及時止損與向外界劃定界線。`;
+
+      const playbook = isUpright
+        ? `1. 【能量聚焦】：將 80% 的注意力放在核心單一目標上，切勿受旁人低頻議論影響。\n2. 【主動宣告】：明確向宇宙與身邊人表達你的真實想法，真誠與魄力會形成高頻吸引力法則。\n3. 【調頻錨點】：佩戴對應晶石（${card.crystal}），在重要談判或溫書決策前深呼吸 3 次，穩住磁場。`
+        : `1. 【果斷斷捨離】：停止無效社交與自我懷疑，給大腦留出散熱與重啟的真空期。\n2. 【以退為進】：正面碰撞無效時，轉換溝通話術或換位思考，破局往往出現在意想不到的側面。\n3. 【右手排毒】：強烈建議佩戴右手排濁晶石（如黑銀鈦/極致銀曜石），加速排出吸收的負向能量。`;
+
+      return { timeline, obstacle, playbook };
+    }
+
     // Direct HK$50 Gated Stripe Payment Action
     function payTarotDeepReading() {
       if (!userTarotCard) {
         alert('請先進行塔羅抽牌！');
         return;
       }
-      // Note: User can generate a HK$50 Stripe Payment link or use the standard checkout
-      // We will direct to Stripe or inform WhatsApp
+      
+      // Save state to localStorage so when redirected back, it remains unlocked
+      try {
+        localStorage.setItem('808_tarot_state', JSON.stringify({
+          cardId: userTarotCard.card.id,
+          isUpright: userTarotCard.isUpright,
+          topic: userTarotCard.topic,
+          question: userTarotCard.question,
+          paid: true,
+          timestamp: Date.now()
+        }));
+      } catch(e) {}
+
       const orientation = userTarotCard.isUpright ? '正位' : '逆位';
-      const promptPay = confirm(`即將跳轉至官方加密支付系統，使用 Apple Pay / 信用卡支付 HK$50 進行 1 對 1 深度解盤！\n\n【詢問問題】：${userTarotCard.question}\n【抽取牌卡】：${userTarotCard.card.name} (${orientation})\n\n點擊「確定」繼續結帳！`);
+      const promptPay = confirm(`即將跳轉至官方加密支付系統，使用 Apple Pay / 信用卡支付 HK$50 進行深度解盤！\n\n【詢問問題】：${userTarotCard.question}\n【抽取牌卡】：${userTarotCard.card.name} (${orientation})\n\n付款完成後，返回網站將直接為你呈現完整解鎖報告！`);
       if (promptPay) {
-        // Open Stripe Payment Link or WhatsApp with confirmation
-        window.open('https://buy.stripe.com/5kQ9AM7FS4bmbyu7Vc1ck01', '_blank');
+        window.open('https://buy.stripe.com/3cIdR2aS4gY88mi2AS1ck02', '_blank');
       }
     }
 
+    // Direct Unlock Trigger (For instant view or after returning from Stripe)
+    function unlockTarotDirectly() {
+      if (!userTarotCard) {
+        // Try restoring from localStorage
+        try {
+          const saved = JSON.parse(localStorage.getItem('808_tarot_state'));
+          if (saved && saved.cardId !== undefined) {
+            const card = tarotDeck.find(c => c.id === saved.cardId) || tarotDeck[0];
+            userTarotCard = {
+              card: card,
+              isUpright: saved.isUpright,
+              topic: saved.topic,
+              question: saved.question
+            };
+          }
+        } catch(e) {}
+      }
+
+      if (!userTarotCard) {
+        alert('請先完成抽牌流程！');
+        return;
+      }
+
+      const deepData = generateDeepReading(userTarotCard.card, userTarotCard.isUpright, userTarotCard.topic, userTarotCard.question);
+      document.getElementById('unlockedTimeline').innerText = deepData.timeline;
+      document.getElementById('unlockedObstacle').innerText = deepData.obstacle;
+      document.getElementById('unlockedPlaybook').innerText = deepData.playbook;
+
+      document.getElementById('tarotLockedBox').classList.add('hidden');
+      const unBox = document.getElementById('tarotUnlockedBox');
+      unBox.classList.remove('hidden');
+      unBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
     // WhatsApp 1-on-1 Consultation
-    function consultTarotViaWhatsApp() {
+    function consultTarotViaWhatsApp(isPaid = false) {
       if (!userTarotCard) {
         alert('請先進行塔羅抽牌！');
         return;
@@ -2988,7 +3101,20 @@ IG 名：
         health: "身心健康"
       };
 
-      const msg = `你好 808 店主！我啱啱喺官網完成咗【偉特塔羅直覺占卜】：
+      let msg = "";
+      if (isPaid) {
+        msg = `你好 808 店主！我已在官網完成 HK$50 塔羅解盤付款：
+🔮 占卜領域：【${topicLabels[userTarotCard.topic] || '綜合'}】
+❓ 我的具體問題：「${userTarotCard.question}」
+🃏 抽取的牌卡：【${userTarotCard.card.name} (${orientation})】
+
+我已閱讀線上深度報告，想進一步索取：
+1️⃣ 此牌卡對應調頻晶石（${userTarotCard.card.crystal}）的現貨實拍影片與確實報價
+2️⃣ 針對我個人手圍的客製搭配建議
+
+麻煩店主為我確認，謝謝！✨`;
+      } else {
+        msg = `你好 808 店主！我啱啱喺官網完成咗【偉特塔羅直覺占卜】：
 🔮 占卜領域：【${topicLabels[userTarotCard.topic] || '綜合'}】
 ❓ 我的具體問題：「${userTarotCard.question}」
 🃏 抽到的牌卡：【${userTarotCard.card.name} (${orientation})】
@@ -3000,9 +3126,22 @@ IG 名：
 3️⃣ 針對此牌卡推薦適合我的天然水晶手串現貨實拍配對
 
 麻煩店主為我一對一抽絲剝繭，謝謝你！✨`;
+      }
 
       window.open(`https://wa.me/85294432331?text=${encodeURIComponent(msg)}`, '_blank');
     }
+
+    // Check URL parameters for return from Stripe
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isPaidParam = urlParams.get('paid') || urlParams.get('status');
+      if (isPaidParam === 'tarot' || isPaidParam === 'tarot_paid' || window.location.hash === '#tarot_paid') {
+        switchLabTab('tarot');
+        setTimeout(() => {
+          unlockTarotDirectly();
+        }, 300);
+      }
+    });
 
     // Init
     renderCatalog(inventory);
