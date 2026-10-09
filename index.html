@@ -203,6 +203,9 @@
             <button id="tabBtn4" onclick="switchLabTab('chakra')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap">
               👁️ 直覺脈輪 ✕ 左右手
             </button>
+            <button id="tabBtn5" onclick="switchLabTab('tarot')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5">
+              <span>🃏</span> 偉特塔羅 ✕ 直覺解盤
+            </button>
           </div>
         </div>
 
@@ -582,6 +585,143 @@
           </div>
         </div>
 
+        <!-- MODULE 5: Interactive Tarot Reading & HK$50 Gated Analysis -->
+        <div id="moduleTarot" class="hidden">
+          <div class="text-center mb-6">
+            <span class="text-neon-cyan text-xs font-black tracking-widest uppercase block mb-1">✦ 78 MAJORS ARCHETYPAL ENERGY · 偉特塔羅直覺占卜 ✦</span>
+            <h3 class="text-xl sm:text-2xl font-black text-white">直擊潛意識迷霧 · 專屬命運之牌</h3>
+            <p class="text-slate-400 text-xs mt-1">選定你想探尋的生活領域，輸入心中默念的困惑，洗牌感應你的宇宙共振</p>
+          </div>
+
+          <!-- Step 1: Input Setup -->
+          <div id="tarotStepInput" class="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">1. 選擇你想占卜的生活維度：</label>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                <button type="button" onclick="selectTarotTopic('love', this)" class="tarot-topic-btn active p-3 rounded-xl bg-purple-950/80 border border-neon-purple text-white text-xs font-bold transition-all text-center flex flex-col items-center gap-1">
+                  <span class="text-base">💖</span>
+                  <span>愛情桃花</span>
+                </button>
+                <button type="button" onclick="selectTarotTopic('career', this)" class="tarot-topic-btn p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-bold transition-all text-center flex flex-col items-center gap-1">
+                  <span class="text-base">💼</span>
+                  <span>事業學業</span>
+                </button>
+                <button type="button" onclick="selectTarotTopic('wealth', this)" class="tarot-topic-btn p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-bold transition-all text-center flex flex-col items-center gap-1">
+                  <span class="text-base">💰</span>
+                  <span>正偏財運</span>
+                </button>
+                <button type="button" onclick="selectTarotTopic('family', this)" class="tarot-topic-btn p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-bold transition-all text-center flex flex-col items-center gap-1">
+                  <span class="text-base">🏡</span>
+                  <span>家庭人際</span>
+                </button>
+                <button type="button" onclick="selectTarotTopic('health', this)" class="tarot-topic-btn p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-bold transition-all text-center flex flex-col items-center gap-1">
+                  <span class="text-base">🧘</span>
+                  <span>身心健康</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">2. 請在心中默念 3 次，並寫下你具體想問的問題：</label>
+              <input type="text" id="tarotQuestionInput" placeholder="例如：我同佢未來的關係走向如何？／下半年考運與突破方向？" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-neon-cyan transition-all">
+              <span class="text-[11px] text-slate-400 block mt-1">＊問題越具體清晰，塔羅能量場與脈輪投影越能精準直擊核心。</span>
+            </div>
+
+            <button type="button" onclick="startTarotShuffle()" class="w-full py-4 rounded-xl bg-gradient-to-r from-neon-purple via-indigo-600 to-neon-cyan text-white font-black text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+              <span>🃏</span> 靜心專注 · 開始洗牌抽選
+            </button>
+          </div>
+
+          <!-- Step 2: Interactive Deck Fan for Card Picking -->
+          <div id="tarotStepDeck" class="hidden p-6 rounded-2xl bg-slate-950/90 border border-neon-cyan/40 text-center space-y-4">
+            <span class="text-xs text-neon-gold font-bold block animate-pulse">✦ 能量場已鎖定 · 閉上眼憑第一直覺點選其中一張牌 ✦</span>
+            <div id="tarotCardFan" class="flex justify-center items-center gap-2 overflow-x-auto py-6 px-2">
+              <!-- 7 Interactive Card Backs injected via JS -->
+            </div>
+            <p class="text-[11px] text-slate-400">當前感應到你的困惑：「<span id="echoQuestion" class="text-neon-cyan font-semibold"></span>」</p>
+          </div>
+
+          <!-- Step 3: Card Reveal & Dual-Tier Reading -->
+          <div id="tarotStepResult" class="hidden mt-6 pt-4 border-t border-slate-800 space-y-5">
+            <div class="p-6 rounded-2xl bg-slate-950/90 border border-neon-purple/60 space-y-5">
+              
+              <!-- Card Header & Badge -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-4">
+                  <div id="tarotCardVisual" class="w-20 h-32 rounded-xl bg-gradient-to-br from-indigo-950 to-slate-900 border-2 border-neon-cyan flex flex-col items-center justify-center shadow-lg shadow-cyan-500/20 text-center p-2 transform transition-transform">
+                    <span id="tarotCardIcon" class="text-3xl mb-1">🃏</span>
+                    <span id="tarotCardRoman" class="text-[10px] text-teal-300 font-mono font-bold block"></span>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span id="tarotTopicBadge" class="px-2.5 py-0.5 rounded-full bg-purple-950 text-purple-300 text-[10px] font-black border border-purple-500/30"></span>
+                      <span id="tarotOrientationBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-black"></span>
+                    </div>
+                    <h3 id="tarotCardName" class="text-2xl font-black text-white"></h3>
+                    <span id="tarotArchetypeKeywords" class="text-xs text-neon-gold font-mono block mt-0.5"></span>
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <span class="text-[11px] text-slate-400 block font-mono">詢問課題</span>
+                  <span id="tarotDisplayQuestion" class="text-xs font-bold text-slate-200 line-clamp-1 max-w-[200px]"></span>
+                </div>
+              </div>
+
+              <!-- Tier 1: Free Core Analysis -->
+              <div class="space-y-3 text-xs sm:text-sm">
+                <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                  <h4 class="text-teal-300 font-bold mb-1.5 flex items-center gap-1.5">
+                    <span>✦</span> 【 當前局勢核心牌意 · 能量指引 】
+                  </h4>
+                  <p id="tarotFreeMeaning" class="text-slate-300 leading-relaxed"></p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-purple-950/40 border border-purple-500/30">
+                  <strong class="text-purple-300 block mb-1">【 命定調頻晶石共振 】</strong>
+                  <p id="tarotCrystalAdvice" class="text-slate-200 leading-relaxed"></p>
+                </div>
+              </div>
+
+              <!-- Tier 2: HK$50 Gated In-Depth Consultation (The High-Converting Funnel) -->
+              <div class="relative pt-2">
+                <div class="filter blur-[6px] select-none opacity-40 p-5 rounded-xl bg-slate-900 border border-slate-700 pointer-events-none space-y-2">
+                  <div class="h-4 bg-teal-400/40 rounded w-3/4"></div>
+                  <div class="h-4 bg-purple-400/40 rounded w-full"></div>
+                  <div class="h-4 bg-amber-400/40 rounded w-5/6"></div>
+                  <p class="text-xs text-slate-400">【HK$50 深度解盤】：精準拆解未來 3-6 個月發展走向、背後隱藏障礙、針對該問題的 1 對 1 破局決策指引、以及店主專門為你挑選的晶石手串現貨配對影片……</p>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-5 text-center bg-slate-950/85 backdrop-blur-[4px] rounded-xl border border-neon-cyan/50 shadow-2xl">
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neon-magenta/20 text-pink-300 text-xs font-black mb-2 border border-pink-500/30">
+                    <span>🔒 專屬 1 對 1 深度解盤報告已鎖定</span>
+                  </div>
+                  <h4 class="text-base sm:text-lg font-black text-white mb-1">想知道「未來發展走向」與「破局關鍵時機」？</h4>
+                  <p class="text-slate-300 text-xs max-w-lg mb-4 leading-relaxed">
+                    解鎖享有限定深度分析：<strong class="text-neon-gold">牌面細節推演 ✕ 未來 3-6 個月走向 ✕ 破局對策 ✕ 店主 1 對 1 手圍晶石專屬配對</strong>。
+                  </p>
+                  
+                  <div class="flex flex-col sm:flex-row items-center gap-2.5 w-full justify-center max-w-md">
+                    <!-- Stripe Apple Pay HK$50 Direct Pay -->
+                    <button type="button" onclick="payTarotDeepReading()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-slate-900 via-black to-slate-900 border border-neon-cyan hover:border-neon-gold text-white font-black text-xs sm:text-sm tracking-wide shadow-lg flex items-center justify-center gap-1.5 hover:scale-105 transition-all">
+                      <span></span>
+                      <span>Apple Pay / 信用卡支付 HK$50 解鎖</span>
+                    </button>
+
+                    <!-- Direct WhatsApp Inquiry -->
+                    <button type="button" onclick="consultTarotViaWhatsApp()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-neon-cyan text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-105 transition-all flex items-center justify-center gap-1.5">
+                      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                      <span>📲 WhatsApp 私訊店主諮詢</span>
+                    </button>
+                  </div>
+                  <span class="text-[10px] text-slate-400 mt-2">（點擊自動帶入所抽牌卡與具體問題，由店主一對一為你抽絲剝繭）</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -745,13 +885,22 @@
         </div>
 
         <!-- Checkout Buttons -->
-        <div class="grid grid-cols-2 gap-2 pt-2">
-          <button onclick="checkoutToOrder('whatsapp')" class="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
-            <span>📲 WhatsApp 一鍵下單</span>
-          </button>
-          <button onclick="checkoutToOrder('instagram')" class="py-3 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
-            <span>📋 複製訂單傳送 IG</span>
-          </button>
+        <div class="space-y-2 pt-2">
+          <!-- Direct Apple Pay / Online Deposit Button -->
+          <a href="https://buy.stripe.com/5kQ9AM7FS4bmbyu7Vc1ck01" target="_blank" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-slate-900 via-black to-slate-900 border border-slate-700 hover:border-neon-cyan text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:scale-[1.01] transition-all group">
+            <span class="text-base"></span>
+            <span>使用 Apple Pay / 信用卡支付 HK$100 預留定金</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">即時鎖貨</span>
+          </a>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="checkoutToOrder('whatsapp')" class="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
+              <span>📲 WhatsApp 諮詢下單</span>
+            </button>
+            <button onclick="checkoutToOrder('instagram')" class="py-3 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-1 transition-all">
+              <span>📋 複製訂單傳送 IG</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1732,28 +1881,31 @@
 
     
     
-    // 4-in-1 Lab Tab Switcher
+    // 5-in-1 Lab Tab Switcher (Including Tarot)
     function switchLabTab(tab) {
-      const tabs = ['numerology', 'wuxing', 'mbti', 'chakra'];
+      const tabs = ['numerology', 'wuxing', 'mbti', 'chakra', 'tarot'];
       const buttons = [
         document.getElementById('tabBtn1'),
         document.getElementById('tabBtn2'),
         document.getElementById('tabBtn3'),
-        document.getElementById('tabBtn4')
+        document.getElementById('tabBtn4'),
+        document.getElementById('tabBtn5')
       ];
       const modules = [
         document.getElementById('moduleNumerology'),
         document.getElementById('moduleWuxing'),
         document.getElementById('moduleMbti'),
-        document.getElementById('moduleChakra')
+        document.getElementById('moduleChakra'),
+        document.getElementById('moduleTarot')
       ];
 
       tabs.forEach((t, index) => {
+        if (!buttons[index] || !modules[index]) return;
         if (t === tab) {
-          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap';
+          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap flex items-center gap-1.5';
           modules[index].classList.remove('hidden');
         } else {
-          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap';
+          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5';
           modules[index].classList.add('hidden');
         }
       });
@@ -2147,6 +2299,709 @@ IG 名：
       } else {
         renderCatalog(inventory.filter(i => i.category === category));
       }
+    }
+
+
+    // 7. Interactive Tarot Divination Engine (22 Major Arcana + Gated HK$50 Deep Reading)
+    let currentTarotTopic = 'love';
+    let userTarotCard = null;
+
+    const tarotDeck = [
+      {
+        id: 0, roman: "0", name: "愚者 (The Fool)", icon: "🎒",
+        keywords: "全新冒險 · 純粹無畏 · 歸零重啟",
+        love: {
+          upright: "一段不可預測但充滿新鮮感的純粹相遇；放下過去的情感包袱，勇敢跨出第一步。",
+          reversed: "行事過於衝動盲目，或在關係中缺乏責任感與承諾，慎防被甜言蜜語蒙蔽。"
+        },
+        career: {
+          upright: "展開全新領域或項目的絕佳時機，跳脫舊有框架，保持好奇心將迎來意料之外的突破。",
+          reversed: "計劃缺乏可行性準備，冒險過度容易踩坑；溫書或工作切勿三分鐘熱度、馬虎應對。"
+        },
+        wealth: {
+          upright: "有未曾想過的新財源或投資機會，但需依賴靈活直覺而非傳統老路。",
+          reversed: "財務管理混亂，容易衝動消費或聽信非正規消息破財，需管好個人錢包。"
+        },
+        family: {
+          upright: "家人關係迎來放下芥蒂的和解契機，像孩子般真誠表達有助打破僵局。",
+          reversed: "家庭內部各行其是，容易因任性或不顧他人感受而引發小摩擦。"
+        },
+        health: {
+          upright: "活力充沛，身心機能處於重新調適的高頻狀態，多去戶外親近自然。",
+          reversed: "注意運動受傷或扭傷，生活作息顛倒，切勿過度透支身體警訊。"
+        },
+        crystal: "白阿塞斯特萊（能量歸零與純粹覺醒） / 天河石（無畏勇氣）"
+      },
+      {
+        id: 1, roman: "I", name: "魔術師 (The Magician)", icon: "🪄",
+        keywords: "顯化契機 · 資源整合 · 溝通智慧",
+        love: {
+          upright: "魅力四射的自信時刻！懂得運用溝通化解誤會，主動出擊極易吸引心儀對象。",
+          reversed: "言行不一或隱瞞心事，提防關係中的情緒操控或誇大其詞。"
+        },
+        career: {
+          upright: "掌握全盤關鍵技能與資源，執行力爆發，無論演講、考試還是談判均能佔據主導地位。",
+          reversed: "想法多但執行力斷層，容易眼高手低；避免濫用聰明反被聰明誤。"
+        },
+        wealth: {
+          upright: "運用個人專業技能或副業變現的黃金期，金錢流動順暢，顯化財富能力極強。",
+          reversed: "提防金錢欺詐或不切實際的致富幻想，投資需核實底層事實。"
+        },
+        family: {
+          upright: "扮演家庭協調中樞角色，善用溝通化解長輩或手足之間的誤會。",
+          reversed: "家人之間溝通不良，各說各話，缺乏真誠共鳴。"
+        },
+        health: {
+          upright: "神經系統與大腦協調良好，適合開始全新的身心調頻與鍛鍊計畫。",
+          reversed: "用腦過度導致神經衰弱、咽喉與呼吸道容易緊繃乾癢。"
+        },
+        crystal: "金髮晶（顯化魄力之王） / 魔鬼海藍寶（暢通溝通喉輪）"
+      },
+      {
+        id: 2, roman: "II", name: "女祭司 (The High Priestess)", icon: "📜",
+        keywords: "直覺敏銳 · 沉靜洞察 · 潛意識秘密",
+        love: {
+          upright: "心靈深處的默契勝過言語；相信你的第六感，關係需要靜下心來細水長流。",
+          reversed: "過度封閉內心情感、防禦心太重，或發現對象背後藏有未坦白之秘密。"
+        },
+        career: {
+          upright: "適合深入研究、背書、分析與獨立思考；安靜專注能讓你迅速看破事物底層邏輯。",
+          reversed: "直覺被過度思考干擾，難以做出決策；提防職場暗處冷淡競爭。"
+        },
+        wealth: {
+          upright: "適合長期低調理財，保守持幣，勿隨意聽信市場喧囂躁動。",
+          reversed: "隱性支出增加，對個人財務狀況缺乏清醒認知。"
+        },
+        family: {
+          upright: "以柔克剛，保持平靜不介入紛爭反而能成為家庭的定海神針。",
+          reversed: "家庭氛圍冷淡疏離，心事深藏心底產生隔閡。"
+        },
+        health: {
+          upright: "注重睡眠品質與心理內省，透過冥想與音頻療癒能迅速恢復活力。",
+          reversed: "失眠多夢、賀爾蒙或內分泌微失調，需避免長期熬夜沉思。"
+        },
+        crystal: "頂級藍光拉長石（直覺護盾與安神） / 烏拉圭深紫晶（開智慧深層定心）"
+      },
+      {
+        id: 3, roman: "III", name: "皇后 (The Empress)", icon: "👑",
+        keywords: "豐盛豐饒 · 溫柔自愛 · 滋養孕育",
+        love: {
+          upright: "充滿溫暖滋養的幸福時光，散發極高女性魅力，感情甜蜜且彼此包容。",
+          reversed: "情感過度依賴他人認同，或在關係中過度付出而忽略自愛，引發情緒內耗。"
+        },
+        career: {
+          upright: "創意如泉湧，努力耕耘即將迎來豐碩收穫，團隊人際關係融洽和諧。",
+          reversed: "拖延懶散，容易沉溺安逸；面對繁重學業或工作缺乏自律衝勁。"
+        },
+        wealth: {
+          upright: "財運豐收亨通，享受生活與合理犒賞自己，正財收益穩定上升。",
+          reversed: "過度奢華消費、衝動購物買快樂，容易造成財務庫存失衡。"
+        },
+        family: {
+          upright: "家庭氣氛溫馨和睦，與母親或女性長輩關係親密，彼此支持體貼。",
+          reversed: "家庭關係中存在過度保護或情緒綁架，需建立健康邊界。"
+        },
+        health: {
+          upright: "身體感官愉悅放鬆，氣血通暢，充滿豐盛的生命力。",
+          reversed: "注意暴飲暴食、體重波動或消化系統負擔。"
+        },
+        crystal: "馬卡龍摩根石（打開心輪滋養） / 彩兔毛手串（調理氣血親和力）"
+      },
+      {
+        id: 4, roman: "IV", name: "皇帝 (The Emperor)", icon: "🏛️",
+        keywords: "掌控權威 · 穩健秩序 · 責任意志",
+        love: {
+          upright: "給予伴侶極大的安全感與實質承諾，關係建立在成熟務實的根基之上。",
+          reversed: "控制慾過強、行事專斷霸道，容易因面子與尊嚴拒絕道歉認錯。"
+        },
+        career: {
+          upright: "展現領袖統馭魄力，目標明確執行力強大，能扛下重擔並贏得上級認可。",
+          reversed: "面對體制規則容易碰撞受挫，或被頑固長輩/上司施加高壓。"
+        },
+        wealth: {
+          upright: "築牢財務底盤，投資規劃嚴謹務實，能守住大筆財富與資產。",
+          reversed: "因頑固死守錯誤策略而錯失變通良機，或財務權力被他人牽制。"
+        },
+        family: {
+          upright: "父親或家族支柱帶來穩固支持，家庭秩序井然有條。",
+          reversed: "父權壓抑或長輩要求苛刻，家中缺乏溫暖對話。"
+        },
+        health: {
+          upright: "骨骼與體魄強健，作息規律有助於維持高強度腦力或體力負荷。",
+          reversed: "頭痛偏頭痛、肩膀頸椎僵硬緊繃，壓力未及時排解。"
+        },
+        crystal: "頂級絕礦黑銀鈦（霸氣決策反彈是非） / 銅鈦晶（行動魄力招財）"
+      },
+      {
+        id: 5, roman: "V", name: "教皇 (The Hierophant)", icon: "⛪",
+        keywords: "貴人指引 · 傳統智慧 · 道德信賴",
+        love: {
+          upright: "符合社會常理與長輩認可的長久感情，彼此價值觀高度契合，互信堅定。",
+          reversed: "受限於繁文縟節或世俗眼光，感情遭到家人反對或感到窒息束縛。"
+        },
+        career: {
+          upright: "獲得經驗豐富的導師、前輩或貴人提攜，按部就班複習或工作必能取得認證與好成績。",
+          reversed: "傳統方法已失去效能，切勿死記硬背或盲信權威，需要靈活破局。"
+        },
+        wealth: {
+          upright: "透過正規渠道或老牌機構獲益，財運穩定平順，忌投機倒把。",
+          reversed: "小心被不良顧問或看似正規的投資方案誤導破財。"
+        },
+        family: {
+          upright: "家族傳統活動或長輩引導帶來凝聚力，家庭和諧互尊。",
+          reversed: "家族思想保守古板，代溝嚴重難以坦誠相待。"
+        },
+        health: {
+          upright: "遵從傳統醫囑與規律養生，身心狀態平穩可控。",
+          reversed: "喉嚨聲帶疲勞、關節僵直，需適當伸展放鬆。"
+        },
+        crystal: "極光紫幽靈（貴人引路智慧） / 白阿塞（純淨能量）"
+      },
+      {
+        id: 6, roman: "VI", name: "戀人 (The Lovers)", icon: "💞",
+        keywords: "靈魂契合 · 重大抉擇 · 價值共振",
+        love: {
+          upright: "兩情相悅的深刻連結！無論單身遇上真愛或戀人升溫，均是一場美麗的靈魂相遇。",
+          reversed: "面臨感情的十字路口，價值觀出現分歧，或受到外在誘惑考驗。"
+        },
+        career: {
+          upright: "遇到高度同頻的合作夥伴，團隊協作默契無間，共同推動重要項目順利完成。",
+          reversed: "面臨兩難選擇陷入拖延猶豫，或職場夥伴出現利益衝突難以調和。"
+        },
+        wealth: {
+          upright: "與人合夥生財獲益良好，在理財決策上能夠平衡風險與回報。",
+          reversed: "容易因感情用事而做出錯誤的開支決策，需公私分明。"
+        },
+        family: {
+          upright: "家人之間情感緊密，互相理解彼此的選擇與夢想。",
+          reversed: "面對家庭期待與個人願望的兩難拉扯，感到左右為難。"
+        },
+        health: {
+          upright: "身心平衡和諧，自我接納感高，免疫力處於優良水準。",
+          reversed: "情緒波動引發皮膚敏感或胸口鬱悶，需學會放鬆抒發。"
+        },
+        crystal: "頂級紫鋰輝（無條件自愛與打開心輪） / 摩根石（溫柔姻緣合氣）"
+      },
+      {
+        id: 7, roman: "VII", name: "戰車 (The Chariot)", icon: "🛡️",
+        keywords: "克服險阻 · 意志勝利 · 全速衝刺",
+        love: {
+          upright: "克服距離、外界干擾或性格差異，憑藉堅定信念主動捍衛這段感情。",
+          reversed: "感情中爭強好勝，容易把情緒當武器發洩在伴侶身上，導致兩敗俱傷。"
+        },
+        career: {
+          upright: "衝刺大考或重大項目的巔峰期！保持高度自律與專注，勝利與突破指日可待。",
+          reversed: "方向失去控制，盲目死衝導致精疲力竭；需停下來校準目標再出發。"
+        },
+        wealth: {
+          upright: "憑藉強大的實幹與業務開拓拿下豐厚回報，正財衝勁十足。",
+          reversed: "開支失控如脫韁野馬，冒險投資容易遭遇重大顛簸。"
+        },
+        family: {
+          upright: "為保護家庭挺身而出，能有效解決家族遺留的外在難題。",
+          reversed: "脾氣急躁，把工作或課業壓力帶回家中引發爭吵。"
+        },
+        health: {
+          upright: "精力旺盛，意志力能帶動體能戰勝微小不適。",
+          reversed: "過度疲勞過載導致身體發炎、胃部痙攣或意外碰撞。"
+        },
+        crystal: "金運石（黑馬逆襲破局） / 頂級黑銀鈦（護盾排濁全速前進）"
+      },
+      {
+        id: 8, roman: "VIII", name: "力量 (Strength)", icon: "🦁",
+        keywords: "以柔克剛 · 內在勇氣 · 駕馭慾望",
+        love: {
+          upright: "以溫柔包容感化對方的暴躁或不安全感，關係深厚且充滿信任。",
+          reversed: "缺乏自信懷疑自身魅力，或在感情中壓抑怒火導致內心疲憊不堪。"
+        },
+        career: {
+          upright: "具備極高的情商與耐力，面對棘手難題或嚴苛挑戰能沉著應對並順利化解。",
+          reversed: "耐性耗盡，因挫折感而自我懷疑或一時衝動發火壞事。"
+        },
+        wealth: {
+          upright: "穩健駕馭金錢欲望，有條不紊地累積財富，財運持續增長。",
+          reversed: "財務自控力崩潰，被衝動消費反噬造成短暫拮据。"
+        },
+        family: {
+          upright: "透過無微不至的包容撫平家庭矛盾，家人依賴你的堅韌力量。",
+          reversed: "家庭內部冷暴力或互相較勁，缺乏退一步的海闊天空。"
+        },
+        health: {
+          upright: "心臟與循環系統健康，內在充滿平靜而穩定的生命元氣。",
+          reversed: "自律神經失調、容易疲勞心悸，需學會釋放壓抑的情緒。"
+        },
+        crystal: "天然金草莓太陽石（點燃自信） / 綠幽靈（心輪生機與平靜耐力）"
+      },
+      {
+        id: 9, roman: "IX", name: "隱士 (The Hermit)", icon: "🏮",
+        keywords: "深度探索 · 智慧沉澱 · 獨處覆盤",
+        love: {
+          upright: "適合給彼此適當空間，檢視內心真正渴望的伴侶特質，精神共鳴高於浮躁形式。",
+          reversed: "過度封閉自我、孤芳自賞，將真正關心你的人推開拒之千里。"
+        },
+        career: {
+          upright: "獨自溫書、鑽研高難度學問或獨立開展專題的最佳時機，真理與答案將在安靜中浮現。",
+          reversed: "閉門造車難以突破瓶頸，需放下傲慢適時向外界求助。"
+        },
+        wealth: {
+          upright: "對物質欲望淡薄，著重內在精神財富累積，能避開世俗金融陷阱。",
+          reversed: "對財務狀況不聞不問導致資源閒置浪費，需適度檢討理財結構。"
+        },
+        family: {
+          upright: "在家族中保持客觀超然，適當獨處有助於自我修復。",
+          reversed: "與家人溝通嚴重脫節，孤僻自居容易引起親人擔憂。"
+        },
+        health: {
+          upright: "適合靜坐、規律作息與身心靈排毒，能量由內而外沉澱充實。",
+          reversed: "注意眼睛疲勞、視力退化、骨骼關節退行性酸痛。"
+        },
+        crystal: "烏拉圭深紫水晶（頂輪智慧燈塔） / 巴基斯坦油膽閃靈鑽（高頻靈光）"
+      },
+      {
+        id: 10, roman: "X", name: "命運之輪 (Wheel of Fortune)", icon: "🎡",
+        keywords: "轉機降臨 · 順應天時 · 因果循環",
+        love: {
+          upright: "命運的齒輪開始轉動！意想不到的良緣機遇或感情重大轉折即將到來。",
+          reversed: "暫時處於運勢低谷，強求無益；學會耐心等待下一個上升週期。"
+        },
+        career: {
+          upright: "關鍵轉折點出現！可能迎來新方向、出國深造或重大考運轉機，順勢而為大有可為。",
+          reversed: "計劃受到外在不可控環境阻延，需調整心態順應變局。"
+        },
+        wealth: {
+          upright: "意外之財與偏財機運大增，把握契機能讓身家財庫邁上全新台階。",
+          reversed: "手頭資金周轉波動大，暫時不宜作重大博弈或投機。"
+        },
+        family: {
+          upright: "家庭迎來喜訊或重大居住環境改善，家族氣象煥然一新。",
+          reversed: "家庭遭遇突發事件考驗，團結應對才能安然度過變動。"
+        },
+        health: {
+          upright: "身體自我調節機能恢復，慢性困擾迎來良性轉機。",
+          reversed: "注意環境溫差或氣候變化帶來的季節性敏感不適。"
+        },
+        crystal: "黑金超七（全方位共振放大轉運） / 錦鯉膠花（開運招財契機）"
+      },
+      {
+        id: 11, roman: "XI", name: "正義 (Justice)", icon: "⚖️",
+        keywords: "因果公正 · 理性決策 · 是非分明",
+        love: {
+          upright: "彼此平等尊重的健康關係；付出與收穫成正比，坦誠溝通能達成最佳協議。",
+          reversed: "感情中出現不公平待遇，偏心或謊言終將被揭穿，需面對真實代價。"
+        },
+        career: {
+          upright: "考試合格、合約簽署或法律事務將迎來公平客觀的判決，一分耕耘必有一分收穫。",
+          reversed: "面臨不公競爭或合約陷阱，切勿投機取巧或試圖走捷徑。"
+        },
+        wealth: {
+          upright: "賬目清晰嚴明，合約收益及時到賬，適合進行審慎精準的資產配置。",
+          reversed: "因疏忽法律文書或財務條款導致損失，避免借貸糾紛。"
+        },
+        family: {
+          upright: "家庭糾紛得到公正調解，各方權益獲得妥善保障。",
+          reversed: "家庭內部偏袒某方引發怨恨不平，溝通缺乏客觀公正。"
+        },
+        health: {
+          upright: "身心代謝平衡，飲食均衡帶來清晰敏銳的頭腦。",
+          reversed: "腎臟排毒或體液代謝失衡，需注意多喝水、減輕鹽分攝取。"
+        },
+        crystal: "極致銀曜石（右手排濁防是非） / 黑髮晶（剛硬正氣）"
+      },
+      {
+        id: 12, roman: "XII", name: "倒吊人 (The Hanged Man)", icon: "🤸",
+        keywords: "換位思考 · 主動奉獻 · 暫停沉澱",
+        love: {
+          upright: "以退為進的智慧；適度退讓與體諒，換個角度看對方的言行反而豁然開朗。",
+          reversed: "盲目犧牲自我變成被情緒勒索的受害者，付出一文不值令人心寒。"
+        },
+        career: {
+          upright: "當前看似停滯受阻，實為蓄積實力的沉潛期；換個全新思路解題或工作能打破盲點。",
+          reversed: "無謂的死扛掙扎，拒絕承認現有方法的缺陷，白白消耗寶貴光陰。"
+        },
+        wealth: {
+          upright: "資金暫時被鎖定或短期內未見回報，但長遠價值正在緩慢沉澱發酵。",
+          reversed: "因拖延猶豫造成財務損失，投資卡死動彈不得。"
+        },
+        family: {
+          upright: "為了大局承擔短暫委屈，家人終會體會你的良苦用心。",
+          reversed: "家庭負擔全部壓在自己一人肩上，怨天尤人卻不敢開口拒絕。"
+        },
+        health: {
+          upright: "適合放慢步調進行深度睡眠與淋巴排毒，身體需要休息修復。",
+          reversed: "血液循環不順、水腫、低血壓或肩背痠痛無力。"
+        },
+        crystal: "魔鬼海藍寶（舒緩緊繃與看透本質） / 頂級藍光拉長石（修補受損氣場）"
+      },
+      {
+        id: 13, roman: "XIII", name: "死神 (Death)", icon: "🍂",
+        keywords: "破舊立新 · 告別執念 · 涅槃重生",
+        love: {
+          upright: "結束不合適的病態消耗，徹底放下過去的傷痕，為全新真愛騰出靈魂空間。",
+          reversed: "明知感情已經枯萎死滅卻死纏爛打，抗拒結束只會帶來更長期的痛苦。"
+        },
+        career: {
+          upright: "重大轉型與割捨之時！舊的模式或項目宣告落幕，嶄新的人生篇章即將開啟。",
+          reversed: "害怕改變而死守舒適圈，最終被外在環境被迫淘汰。"
+        },
+        wealth: {
+          upright: "斬斷不良財務流向或止損虧損項目，重組財務結構迎來生機。",
+          reversed: "遲遲不肯止損，任由財務黑洞持續擴大。"
+        },
+        family: {
+          upright: "家族固有觀念被打破，經歷陣痛後關係迎來全新模式。",
+          reversed: "家庭舊傷疤反覆被揭開，難以擺脫過往陰影束縛。"
+        },
+        health: {
+          upright: "徹底戒除長期不良嗜好或舊疾得到根除，身心代謝換新。",
+          reversed: "抗拒就醫檢查，忽視身體發出的重大退化警訊。"
+        },
+        crystal: "頂級絕礦黑銀鈦（深層排解斬斷負能） / 白阿塞（重生洗滌）"
+      },
+      {
+        id: 14, roman: "XIV", name: "節制 (Temperance)", icon: "🏺",
+        keywords: "能量調和 · 循序漸進 · 完美平衡",
+        love: {
+          upright: "心靈交流順暢無阻，彼此性格互補，感情在溫和滋養中穩步升溫。",
+          reversed: "情緒極端不穩，缺乏耐性；容易在熱情與冷漠之間來回擺盪傷人。"
+        },
+        career: {
+          upright: "跨界整合與多方協調能力極佳，將不同學科或資源融會貫通，效率倍增。",
+          reversed: "目標分配不當，時間管理混亂，生活與工作失去平衡。"
+        },
+        wealth: {
+          upright: "收支平衡穩健，資金流動順暢自然，細水長流匯聚成大庫。",
+          reversed: "收支嚴重失衡，容易在極端省錢與報復性消費之間失控。"
+        },
+        family: {
+          upright: "家庭氣氛融洽和睦，彼此互相包容差異，處事充滿智慧體諒。",
+          reversed: "家庭各成員性格衝突激烈，缺乏中間調停者化解僵局。"
+        },
+        health: {
+          upright: "水液代謝與自律神經調和良好，身心充滿輕盈通透感。",
+          reversed: "水分代謝不良、容易水腫浮脹，飲食或作息需回歸中道。"
+        },
+        crystal: "深海魔鬼海藍寶（水元素極致調和） / 烏拉圭深紫晶（平靜神經）"
+      },
+      {
+        id: 15, roman: "XV", name: "惡魔 (The Devil)", icon: "⛓️",
+        keywords: "慾望枷鎖 · 物質執念 · 突破心魔",
+        love: {
+          upright: "強烈致命的肉體吸引或宿命羈絆，但需警惕過度佔有慾與不健康的依附關係。",
+          reversed: "看清情感謊言與虐心關係，鼓起勇氣掙脫情感枷鎖重獲自由。"
+        },
+        career: {
+          upright: "對成功與名利的野心空前高漲，若能將這股欲望轉化為衝勁將爆發驚人成果。",
+          reversed: "陷入職場內耗鬥爭或利益誘惑陷阱，淪為他人利用的工具。"
+        },
+        wealth: {
+          upright: "強大的偏財與商業吸金嗅覺，但切勿觸碰灰色邊緣或沈溺博弈。",
+          reversed: "被債務或物慾深套，及早醒悟理財才能避免陷入危機。"
+        },
+        family: {
+          upright: "家庭內部受金錢或權力控制，關係緊張缺乏真情。",
+          reversed: "看透家族內部的情緒勒索，開始劃定屬於自己的獨立界線。"
+        },
+        health: {
+          upright: "注意熬夜、咖啡因、酒精或手機成癮對神經系統的深度侵蝕。",
+          reversed: "戒除長期成癮習慣的關鍵契機，身心逐步擺脫濁氣牽制。"
+        },
+        crystal: "極致銀曜石（右手強制排毒除心魔） / 黑髮晶（辟邪定心破執念）"
+      },
+      {
+        id: 16, roman: "XVI", name: "高塔 (The Tower)", icon: "⚡",
+        keywords: "突發震盪 · 擊碎幻象 · 徹底重組",
+        love: {
+          upright: "突如其來的真相揭露或激烈爭吵，擊碎過往虛假的和平幻象，但也促使關係重新洗牌。",
+          reversed: "勉強維持搖搖欲墜的關係，拖延只會讓未來的崩潰更為猛烈。"
+        },
+        career: {
+          upright: "計劃遭遇突發變動或制度驟變，舊有的安逸徹底崩塌，逼你展現真正的應變本領。",
+          reversed: "僥倖避開一次危機，但根本性隱患若不解決隨時可能重演。"
+        },
+        wealth: {
+          upright: "提防突發意外開支或投資市場劇烈崩跌，做好萬全應急現金儲備。",
+          reversed: "財務震盪餘波猶在，需立即停止冒險投機行動。"
+        },
+        family: {
+          upright: "家庭內部積壓已久的矛盾瞬間爆發，坦誠面對才是重建的起點。",
+          reversed: "家庭關係緊繃到極點，隱瞞真相只會讓猜疑蔓延。"
+        },
+        health: {
+          upright: "慎防突發性急性發炎、意外摔傷或血壓劇烈波動，切忌盲目衝動。",
+          reversed: "慢性病隱患不可再拖，應及時進行全面檢查。"
+        },
+        crystal: "頂級黑銀鈦（強力氣場護盾反彈震盪） / 巴基斯坦油膽閃靈鑽（快速清理濁氣）"
+      },
+      {
+        id: 17, roman: "XVII", name: "星星 (The Star)", icon: "⭐",
+        keywords: "希望曙光 · 靈性指引 · 深層療癒",
+        love: {
+          upright: "歷經風雨後的純真希望，彼此真誠相待，看見未來的美好願景，心靈深度契合。",
+          reversed: "對未來感到灰心迷茫，過度悲觀忽視了身邊真正美好的愛意陪伴。"
+        },
+        career: {
+          upright: "靈感源源不絕，才華得到施展舞台；迷茫消散，明確的成功路徑已展現眼前。",
+          reversed: "想法過於脫離現實缺乏落地步驟，避免沉浸在烏托邦幻想中延誤時機。"
+        },
+        wealth: {
+          upright: "財務困境迎來轉機曙光，有穩定的正向金流回饋，信心重塑。",
+          reversed: "投資回報不如預期令人失落，需耐心等待種子發芽成長。"
+        },
+        family: {
+          upright: "家庭紛爭冰釋前嫌，充滿平靜溫馨的和解能量，彼此祈願祝福。",
+          reversed: "對家庭關係感到失望冷漠，需要給彼此更多治癒時間。"
+        },
+        health: {
+          upright: "身體自我修復機制全開，精神明澈通透，免疫力顯著提升。",
+          reversed: "容易感到疲勞沮喪，需注意水分補充與多曬晨光提升元氣。"
+        },
+        crystal: "冰透天河石（希望幸運之石） / 魔鬼海藍寶（撫平創傷）"
+      },
+      {
+        id: 18, roman: "XVIII", name: "月亮 (The Moon)", icon: "🌕",
+        keywords: "迷霧焦慮 · 直覺幻象 · 潛伏不安",
+        love: {
+          upright: "感情深處充滿不安全感與猜忌，恐懼失去或被隱藏的秘密所困擾，需靠時間澄清真相。",
+          reversed: "心中的猜疑迷霧逐漸散去，看清對方的真實意圖，內心重獲踏實安全感。"
+        },
+        career: {
+          upright: "方向模糊不清，充斥虛假信息或背後暗箭口舌是非，行事宜靜不宜動。",
+          reversed: "欺詐謊言被戳穿，看破職場套路，找回清晰的判斷力。"
+        },
+        wealth: {
+          upright: "財務前景不明朗，警惕模糊合約與金融陷阱，暫時不宜作任何高風險決策。",
+          reversed: "隱性財務漏洞被及時查出，止住潛在虧損。"
+        },
+        family: {
+          upright: "家庭氣氛詭異壓抑，成員之間互相隱瞞秘密，猜忌多於信任。",
+          reversed: "誤會被逐步解開，隱藏的家庭心結迎來坦白和解的契機。"
+        },
+        health: {
+          upright: "多夢失眠、神經焦慮引發胃部痙攣或偏頭痛，受潛意識壓力所困。",
+          reversed: "精神內耗減輕，睡眠品質逐漸改善回升。"
+        },
+        crystal: "頂級藍光拉長石（破除恐懼幻象修補破洞） / 烏拉圭深紫晶（安定睡眠）"
+      },
+      {
+        id: 19, roman: "XIX", name: "太陽 (The Sun)", icon: "☀️",
+        keywords: "光明璀璨 · 成功喜悅 · 活力爆發",
+        love: {
+          upright: "大放異彩的甜蜜感情！彼此坦誠陽光，充滿歡笑與正面能量，備受眾人祝福。",
+          reversed: "暫時被烏雲遮蔽但光芒仍在；避免過度自我中心或在關係中過於強勢。"
+        },
+        career: {
+          upright: "成功登頂！考試金榜題名、業務大獲全勝，個人的才華與努力被所有人看見讚賞。",
+          reversed: "暫時遇到小波折，但只要保持樂觀心態，成功的結果依然不會改變。"
+        },
+        wealth: {
+          upright: "財運亨通光明，事業帶來豐厚正財收益，投資眼光精準獲利滿滿。",
+          reversed: "財富狀況雖好，但需避免因過於樂觀大意而產生的無謂揮霍。"
+        },
+        family: {
+          upright: "家庭充滿歡聲笑語，親子關係極佳，迎來值得慶祝的喜事。",
+          reversed: "小摩擦很快煙消雲散，多給家人溫暖笑容能化解一切尷尬。"
+        },
+        health: {
+          upright: "體魄強健、陽氣充沛，生命元氣如同正午烈陽般熱烈飽滿。",
+          reversed: "注意防曬補水，避免因精力過旺過度消耗而產生疲憊感。"
+        },
+        crystal: "頂級金草莓太陽石（自信陽光發光體） / 巴西天然黃水晶（聚財豐盛）"
+      },
+      {
+        id: 20, roman: "XX", name: "審判 (Judgement)", icon: "🎺",
+        keywords: "重大覺醒 · 因果宣判 · 昇華重啟",
+        love: {
+          upright: "感情迎來命中注定的關鍵抉擇或復合契機；深刻檢討過往，關係邁向更高維度的互信。",
+          reversed: "對過去的錯誤悔恨執迷，逃避做出明確抉擇導致泥足深陷。"
+        },
+        career: {
+          upright: "關鍵考核或大考成績出爐，過往付出的一切努力將在此刻得到公平正義的回報，人生昇華。",
+          reversed: "懷疑自身能力拒絕接受召喚，猶豫不決錯失重大轉型跳板。"
+        },
+        wealth: {
+          upright: "過去的長期投資或努力迎來清算豐收，因果回饋豐盛。",
+          reversed: "因過去錯誤的財務決策承擔代價，需立即清盤整頓。"
+        },
+        family: {
+          upright: "多年未解的家族舊怨在此刻徹底解開，獲得救贖與重新團聚。",
+          reversed: "家族互相責備推卸責任，難以走出舊有執念。"
+        },
+        health: {
+          upright: "舊疾得到根治契機，身體重獲新生般的通透輕盈感。",
+          reversed: "忽視身體複查警訊，舊疾反覆發作需嚴肅面對。"
+        },
+        crystal: "高頻白阿塞（高維洗滌覺醒） / 頂級黑銀鈦（斷捨離重塑）"
+      },
+      {
+        id: 21, roman: "XXI", name: "世界 (The World)", icon: "🌍",
+        keywords: "圓滿大成 · 週期終點 · 完美統合",
+        love: {
+          upright: "修成正果的圓滿境界！彼此認同為人生靈魂伴侶，攜手邁向人生新里程碑。",
+          reversed: "差最後一步卻停滯不前，需跨越內心最後一絲猶豫才能達成真正圓滿。"
+        },
+        career: {
+          upright: "宏大目標圓滿達成！大考獲優異戰果、海外拓展或重大專案完美收官，迎向全新世界。",
+          reversed: "完成度只差臨門一腳，需全力以赴堅持到最後一刻切勿半途而廢。"
+        },
+        wealth: {
+          upright: "財富版圖完整成形，物質與精神雙重富足，達成階段性財務自由。",
+          reversed: "短暫延遲獲利，需耐心整理最後環節方能享受豐盛成果。"
+        },
+        family: {
+          upright: "家族繁榮興旺，和諧圓滿，所有成員各安其位互助友愛。",
+          reversed: "家庭計劃受到外在環境拖延，但大方向依然和諧無虞。"
+        },
+        health: {
+          upright: "身心靈七大脈輪高度和諧共振，達到極致平衡健康狀態。",
+          reversed: "注意長途差旅帶來的時差或水土不服，注意調適節奏。"
+        },
+        crystal: "能量霸主 · 黑金超七（七脈輪圓滿共振天花板） / 銅鈦晶"
+      }
+    ];
+
+    function selectTarotTopic(topic, btn) {
+      currentTarotTopic = topic;
+      document.querySelectorAll('.tarot-topic-btn').forEach(b => {
+        b.classList.remove('active', 'bg-purple-950/80', 'border-neon-purple', 'text-white');
+        b.classList.add('bg-slate-900', 'border-slate-800', 'text-slate-400');
+      });
+      btn.classList.add('active', 'bg-purple-950/80', 'border-neon-purple', 'text-white');
+      btn.classList.remove('bg-slate-900', 'border-slate-800', 'text-slate-400');
+    }
+
+    function startTarotShuffle() {
+      const qInput = document.getElementById('tarotQuestionInput').value.trim();
+      if (!qInput) {
+        alert('請先在心中默念並輸入你具體想詢問的問題！');
+        document.getElementById('tarotQuestionInput').focus();
+        return;
+      }
+
+      document.getElementById('echoQuestion').innerText = qInput;
+      document.getElementById('tarotStepInput').classList.add('hidden');
+      
+      const fanContainer = document.getElementById('tarotCardFan');
+      fanContainer.innerHTML = '';
+      
+      // Generate 7 interactive card backs for user intuition selection
+      for (let i = 0; i < 7; i++) {
+        const cardBack = document.createElement('button');
+        cardBack.type = 'button';
+        cardBack.className = 'w-16 h-28 sm:w-20 sm:h-32 rounded-xl bg-gradient-to-tr from-purple-950 via-slate-900 to-indigo-950 border-2 border-neon-purple/70 hover:border-neon-cyan hover:scale-110 active:scale-95 transition-all shadow-lg shadow-purple-900/40 flex flex-col items-center justify-center cursor-pointer group flex-shrink-0';
+        cardBack.innerHTML = `
+          <span class="text-xs text-neon-gold font-bold">808</span>
+          <span class="text-lg opacity-80 group-hover:scale-125 transition-transform">✦</span>
+          <span class="text-[9px] text-teal-300 font-mono">TAROT</span>
+        `;
+        cardBack.onclick = () => revealTarotCard(qInput);
+        fanContainer.appendChild(cardBack);
+      }
+
+      document.getElementById('tarotStepDeck').classList.remove('hidden');
+      document.getElementById('tarotStepDeck').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function revealTarotCard(question) {
+      // Pick random card from 22 Major Arcana
+      const randomIndex = Math.floor(Math.random() * tarotDeck.length);
+      const card = tarotDeck[randomIndex];
+      const isUpright = Math.random() >= 0.3; // 70% upright, 30% reversed
+
+      userTarotCard = {
+        card: card,
+        isUpright: isUpright,
+        topic: currentTarotTopic,
+        question: question
+      };
+
+      const topicLabels = {
+        love: "💖 愛情桃花",
+        career: "💼 事業學業",
+        wealth: "💰 正偏財運",
+        family: "🏡 家庭人際",
+        health: "🧘 身心健康"
+      };
+
+      // Populate UI
+      document.getElementById('tarotCardIcon').innerText = card.icon;
+      document.getElementById('tarotCardRoman').innerText = `MAJOR ${card.roman}`;
+      document.getElementById('tarotCardName').innerText = `${card.name} (${isUpright ? '正位' : '逆位'})`;
+      document.getElementById('tarotArchetypeKeywords').innerText = card.keywords;
+      
+      const topicBadge = document.getElementById('tarotTopicBadge');
+      topicBadge.innerText = topicLabels[currentTarotTopic] || "綜合占卜";
+
+      const orientBadge = document.getElementById('tarotOrientationBadge');
+      if (isUpright) {
+        orientBadge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-950 text-emerald-300 border border-emerald-500/40';
+        orientBadge.innerText = '正位 · 順流顯化';
+        document.getElementById('tarotCardVisual').style.transform = 'rotate(0deg)';
+      } else {
+        orientBadge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-950 text-rose-300 border border-rose-500/40';
+        orientBadge.innerText = '逆位 · 潛在卡點';
+        document.getElementById('tarotCardVisual').style.transform = 'rotate(180deg)';
+      }
+
+      document.getElementById('tarotDisplayQuestion').innerText = question;
+
+      // Tier 1 Free Reading text
+      const topicReading = card[currentTarotTopic] || card.career;
+      const meaningText = isUpright ? topicReading.upright : topicReading.reversed;
+      document.getElementById('tarotFreeMeaning').innerText = meaningText;
+      document.getElementById('tarotCrystalAdvice').innerText = `對應調頻晶石：${card.crystal}。透過同頻晶石能穩定此課題的能量場。`;
+
+      document.getElementById('tarotStepDeck').classList.add('hidden');
+      const resStep = document.getElementById('tarotStepResult');
+      resStep.classList.remove('hidden');
+      resStep.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Direct HK$50 Gated Stripe Payment Action
+    function payTarotDeepReading() {
+      if (!userTarotCard) {
+        alert('請先進行塔羅抽牌！');
+        return;
+      }
+      // Note: User can generate a HK$50 Stripe Payment link or use the standard checkout
+      // We will direct to Stripe or inform WhatsApp
+      const orientation = userTarotCard.isUpright ? '正位' : '逆位';
+      const promptPay = confirm(`即將跳轉至官方加密支付系統，使用 Apple Pay / 信用卡支付 HK$50 進行 1 對 1 深度解盤！\n\n【詢問問題】：${userTarotCard.question}\n【抽取牌卡】：${userTarotCard.card.name} (${orientation})\n\n點擊「確定」繼續結帳！`);
+      if (promptPay) {
+        // Open Stripe Payment Link or WhatsApp with confirmation
+        window.open('https://buy.stripe.com/5kQ9AM7FS4bmbyu7Vc1ck01', '_blank');
+      }
+    }
+
+    // WhatsApp 1-on-1 Consultation
+    function consultTarotViaWhatsApp() {
+      if (!userTarotCard) {
+        alert('請先進行塔羅抽牌！');
+        return;
+      }
+
+      const orientation = userTarotCard.isUpright ? '正位' : '逆位';
+      const topicLabels = {
+        love: "愛情桃花",
+        career: "事業學業",
+        wealth: "正偏財運",
+        family: "家庭人際",
+        health: "身心健康"
+      };
+
+      const msg = `你好 808 店主！我啱啱喺官網完成咗【偉特塔羅直覺占卜】：
+🔮 占卜領域：【${topicLabels[userTarotCard.topic] || '綜合'}】
+❓ 我的具體問題：「${userTarotCard.question}」
+🃏 抽到的牌卡：【${userTarotCard.card.name} (${orientation})】
+✨ 核心關鍵字：${userTarotCard.card.keywords}
+
+我想解鎖 HK$50【1對1 深度解盤分析】：
+1️⃣ 精準拆解此課題未來 3-6 個月發展走向與潛在隱患
+2️⃣ 針對我問題的具體破局決策指引
+3️⃣ 針對此牌卡推薦適合我的天然水晶手串現貨實拍配對
+
+麻煩店主為我一對一抽絲剝繭，謝謝你！✨`;
+
+      window.open(`https://wa.me/85294432331?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     // Init
