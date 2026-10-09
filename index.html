@@ -730,10 +730,7 @@
                       <span>📲 WhatsApp 私訊店主諮詢</span>
                     </button>
                   </div>
-                  <div class="mt-3 flex items-center justify-center gap-2">
-                    <span class="text-[10px] text-slate-400">已在 Stripe 完成付款？</span>
-                    <button type="button" onclick="unlockTarotDirectly()" class="text-[10px] text-neon-cyan underline font-bold hover:text-white transition-colors">點此立即展示解鎖報告 ➔</button>
-                  </div>
+
                 </div>
               </div>
 
@@ -3187,7 +3184,20 @@ IG 名：
       if (lockedBox) lockedBox.classList.add('hidden');
       if (unlockedBox) {
         unlockedBox.classList.remove('hidden');
-        unlockedBox.scrollIntoView({ behavior: 'smooth' });
+        
+        // Robust multi-pass scroll to guarantee the user lands right on the unlocked report
+        const doScroll = () => {
+          const rect = unlockedBox.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          window.scrollTo({
+            top: rect.top + scrollTop - 100,
+            behavior: 'smooth'
+          });
+        };
+        
+        doScroll();
+        setTimeout(doScroll, 200);
+        setTimeout(doScroll, 600);
       }
     }
 
@@ -3237,16 +3247,34 @@ IG 名：
       window.open(`https://wa.me/85294432331?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // Check URL parameters for return from Stripe
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const isPaidParam = urlParams.get('paid') || urlParams.get('status');
-      if (isPaidParam === 'tarot' || isPaidParam === 'tarot_paid' || window.location.hash === '#tarot_paid' || window.location.hash === '#tarot') {
-        setTimeout(() => {
+    // Ultra-Reliable Stripe Return & URL Parameter Detection
+    function checkStripeReturnUnlock() {
+      try {
+        const searchStr = window.location.search.toLowerCase();
+        const hashStr = window.location.hash.toLowerCase();
+        
+        // Detect if returning from Stripe (status=tarot_paid, paid=tarot, or hash)
+        const isStripePaid = searchStr.includes('tarot_paid') || 
+                             searchStr.includes('paid=tarot') || 
+                             searchStr.includes('status=paid') ||
+                             hashStr.includes('tarot_paid');
+
+        if (isStripePaid) {
+          if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+          }
           unlockTarotDirectly();
-        }, 150);
+        }
+      } catch (err) {
+        console.error("Unlock check error:", err);
       }
-    });
+    }
+
+    // Trigger across all lifecycle events for 100% reliability
+    document.addEventListener('DOMContentLoaded', checkStripeReturnUnlock);
+    window.addEventListener('load', checkStripeReturnUnlock);
+    setTimeout(checkStripeReturnUnlock, 100);
+    setTimeout(checkStripeReturnUnlock, 400);
 
     // Init
     renderCatalog(inventory);
