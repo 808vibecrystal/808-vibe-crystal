@@ -122,8 +122,8 @@
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
-          <a href="#calculator" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
-            <span>🔮</span> 星座靈數測算
+          <a href="#calculator" onclick="switchLabTab('tarot')" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
+            <span>🃏</span> 偉特塔羅占卜
           </a>
           <a href="#products" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
             <span>💎</span> 現貨水晶目錄
@@ -168,8 +168,8 @@
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#calculator" class="px-8 py-4 rounded-xl bg-gradient-to-r from-neon-cyan via-teal-400 to-emerald-400 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-105 transition-all">
-          🔮 免費測算【星座 ✕ 生命靈數】
+        <a href="#calculator" onclick="switchLabTab('tarot')" class="px-8 py-4 rounded-xl bg-gradient-to-r from-neon-purple via-indigo-600 to-neon-cyan text-white font-black text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:scale-105 transition-all flex items-center justify-center gap-2">
+          <span>🃏</span> 即刻體驗【偉特塔羅 · 直覺占卜】
         </a>
         <a href="#products" class="px-8 py-4 rounded-xl glass-card text-white font-bold text-sm hover:border-neon-cyan transition-all border border-slate-700">
           💎 瀏覽現貨庫存目錄
@@ -188,29 +188,31 @@
           <p class="text-slate-400 text-xs sm:text-sm mt-1">結合占星、靈數、五行、MBTI與脈輪感知，直擊你的能量卡點！</p>
         </div>
 
-        <!-- 4 Tab Switcher -->
+        <!-- 5 Tab Switcher (Tarot is #1 and Default Active) -->
         <div class="flex justify-center mb-8 overflow-x-auto pb-2">
           <div class="inline-flex p-1.5 rounded-2xl bg-slate-950/90 border border-slate-800 gap-1">
-            <button id="tabBtn1" onclick="switchLabTab('numerology')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap">
-              🔮 星座 ✕ 靈數
+            <button id="tabBtn1" onclick="switchLabTab('tarot')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap flex items-center gap-1.5 border border-purple-400/40">
+              <span class="inline-block w-2 h-2 rounded-full bg-neon-cyan animate-ping"></span>
+              <span>🃏 偉特塔羅 ✕ 直覺占卜</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-neon-gold text-slate-950 font-black">HOT</span>
             </button>
-            <button id="tabBtn2" onclick="switchLabTab('wuxing')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap">
-              🌿 五行 ✕ 季節
+            <button id="tabBtn2" onclick="switchLabTab('numerology')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5">
+              <span>🔮</span> 星座 ✕ 靈數
             </button>
-            <button id="tabBtn3" onclick="switchLabTab('mbti')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap">
-              🧠 MBTI ✕ 命定石
+            <button id="tabBtn3" onclick="switchLabTab('wuxing')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5">
+              <span>🌿</span> 五行 ✕ 季節
             </button>
-            <button id="tabBtn4" onclick="switchLabTab('chakra')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap">
-              👁️ 直覺脈輪 ✕ 左右手
+            <button id="tabBtn4" onclick="switchLabTab('mbti')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5">
+              <span>🧠</span> MBTI ✕ 命定石
             </button>
-            <button id="tabBtn5" onclick="switchLabTab('tarot')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5">
-              <span>🃏</span> 偉特塔羅 ✕ 直覺解盤
+            <button id="tabBtn5" onclick="switchLabTab('chakra')" class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5">
+              <span>👁️</span> 直覺脈輪 ✕ 左右手
             </button>
           </div>
         </div>
 
         <!-- MODULE 1: Numerology & Zodiac -->
-        <div id="moduleNumerology">
+        <div id="moduleNumerology" class="hidden">
           <div class="text-center mb-6">
             <h3 class="text-xl font-bold text-teal-300">【 12 星座 ✕ 生命靈數 】天賦命盤測算</h3>
             <p class="text-slate-400 text-xs mt-1">西方占星太陽能量結合生命靈數，洞悉天賦強項與近期運勢轉機</p>
@@ -586,7 +588,7 @@
         </div>
 
         <!-- MODULE 5: Interactive Tarot Reading & HK$50 Gated Analysis -->
-        <div id="moduleTarot" class="hidden">
+        <div id="moduleTarot">
           <div class="text-center mb-6">
             <span class="text-neon-cyan text-xs font-black tracking-widest uppercase block mb-1">✦ 78 MAJORS ARCHETYPAL ENERGY · 偉特塔羅直覺占卜 ✦</span>
             <h3 class="text-xl sm:text-2xl font-black text-white">直擊潛意識迷霧 · 專屬命運之牌</h3>
@@ -622,9 +624,22 @@
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">2. 請在心中默念 3 次，並寫下你具體想問的問題：</label>
-              <input type="text" id="tarotQuestionInput" placeholder="例如：我同佢未來的關係走向如何？／下半年考運與突破方向？" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs sm:text-sm focus:outline-none focus:border-neon-cyan transition-all">
-              <span class="text-[11px] text-slate-400 block mt-1">＊問題越具體清晰，塔羅能量場與脈輪投影越能精準直擊核心。</span>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-bold text-slate-300">2. 請在心中默念 3 次，並寫下你具體想問的問題：</label>
+                <span class="text-[10px] text-teal-400 font-semibold">💡 點擊下方熱門題目直接填入</span>
+              </div>
+              
+              <input type="text" id="tarotQuestionInput" placeholder="例如：我同佢未來 3-6 個月嘅關係走向如何？" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-white text-xs sm:text-sm focus:outline-none focus:border-neon-cyan transition-all shadow-inner">
+              
+              <!-- Dynamic Topic Question Suggestions Chips -->
+              <div class="mt-2.5">
+                <span class="text-[10px] text-slate-400 block mb-1">精選指引問題（點擊帶入）：</span>
+                <div id="tarotPromptChips" class="flex flex-wrap gap-1.5">
+                  <!-- Injected via JavaScript based on chosen topic -->
+                </div>
+              </div>
+
+              <span class="text-[11px] text-slate-400 block mt-2">＊問題越具體清晰，塔羅能量場與脈輪投影越能精準直擊核心。</span>
             </div>
 
             <button type="button" onclick="startTarotShuffle()" class="w-full py-4 rounded-xl bg-gradient-to-r from-neon-purple via-indigo-600 to-neon-cyan text-white font-black text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
@@ -1930,9 +1945,9 @@
 
     
     
-    // 5-in-1 Lab Tab Switcher (Including Tarot)
+    // 5-in-1 Lab Tab Switcher (Tarot at #1 Position)
     function switchLabTab(tab) {
-      const tabs = ['numerology', 'wuxing', 'mbti', 'chakra', 'tarot'];
+      const tabs = ['tarot', 'numerology', 'wuxing', 'mbti', 'chakra'];
       const buttons = [
         document.getElementById('tabBtn1'),
         document.getElementById('tabBtn2'),
@@ -1941,17 +1956,17 @@
         document.getElementById('tabBtn5')
       ];
       const modules = [
+        document.getElementById('moduleTarot'),
         document.getElementById('moduleNumerology'),
         document.getElementById('moduleWuxing'),
         document.getElementById('moduleMbti'),
-        document.getElementById('moduleChakra'),
-        document.getElementById('moduleTarot')
+        document.getElementById('moduleChakra')
       ];
 
       tabs.forEach((t, index) => {
         if (!buttons[index] || !modules[index]) return;
         if (t === tab) {
-          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap flex items-center gap-1.5';
+          buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-gradient-to-r from-neon-purple to-neon-magenta text-white shadow-lg shadow-purple-900/40 whitespace-nowrap flex items-center gap-1.5 border border-purple-400/40';
           modules[index].classList.remove('hidden');
         } else {
           buttons[index].className = 'px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5';
@@ -2908,6 +2923,59 @@ IG 名：
       }
     ];
 
+    const tarotTopicPrompts = {
+      love: [
+        "我同佢未來 3-6 個月嘅關係走向如何？",
+        "佢心目中對我嘅真實睇法與心意係咩？",
+        "我而家應該主動定係暫時退後一步？",
+        "我幾時會遇到真正適合我嘅正緣桃花？"
+      ],
+      career: [
+        "下半年 DSE / 考試考運與突破方向？",
+        "我目前嘅學業／事業卡點應該點樣破局？",
+        "呢份工作／學科係咪我真正嘅天賦所在？",
+        "如何化解職場／學校小人是非與暗處阻力？"
+      ],
+      wealth: [
+        "未來半年我嘅正偏財運幾時有起色？",
+        "呢個投資／副業項目適唔適合我投入？",
+        "點樣改善我經常漏財／財來財去嘅情況？",
+        "我如何開拓第二收入來源與財庫突破？"
+      ],
+      family: [
+        "同屋企人／朋友之間嘅誤會點樣化解？",
+        "如何擺脫人際關係中嘅情緒勒索與精神內耗？",
+        "點樣建立健康界線，唔再被身邊人吸乾能量？",
+        "屋企近期緊繃嘅氣氛幾時會緩和？"
+      ],
+      health: [
+        "成日失眠多夢、精神緊繃，點樣安定思緒？",
+        "每日用腦過度導致個腦 lag 機，如何為能量散熱？",
+        "我身體當前邊個脈輪最需要高頻晶石調頻？",
+        "如何調整作息與生活節奏重獲活力？"
+      ]
+    };
+
+    function updateTarotPromptChips(topic) {
+      const container = document.getElementById('tarotPromptChips');
+      if (!container) return;
+      const prompts = tarotTopicPrompts[topic] || tarotTopicPrompts.love;
+      container.innerHTML = prompts.map(p => `
+        <button type="button" onclick="fillTarotQuestion('${p.replace(/'/g, "\\'")}')" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 hover:border-neon-cyan hover:bg-slate-800 text-[11px] text-slate-300 hover:text-white transition-all text-left flex items-center gap-1 group">
+          <span class="text-teal-400 group-hover:scale-110 transition-transform">✦</span>
+          <span>${p}</span>
+        </button>
+      `).join('');
+    }
+
+    function fillTarotQuestion(text) {
+      const input = document.getElementById('tarotQuestionInput');
+      if (input) {
+        input.value = text;
+        input.focus();
+      }
+    }
+
     function selectTarotTopic(topic, btn) {
       currentTarotTopic = topic;
       document.querySelectorAll('.tarot-topic-btn').forEach(b => {
@@ -2916,6 +2984,7 @@ IG 名：
       });
       btn.classList.add('active', 'bg-purple-950/80', 'border-neon-purple', 'text-white');
       btn.classList.remove('bg-slate-900', 'border-slate-800', 'text-slate-400');
+      updateTarotPromptChips(topic);
     }
 
     function startTarotShuffle() {
@@ -3182,6 +3251,7 @@ IG 名：
     // Init
     renderCatalog(inventory);
     updateCartDisplay();
+    updateTarotPromptChips('love');
   </script>
 </body>
 </html>
