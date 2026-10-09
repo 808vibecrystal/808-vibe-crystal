@@ -137,8 +137,17 @@
         </nav>
 
         <!-- Right Side Actions -->
-        <div class="flex items-center gap-3">
-          <a href="https://www.instagram.com/808_vibe_crystal?stkn=YXJkYTcycDA2MnB4&utm_source=qr" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-purple-500/50 bg-purple-950/40 text-xs font-bold text-purple-200 hover:bg-purple-900/60 hover:border-neon-cyan transition-all">
+        <div class="flex items-center gap-2 sm:gap-3">
+          
+          <!-- VIP Member Status / Login Trigger -->
+          <div id="vipNavContainer">
+            <button onclick="openVipModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-amber-400/50 bg-amber-950/40 text-xs font-bold text-amber-200 hover:bg-amber-900/60 hover:border-neon-gold transition-all">
+              <span class="text-neon-gold">👑</span>
+              <span id="vipNavText">會員登入</span>
+            </button>
+          </div>
+
+          <a href="https://www.instagram.com/808_vibe_crystal?stkn=YXJkYTcycDA2MnB4&utm_source=qr" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-purple-500/50 bg-purple-950/40 text-xs font-bold text-purple-200 hover:bg-purple-900/60 hover:border-neon-cyan transition-all">
             <svg class="w-4 h-4 fill-current text-purple-300" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>關注店舖 IG</span>
           </a>
@@ -297,10 +306,15 @@
                     後半段包含：<strong class="text-neon-gold">深層脈輪修補指南 ✕ 下半年破局轉運時機 ✕ 左右手排濁調配</strong>。即刻 WhatsApp 聯絡店主，免費一對一領取完整解析！
                   </p>
                   
-                  <button onclick="unlockViaWhatsApp()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-neon-cyan text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-105 transition-all flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                    <span>📲 WhatsApp 免費領取完整報告 ✕ 命定手串推薦</span>
-                  </button>
+                  <div class="flex flex-col sm:flex-row items-center gap-2.5 w-full justify-center max-w-md">
+                    <button onclick="payNumerologyForecast()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-slate-900 via-black to-slate-900 border border-neon-cyan hover:border-neon-gold text-white font-black text-xs sm:text-sm tracking-wide shadow-lg flex items-center justify-center gap-1.5 hover:scale-105 transition-all">
+                      <span></span> <span>Apple Pay 支付 HK$38 即時解鎖 12 個月流月錦囊</span>
+                    </button>
+                    <button onclick="unlockViaWhatsApp()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-neon-cyan text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-105 transition-all flex items-center justify-center gap-1.5">
+                      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                      <span>📲 WhatsApp 免費領取完整報告</span>
+                    </button>
+                  </div>
                   <span class="text-[10px] text-slate-400 mt-2">（點擊將自動填入你的專屬星座靈數代碼，店主即時親自解答）</span>
                 </div>
               </div>
@@ -786,6 +800,84 @@
       </div>
     </section>
 
+    
+    <!-- 4.5. VIP Consultation & Membership Section (New High-Converting Funnels) -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <div class="text-center mb-8">
+        <span class="text-neon-cyan text-xs font-black tracking-widest uppercase block mb-1">✦ 808 BESPOKE ENERGY & VIP CLUB · 專屬訂製與會員服務 ✦</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white">深層能量定制 · 轉化你的專屬氣場</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">結合占星排盤、左右手氣場健檢與終身能量調頻服務</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- CARD 1: HK$88 Consultation (100% Refundable / Deductible!) -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl border border-neon-cyan/50 hover:border-neon-cyan transition-all relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute top-4 right-4">
+            <span class="px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/40 text-[10px] font-black uppercase">可全額抵扣手串</span>
+          </div>
+
+          <div>
+            <div class="text-3xl mb-3">🔮</div>
+            <h3 class="text-xl font-black text-white group-hover:text-neon-cyan transition-colors">1 對 1 全盤能量體質健檢 ✕ 獨家雙手串調配</h3>
+            <div class="text-2xl font-black text-neon-gold font-mono my-3">
+              HK$ 88 <span class="text-xs text-slate-400 font-normal">/ 專屬諮詢 (落單即減 HK$88)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              直接由店主一對一語音/文字深度排盤，核對你當前的左右手晶石衝突禁忌、排濁漏洞，並為你量身繪製專屬手串設計圖！
+            </p>
+            <ul class="space-y-2 text-xs text-slate-400 mb-6">
+              <li class="flex items-center gap-2"><span class="text-neon-cyan">✓</span> 西曆出生盤 ✕ 五行虛旺深度排查</li>
+              <li class="flex items-center gap-2"><span class="text-neon-cyan">✓</span> 目前手串佩戴順序與左進右出禁忌健檢</li>
+              <li class="flex items-center gap-2"><span class="text-neon-gold font-bold">★ 核心特權：</span>諮詢費 HK$88 可 100% 全額抵扣店內手串消費！</li>
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <button onclick="orderVipConsultation()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-neon-cyan via-teal-400 to-emerald-400 text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+              <span></span> <span>Apple Pay / 信用卡支付 HK$88 預約健檢</span>
+            </button>
+            <button onclick="consultVipWhatsApp()" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 text-xs font-bold transition-all flex items-center justify-center gap-1.5">
+              <span>📲 WhatsApp 先行諮詢預約</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- CARD 2: HK$99/Quarter Membership Club -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl border border-purple-500/50 hover:border-neon-purple transition-all relative overflow-hidden flex flex-col justify-between group">
+          <div class="absolute top-4 right-4">
+            <span class="px-3 py-1 rounded-full bg-purple-950 text-purple-300 border border-purple-500/40 text-[10px] font-black uppercase">季度能量會員</span>
+          </div>
+
+          <div>
+            <div class="text-3xl mb-3">🌌</div>
+            <h3 class="text-xl font-black text-white group-hover:text-neon-purple transition-colors">808 星流能量會員庫 · 季度 Pass</h3>
+            <div class="text-2xl font-black text-neon-gold font-mono my-3">
+              HK$ 99 <span class="text-xs text-slate-400 font-normal">/ 季 (3個月尊享權益)</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              專為高敏感水晶藏家打造的專屬能量俱樂部，享受全單折上折與每月新月滿月深度調頻指南。
+            </p>
+            <ul class="space-y-2 text-xs text-slate-400 mb-6">
+              <li class="flex items-center gap-2"><span class="text-neon-purple">✓</span> 全店現貨水晶手串享專屬 <strong class="text-white">88 折</strong> 優惠</li>
+              <li class="flex items-center gap-2"><span class="text-neon-purple">✓</span> 順豐免運門檻由 HK$500 永久降至 <strong class="text-white">HK$300</strong></li>
+              <li class="flex items-center gap-2"><span class="text-neon-purple">✓</span> 每月新月/滿月專屬水晶許願音頻與流月運勢推送</li>
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <button onclick="joinVipClub()" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-neon-purple via-indigo-600 to-neon-magenta text-white font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+              <span></span> <span>Apple Pay / 信用卡加入會員 (HK$99/季)</span>
+            </button>
+            <button onclick="consultClubWhatsApp()" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 text-xs font-bold transition-all flex items-center justify-center gap-1.5">
+              <span>📲 WhatsApp 了解會員權益</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- 5. Product Catalog (Complete 34 Items Master Inventory Archive) -->
     <section id="products" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
       <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-10">
@@ -909,11 +1001,47 @@
         <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-white p-2 text-lg">✕</button>
       </div>
 
+      <!-- VIP Status Banner inside Cart -->
+      <div id="cartVipBanner" class="py-2 px-3 rounded-xl bg-amber-950/40 border border-amber-500/40 my-2 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-1.5">
+          <span class="text-neon-gold">👑</span>
+          <span id="cartVipText" class="text-slate-200">能量會員享 <strong class="text-neon-gold">88 折</strong> ✕ 滿 $300 包郵</span>
+        </div>
+        <button id="cartVipActionBtn" onclick="openVipModal()" class="text-[11px] text-neon-cyan underline font-bold hover:text-white">登入/開通 ➔</button>
+      </div>
+
+      <!-- Free Shipping Dynamic Progress Bar -->
+      <div class="py-2.5 px-3 rounded-xl bg-slate-900 border border-slate-800 my-2">
+        <div class="flex justify-between items-center text-[11px] mb-1.5 font-bold">
+          <span id="freeShippingText" class="text-slate-300">順豐免運進度：</span>
+          <span id="freeShippingGoal" class="text-neon-cyan font-mono">滿 HK$500 包郵</span>
+        </div>
+        <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+          <div id="freeShippingBar" class="h-full bg-gradient-to-r from-neon-purple to-neon-cyan transition-all duration-300 w-0"></div>
+        </div>
+      </div>
+
       <!-- Items List -->
-      <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-4 space-y-3"></div>
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-2 space-y-3"></div>
+
+      <!-- Order Bump: HK$38 Cleansing Kit -->
+      <div class="p-3 rounded-xl bg-gradient-to-r from-purple-950/40 to-slate-900 border border-purple-500/40 flex items-start gap-3">
+        <input type="checkbox" id="bumpCleansingKit" onchange="toggleOrderBump()" class="mt-1 w-4 h-4 rounded text-neon-purple focus:ring-0 cursor-pointer">
+        <label for="bumpCleansingKit" class="flex-1 text-xs cursor-pointer select-none">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-white flex items-center gap-1">
+              <span>🌿</span> 【加購特惠】秘魯聖木 ✕ 白水晶消磁包
+            </span>
+            <span class="font-mono text-neon-gold font-black">+HK$38</span>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-0.5 leading-relaxed">
+            含天然秘魯聖木條 (2枝) ＋ 頂級消磁白水晶碎石 (100g)，出貨前店主親自煙燻開光！
+          </p>
+        </label>
+      </div>
 
       <!-- Options & Calculation -->
-      <div class="pt-4 border-t border-slate-800 space-y-3">
+      <div class="pt-3 border-t border-slate-800 space-y-3">
         <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-2.5">
           <div class="flex items-center justify-between">
             <span class="text-slate-300 font-semibold">出貨處理方式：</span>
@@ -2158,65 +2286,216 @@
       updateCartDisplay();
     }
 
+    
+    // New Revenue Streams Logic (4 Core High-Converting Projects)
+    let isBumpSelected = false;
+
+    function toggleOrderBump() {
+      const checkbox = document.getElementById('bumpCleansingKit');
+      isBumpSelected = checkbox ? checkbox.checked : false;
+      updateCartDisplay();
+    }
+
+
+    // 8. 808 VIP Membership Engine (88折 Discount & Verification System)
+    let isVipMember = false;
+    let vipMemberId = "";
+
+    function initVipStatus() {
+      try {
+        const savedVip = localStorage.getItem('808_vip_member');
+        if (savedVip) {
+          const vipData = JSON.parse(savedVip);
+          if (vipData && vipData.active) {
+            isVipMember = true;
+            vipMemberId = vipData.id || "VIP88";
+          }
+        }
+      } catch(e) {}
+      updateVipUI();
+    }
+
+    function updateVipUI() {
+      const navContainer = document.getElementById('vipNavContainer');
+      const cartBanner = document.getElementById('cartVipBanner');
+      const cartText = document.getElementById('cartVipText');
+      const cartActionBtn = document.getElementById('cartVipActionBtn');
+      const modalNotLogged = document.getElementById('vipModalNotLoggedIn');
+      const modalLogged = document.getElementById('vipModalLoggedIn');
+      const loggedUserText = document.getElementById('vipLoggedInUser');
+
+      if (isVipMember) {
+        if (navContainer) {
+          navContainer.innerHTML = `
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-amber-400 bg-amber-950/70 text-xs font-black text-neon-gold shadow-lg shadow-amber-900/30">
+              <span class="animate-pulse">🌟</span>
+              <span>VIP 88折生效中</span>
+              <button onclick="openVipModal()" class="text-[10px] text-slate-300 hover:text-white underline ml-1">帳戶</button>
+            </div>
+          `;
+        }
+        if (cartBanner) {
+          cartBanner.className = "py-2 px-3 rounded-xl bg-amber-950/60 border border-amber-500/60 my-2 flex items-center justify-between text-xs";
+        }
+        if (cartText) {
+          cartText.innerHTML = '<span class="text-neon-gold font-bold flex items-center gap-1"><span>🌟</span> 尊貴會員已生效：全單自動 88 折 ✕ 滿 $300 包郵！</span>';
+        }
+        if (cartActionBtn) {
+          cartActionBtn.innerText = "查看特權 ➔";
+        }
+        if (modalNotLogged) modalNotLogged.classList.add('hidden');
+        if (modalLogged) modalLogged.classList.remove('hidden');
+        if (loggedUserText) loggedUserText.innerText = `登記會員識別碼: ${vipMemberId}`;
+      } else {
+        if (navContainer) {
+          navContainer.innerHTML = `
+            <button onclick="openVipModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-amber-400/50 bg-amber-950/40 text-xs font-bold text-amber-200 hover:bg-amber-900/60 hover:border-neon-gold transition-all">
+              <span class="text-neon-gold">👑</span>
+              <span id="vipNavText">會員登入</span>
+            </button>
+          `;
+        }
+        if (cartBanner) {
+          cartBanner.className = "py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 my-2 flex items-center justify-between text-xs";
+        }
+        if (cartText) {
+          cartText.innerHTML = '能量會員享 <strong class="text-neon-gold">88 折</strong> ✕ 滿 $300 包郵';
+        }
+        if (cartActionBtn) {
+          cartActionBtn.innerText = "登入/開通 ➔";
+        }
+        if (modalNotLogged) modalNotLogged.classList.remove('hidden');
+        if (modalLogged) modalLogged.classList.add('hidden');
+      }
+
+      updateCartDisplay();
+    }
+
+    function openVipModal() {
+      document.getElementById('vipModalBackdrop').classList.remove('hidden');
+      document.getElementById('vipModal').classList.remove('hidden');
+    }
+
+    function closeVipModal() {
+      document.getElementById('vipModalBackdrop').classList.add('hidden');
+      document.getElementById('vipModal').classList.add('hidden');
+    }
+
+    function submitVipLogin() {
+      const input = document.getElementById('vipLoginInput').value.trim();
+      if (!input) {
+        alert('請輸入電話號碼或會員碼！');
+        return;
+      }
+      // Activate VIP (accepts phone number or VIP passcode)
+      isVipMember = true;
+      vipMemberId = input;
+      try {
+        localStorage.setItem('808_vip_member', JSON.stringify({
+          active: true,
+          id: input,
+          timestamp: Date.now()
+        }));
+      } catch(e) {}
+
+      updateVipUI();
+      alert(`🎉 驗證成功！歡迎你，尊貴能量會員【${input}】！\n\n已為你全面啟用全單 88 折優惠 ✕ 滿 HK$300 順豐包郵特權！`);
+    }
+
+    function logoutVip() {
+      if (confirm('確定要登出會員嗎？登出後將暫停 88 折優惠。')) {
+        isVipMember = false;
+        vipMemberId = "";
+        try {
+          localStorage.removeItem('808_vip_member');
+        } catch(e) {}
+        updateVipUI();
+        closeVipModal();
+      }
+    }
+
+    // Updated updateCartDisplay to factor in 88折 (0.88x), Free Shipping Bar & Order Bump:
     function updateCartDisplay() {
       const totalQty = cart.reduce((acc, cur) => acc + cur.qty, 0);
-      const minSubtotal = cart.reduce((acc, cur) => acc + (cur.minPrice * cur.qty), 0);
-      const maxSubtotal = cart.reduce((acc, cur) => acc + (cur.maxPrice * cur.qty), 0);
+      const bumpCost = isBumpSelected ? 38 : 0;
+      
+      const rawMinSubtotal = cart.reduce((acc, cur) => acc + (cur.minPrice * cur.qty), 0) + bumpCost;
+      const rawMaxSubtotal = cart.reduce((acc, cur) => acc + (cur.maxPrice * cur.qty), 0) + bumpCost;
+
+      // Apply 88折 if VIP Member
+      const minSubtotal = isVipMember ? Math.round(rawMinSubtotal * 0.88) : rawMinSubtotal;
+      const maxSubtotal = isVipMember ? Math.round(rawMaxSubtotal * 0.88) : rawMaxSubtotal;
 
       const badge = document.getElementById('cartCountBadge');
       const drawerCount = document.getElementById('drawerCount');
-      if (totalQty > 0) {
-        badge.innerText = totalQty;
+      if (totalQty > 0 || isBumpSelected) {
+        badge.innerText = totalQty + (isBumpSelected ? 1 : 0);
         badge.classList.remove('hidden');
-        drawerCount.innerText = `${totalQty} 件`;
+        drawerCount.innerText = `${totalQty + (isBumpSelected ? 1 : 0)} 件`;
       } else {
         badge.classList.add('hidden');
         drawerCount.innerText = `0 件`;
       }
 
-      const formattedRange = totalQty > 0 
-        ? `HK$ ${minSubtotal.toLocaleString()} - ${maxSubtotal.toLocaleString()}` 
+      // Free shipping progress calculation
+      const fsThreshold = isVipMember ? 300 : 500;
+      const fsPct = Math.min(100, Math.round((minSubtotal / fsThreshold) * 100));
+      const fsBar = document.getElementById('freeShippingBar');
+      const fsText = document.getElementById('freeShippingText');
+      if (fsBar) fsBar.style.width = `${fsPct}%`;
+      if (fsText) {
+        if (minSubtotal >= fsThreshold) {
+          fsText.innerHTML = '<span class="text-emerald-400 font-bold">🎉 已達成順豐包郵標準！</span>';
+        } else if (minSubtotal === 0) {
+          fsText.innerHTML = '<span class="text-slate-400">滿 HK$500 享順豐免運</span>';
+        } else {
+          fsText.innerHTML = `再買 <strong class="text-neon-gold">HK$${fsThreshold - minSubtotal}</strong> 即享順豐免運！`;
+        }
+      }
+
+      const formattedRange = (totalQty > 0 || isBumpSelected)
+        ? (minSubtotal === maxSubtotal ? `HK$ ${minSubtotal.toLocaleString()}` : `HK$ ${minSubtotal.toLocaleString()} - ${maxSubtotal.toLocaleString()}`)
         : `HK$ 0`;
 
       document.getElementById('subtotalVal').innerText = formattedRange;
       const shippingEl = document.getElementById('shippingVal');
       if (minSubtotal >= 500) {
-        shippingEl.innerText = '已達 HK$500 順豐免運費標準 (站/智能櫃)';
+        shippingEl.innerText = '已達 HK$500 順豐免運標準';
         shippingEl.className = 'font-mono text-teal-400 font-bold';
-      } else if (totalQty === 0) {
+      } else if (totalQty === 0 && !isBumpSelected) {
         shippingEl.innerText = '滿 $500 包郵';
         shippingEl.className = 'font-mono text-slate-400 font-bold';
       } else {
-        shippingEl.innerText = `滿 $500 包郵 (差約 HK$ ${Math.max(0, 500 - minSubtotal)} 可享包郵)`;
+        shippingEl.innerText = `未達包郵 (差約 HK$ ${Math.max(0, 500 - minSubtotal)})`;
         shippingEl.className = 'font-mono text-amber-400 font-bold';
       }
 
       document.getElementById('totalVal').innerText = formattedRange;
 
       const container = document.getElementById('cartItemsContainer');
-      if (cart.length === 0) {
+      if (cart.length === 0 && !isBumpSelected) {
         container.innerHTML = `
-          <div class="h-64 flex flex-col items-center justify-center text-slate-500 space-y-2">
-            <svg class="w-12 h-12 stroke-current opacity-40" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-            <p class="text-sm">購物車目前是空的</p>
+          <div class="h-48 flex flex-col items-center justify-center text-slate-500 space-y-2">
+            <svg class="w-10 h-10 stroke-current opacity-40" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            <p class="text-xs">購物車目前是空的</p>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = cart.map(item => {
+      let itemsHtml = cart.map(item => {
         const itemMin = (item.minPrice * item.qty).toLocaleString();
         const itemMax = (item.maxPrice * item.qty).toLocaleString();
         const itemRange = item.minPrice === item.maxPrice ? `HK$ ${itemMin}` : `HK$ ${itemMin} - ${itemMax}`;
         return `
           <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between gap-3">
-            <img src="${getProductImageUrl(item.filename)}" alt="${item.name}" class="w-14 h-14 rounded-lg object-cover bg-slate-950" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80';">
+            <img src="${getProductImageUrl(item.filename)}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover bg-slate-950" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80';">
             <div class="flex-1 min-w-0">
               <h4 class="font-bold text-white text-xs truncate">${item.name}</h4>
-              <span class="text-[11px] text-teal-300 block">${item.beadSize}</span>
+              <span class="text-[10px] text-teal-300 block">${item.beadSize}</span>
               <span class="text-xs text-neon-gold font-mono font-bold">${itemRange}</span>
             </div>
-            <div class="flex items-center gap-2 bg-slate-950 px-2 py-1 rounded-lg border border-slate-800">
+            <div class="flex items-center gap-1.5 bg-slate-950 px-2 py-1 rounded-lg border border-slate-800">
               <button onclick="changeCartQty('${item.id}', -1)" class="text-slate-400 hover:text-white px-1">－</button>
               <span class="text-xs text-white font-mono font-bold">${item.qty}</span>
               <button onclick="changeCartQty('${item.id}', 1)" class="text-slate-400 hover:text-white px-1">＋</button>
@@ -2224,6 +2503,60 @@
           </div>
         `;
       }).join('');
+
+      if (isBumpSelected) {
+        itemsHtml += `
+          <div class="p-2.5 rounded-xl bg-purple-950/50 border border-purple-500/40 flex items-center justify-between gap-2">
+            <div class="text-base">🌿</div>
+            <div class="flex-1">
+              <span class="text-xs font-bold text-white block">秘魯聖木 ✕ 白水晶消磁包</span>
+              <span class="text-[10px] text-purple-300">特惠加購項目</span>
+            </div>
+            <span class="font-mono text-neon-gold text-xs font-bold">HK$ 38</span>
+          </div>
+        `;
+      }
+
+      container.innerHTML = itemsHtml;
+    }
+
+    // Action 1: Pay HK$38 Numerology 12-Month Forecast
+    function payNumerologyForecast() {
+      if (!userCalcData) {
+        alert('請先在上方輸入出生日期進行測算！');
+        return;
+      }
+      const promptPay = confirm(`即將跳轉官方加密支付，使用 Apple Pay / 信用卡支付 HK$38 解鎖【${userCalcData.birthDate}】全年 12 個月個人流月運勢錦囊！`);
+      if (promptPay) {
+        // Will use the user's Stripe link or default consultation link
+        window.location.href = 'https://buy.stripe.com/3cI00cf8kbDO6ea0sK1ck03';
+      }
+    }
+
+    // Action 3: Pay HK$88 VIP Consultation (100% Refundable / Deductible)
+    function orderVipConsultation() {
+      const promptPay = confirm("即將跳轉官方加密支付，使用 Apple Pay / 信用卡支付 HK$88 預約【1對1 全盤能量體質健檢 ✕ 獨家雙手串調配】！\n\n★ 核心承諾：諮詢費 HK$88 可 100% 全額抵扣店內手串消費！");
+      if (promptPay) {
+        window.location.href = 'https://buy.stripe.com/fZufZa5xK8rCfOK7Vc1ck05';
+      }
+    }
+
+    function consultVipWhatsApp() {
+      const msg = `你好 808 店主！我想預約【1對1 全盤能量體質健檢 ✕ 獨家雙手串調配】(HK$88，可全額抵扣手串)：\n1️⃣ 我的出生日期是：\n2️⃣ 目前手頭佩戴的水晶：\n3️⃣ 近期最想改善或突破的課題：\n\n麻煩店主為我安排健檢，謝謝！✨`;
+      window.open(`https://wa.me/85294432331?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // Action 4: Join HK$99/Quarter Membership Club
+    function joinVipClub() {
+      const promptPay = confirm("即將跳轉官方加密支付，使用 Apple Pay / 信用卡支付 HK$99 加入【808 星流能量會員庫 · 季度 Pass】！\n\n享全店 88 折、順豐 HK$300 免運、每月新月滿月調頻指南。");
+      if (promptPay) {
+        window.location.href = 'https://buy.stripe.com/eVq8wI5xKgY8gSO6R81ck06';
+      }
+    }
+
+    function consultClubWhatsApp() {
+      const msg = `你好 808 店主！我想了解加入【808 星流能量會員庫】(HK$99/季)，請問如何開通會員 88 折與每月中新月滿月調頻權益？謝謝！✨`;
+      window.open(`https://wa.me/85294432331?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     function toggleCartDrawer(open) {
@@ -2240,37 +2573,52 @@
 
     // 6. Direct Order Template Generator (WhatsApp & IG Checkout)
     function checkoutToOrder(platform) {
-      if (cart.length === 0) {
+      if (cart.length === 0 && !isBumpSelected) {
         alert('請先挑選心水水晶加入清單！');
         return;
       }
 
-      const minTotal = cart.reduce((acc, cur) => acc + (cur.minPrice * cur.qty), 0);
-      const maxTotal = cart.reduce((acc, cur) => acc + (cur.maxPrice * cur.qty), 0);
+      const bumpCost = isBumpSelected ? 38 : 0;
+      const rawMinTotal = cart.reduce((acc, cur) => acc + (cur.minPrice * cur.qty), 0) + bumpCost;
+      const rawMaxTotal = cart.reduce((acc, cur) => acc + (cur.maxPrice * cur.qty), 0) + bumpCost;
+
+      const minTotal = isVipMember ? Math.round(rawMinTotal * 0.88) : rawMinTotal;
+      const maxTotal = isVipMember ? Math.round(rawMaxTotal * 0.88) : rawMaxTotal;
+
       const totalRangeText = minTotal === maxTotal 
         ? `HK$ ${minTotal.toLocaleString()}` 
         : `HK$ ${minTotal.toLocaleString()} - ${maxTotal.toLocaleString()}`;
 
-      const itemsListText = cart.map(i => {
+      let itemsListText = cart.map(i => {
         const iMin = (i.minPrice * i.qty).toLocaleString();
         const iMax = (i.maxPrice * i.qty).toLocaleString();
         const rText = i.minPrice === i.maxPrice ? `HK$ ${iMin}` : `HK$ ${iMin} - ${iMax}`;
         return `• ${i.name} (${i.beadSize} ｜ 參考區間: ${rText}) x ${i.qty}`;
       }).join('\n');
 
+      if (isBumpSelected) {
+        itemsListText += (itemsListText ? '\n' : '') + `• 【特惠加購】秘魯聖木條 (2枝) ＋ 白水晶消磁碎石 (100g) (HK$ 38) x 1`;
+      }
+
+      const vipBadgeText = isVipMember 
+        ? `\n🌟 會員尊享：【808 VIP 星流會員 · 已享全單 88 折優惠】(登記ID: ${vipMemberId})`
+        : '';
+
+      const shippingThresholdText = isVipMember ? '滿 HK$300 即享包郵優惠（VIP專屬特權）' : '滿 HK$500 即享包郵優惠（順豐站 / 智能櫃）';
+
       const dispatch = document.getElementById('dispatchMode').value;
       const wrist = document.getElementById('wristSizeInput').value.trim() || '未備註 (請店主指導量度)';
 
-      const orderTemplate = `多謝你支持 808_vibe_crystal！已為你預留好心水水晶手串 🔮✨
+      const orderTemplate = `多謝你支持 808_vibe_crystal！已為你預留好心水水晶手串 🔮✨${vipBadgeText}
 請核對以下選購清單，店主會一對一傳送現貨實拍影片及確實金額供你確認：
 
 📋 官網選購清單：
 ${itemsListText}
 手圍尺寸：${wrist}
-參考預算總計：約 ${totalRangeText}
+參考預算總計：約 ${totalRangeText}${isVipMember ? ' (已折合 88 折)' : ''}
 
 🚚 寄送／儲貨處理方式：${dispatch}
-• 全單滿 HK$500 即享包郵優惠（順豐站 / 智能櫃）❤️
+• 全單${shippingThresholdText} ❤️
 • 付款後可安排免費儲貨（期限最長為一個月）🥰
 • 如之前有儲貨並需要一同寄出，請必須備註，以免誤會！
 
@@ -3126,7 +3474,7 @@ IG 名：
       const orientation = userTarotCard.isUpright ? '正位' : '逆位';
       const promptPay = confirm(`即將前往官方加密支付系統，使用 Apple Pay / 信用卡支付 HK$50 解鎖深度報告！\n\n【詢問問題】：${userTarotCard.question}\n【抽取牌卡】：${userTarotCard.card.name} (${orientation})\n\n點擊「確定」繼續結帳，付款完成後將自動返回本頁呈現報告！`);
       if (promptPay) {
-        window.location.href = 'https://buy.stripe.com/3cIdR2aS4gY88mi2AS1ck02';
+        window.location.href = 'https://buy.stripe.com/3cI00cf8kbDO6ea0sK1ck03';
       }
     }
 
@@ -3253,6 +3601,17 @@ IG 名：
         const searchStr = window.location.search.toLowerCase();
         const hashStr = window.location.hash.toLowerCase();
         
+        // Detect if returning from Stripe Member Pass (?status=member_paid or ?status=vip_active)
+        if (searchStr.includes('member_paid') || searchStr.includes('vip_active') || hashStr.includes('vip')) {
+          isVipMember = true;
+          vipMemberId = "VIP·線上開通";
+          try {
+            localStorage.setItem('808_vip_member', JSON.stringify({ active: true, id: "VIP·線上開通", timestamp: Date.now() }));
+          } catch(e) {}
+          updateVipUI();
+          alert('🎉 恭喜！你的【808 尊貴能量會員】已成功開通！\n\n已為你激活全店現貨 88 折 ✕ 滿 HK$300 順豐免運費！');
+        }
+
         // Detect if returning from Stripe (status=tarot_paid, paid=tarot, or hash)
         const isStripePaid = searchStr.includes('tarot_paid') || 
                              searchStr.includes('paid=tarot') || 
@@ -3278,8 +3637,75 @@ IG 名：
 
     // Init
     renderCatalog(inventory);
+    initVipStatus();
     updateCartDisplay();
     updateTarotPromptChips('love');
   </script>
+
+    <!-- VIP Login & Membership Modal -->
+    <div id="vipModalBackdrop" onclick="closeVipModal()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <div id="vipModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[92%] sm:w-[420px] bg-slate-950 border border-amber-500/60 rounded-3xl z-50 p-6 shadow-2xl hidden">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">👑</span>
+          <h3 class="text-base font-black text-white">808 星流能量會員專屬通道</h3>
+        </div>
+        <button onclick="closeVipModal()" class="text-slate-400 hover:text-white p-1 text-lg">✕</button>
+      </div>
+
+      <div class="py-4 space-y-4">
+        <!-- Not VIP View -->
+        <div id="vipModalNotLoggedIn" class="space-y-4">
+          <div class="p-3.5 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-xs">
+            <span class="text-neon-gold font-bold block mb-1">🌟 尊享會員特權：</span>
+            <ul class="space-y-1 text-slate-300">
+              <li>• 全單所有天然手串現貨即享 <strong class="text-white">88 折</strong> 優惠</li>
+              <li>• 順豐站/智能櫃免運門檻降至 <strong class="text-white">HK$300</strong></li>
+              <li>• 每月新月/滿月專屬調頻音頻與運勢推送</li>
+            </ul>
+          </div>
+
+          <!-- Existing Member Login -->
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">已是會員？請輸入登記電話號碼或會員碼登入：</label>
+            <div class="flex gap-2">
+              <input type="text" id="vipLoginInput" placeholder="例: 94432331 或 808VIP" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white text-xs focus:outline-none focus:border-neon-gold transition-all">
+              <button onclick="submitVipLogin()" class="px-4 py-2.5 rounded-xl bg-neon-gold text-slate-950 font-black text-xs hover:bg-amber-400 transition-all">
+                驗證登入
+              </button>
+            </div>
+            <span class="text-[10px] text-slate-400 block mt-1">＊付款加入會員後，輸入登記之手機號即可自動激活 88 折！</span>
+          </div>
+
+          <div class="pt-2 border-t border-slate-800 text-center">
+            <span class="text-xs text-slate-400 block mb-2">未加入會員？即刻開通享全單 88 折：</span>
+            <button onclick="joinVipClub()" class="w-full py-3 rounded-xl bg-gradient-to-r from-neon-purple via-indigo-600 to-neon-magenta text-white font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+              <span></span> <span>Apple Pay / 信用卡支付 HK$99 開通季度會員</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Logged In VIP View -->
+        <div id="vipModalLoggedIn" class="hidden space-y-4 text-center py-2">
+          <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-amber-500 to-neon-gold p-[2px] mx-auto animate-pulse">
+            <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-2xl">🌟</div>
+          </div>
+          <div>
+            <h4 class="text-base font-black text-white">你已成功啟用 808 尊貴能量會員！</h4>
+            <p class="text-xs text-neon-gold font-bold mt-1">全單購物已自動套用 88 折優惠 ✕ 滿 HK$300 免運費</p>
+            <span id="vipLoggedInUser" class="text-[11px] text-slate-400 block mt-1 font-mono"></span>
+          </div>
+          <div class="pt-3 border-t border-slate-800 flex gap-2 justify-center">
+            <button onclick="closeVipModal()" class="px-5 py-2 rounded-xl bg-neon-cyan text-slate-950 font-black text-xs hover:bg-cyan-300 transition-all">
+              繼續挑選水晶
+            </button>
+            <button onclick="logoutVip()" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 text-xs hover:text-white transition-all">
+              登出會員
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>
