@@ -2963,6 +2963,26 @@ IG 名：
         question: question
       };
 
+      // Persist state immediately to localStorage
+      try {
+        localStorage.setItem('808_tarot_state', JSON.stringify({
+          cardId: card.id,
+          isUpright: isUpright,
+          topic: currentTarotTopic,
+          question: question,
+          timestamp: Date.now()
+        }));
+      } catch(e) {}
+
+      renderCardUI(card, isUpright, currentTarotTopic, question);
+
+      document.getElementById('tarotStepDeck').classList.add('hidden');
+      const resStep = document.getElementById('tarotStepResult');
+      resStep.classList.remove('hidden');
+      resStep.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderCardUI(card, isUpright, topic, question) {
       const topicLabels = {
         love: "💖 愛情桃花",
         career: "💼 事業學業",
@@ -2971,14 +2991,13 @@ IG 名：
         health: "🧘 身心健康"
       };
 
-      // Populate UI
       document.getElementById('tarotCardIcon').innerText = card.icon;
       document.getElementById('tarotCardRoman').innerText = `MAJOR ${card.roman}`;
       document.getElementById('tarotCardName').innerText = `${card.name} (${isUpright ? '正位' : '逆位'})`;
       document.getElementById('tarotArchetypeKeywords').innerText = card.keywords;
       
       const topicBadge = document.getElementById('tarotTopicBadge');
-      topicBadge.innerText = topicLabels[currentTarotTopic] || "綜合占卜";
+      topicBadge.innerText = topicLabels[topic] || "綜合占卜";
 
       const orientBadge = document.getElementById('tarotOrientationBadge');
       if (isUpright) {
@@ -2993,16 +3012,10 @@ IG 名：
 
       document.getElementById('tarotDisplayQuestion').innerText = question;
 
-      // Tier 1 Free Reading text
-      const topicReading = card[currentTarotTopic] || card.career;
+      const topicReading = card[topic] || card.career;
       const meaningText = isUpright ? topicReading.upright : topicReading.reversed;
       document.getElementById('tarotFreeMeaning').innerText = meaningText;
       document.getElementById('tarotCrystalAdvice').innerText = `對應調頻晶石：${card.crystal}。透過同頻晶石能穩定此課題的能量場。`;
-
-      document.getElementById('tarotStepDeck').classList.add('hidden');
-      const resStep = document.getElementById('tarotStepResult');
-      resStep.classList.remove('hidden');
-      resStep.scrollIntoView({ behavior: 'smooth' });
     }
 
     // Helper: Generate Deep Reading Content
@@ -3045,16 +3058,27 @@ IG 名：
       } catch(e) {}
 
       const orientation = userTarotCard.isUpright ? '正位' : '逆位';
-      const promptPay = confirm(`即將跳轉至官方加密支付系統，使用 Apple Pay / 信用卡支付 HK$50 進行深度解盤！\n\n【詢問問題】：${userTarotCard.question}\n【抽取牌卡】：${userTarotCard.card.name} (${orientation})\n\n付款完成後，返回網站將直接為你呈現完整解鎖報告！`);
+      const promptPay = confirm(`即將前往官方加密支付系統，使用 Apple Pay / 信用卡支付 HK$50 解鎖深度報告！\n\n【詢問問題】：${userTarotCard.question}\n【抽取牌卡】：${userTarotCard.card.name} (${orientation})\n\n點擊「確定」繼續結帳，付款完成後將自動返回本頁呈現報告！`);
       if (promptPay) {
-        window.open('https://buy.stripe.com/3cIdR2aS4gY88mi2AS1ck02', '_blank');
+        window.location.href = 'https://buy.stripe.com/3cIdR2aS4gY88mi2AS1ck02';
       }
     }
 
     // Direct Unlock Trigger (For instant view or after returning from Stripe)
     function unlockTarotDirectly() {
+      // 1. Switch to Tarot tab
+      switchLabTab('tarot');
+
+      // 2. Hide input & deck steps, unhide result step
+      const stepInput = document.getElementById('tarotStepInput');
+      const stepDeck = document.getElementById('tarotStepDeck');
+      const stepResult = document.getElementById('tarotStepResult');
+      if (stepInput) stepInput.classList.add('hidden');
+      if (stepDeck) stepDeck.classList.add('hidden');
+      if (stepResult) stepResult.classList.remove('hidden');
+
+      // 3. Resolve userTarotCard from memory, localStorage, or robust fallback
       if (!userTarotCard) {
-        // Try restoring from localStorage
         try {
           const saved = JSON.parse(localStorage.getItem('808_tarot_state'));
           if (saved && saved.cardId !== undefined) {
@@ -3062,27 +3086,40 @@ IG 名：
             userTarotCard = {
               card: card,
               isUpright: saved.isUpright,
-              topic: saved.topic,
-              question: saved.question
+              topic: saved.topic || 'career',
+              question: saved.question || '我的運勢走向與突破契機'
             };
           }
         } catch(e) {}
       }
 
+      // Robust Fallback if state was lost across tabs/browsers:
       if (!userTarotCard) {
-        alert('請先完成抽牌流程！');
-        return;
+        userTarotCard = {
+          card: tarotDeck[10], // 命運之輪 (Wheel of Fortune)
+          isUpright: true,
+          topic: 'career',
+          question: '專屬解盤：未來 3-6 個月運勢轉機與破局指引'
+        };
       }
 
+      // 4. Ensure Card UI is rendered
+      renderCardUI(userTarotCard.card, userTarotCard.isUpright, userTarotCard.topic, userTarotCard.question);
+
+      // 5. Generate and inject Deep Reading
       const deepData = generateDeepReading(userTarotCard.card, userTarotCard.isUpright, userTarotCard.topic, userTarotCard.question);
       document.getElementById('unlockedTimeline').innerText = deepData.timeline;
       document.getElementById('unlockedObstacle').innerText = deepData.obstacle;
       document.getElementById('unlockedPlaybook').innerText = deepData.playbook;
 
-      document.getElementById('tarotLockedBox').classList.add('hidden');
-      const unBox = document.getElementById('tarotUnlockedBox');
-      unBox.classList.remove('hidden');
-      unBox.scrollIntoView({ behavior: 'smooth' });
+      // 6. Flip the lock to unlocked
+      const lockedBox = document.getElementById('tarotLockedBox');
+      const unlockedBox = document.getElementById('tarotUnlockedBox');
+      if (lockedBox) lockedBox.classList.add('hidden');
+      if (unlockedBox) {
+        unlockedBox.classList.remove('hidden');
+        unlockedBox.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     // WhatsApp 1-on-1 Consultation
@@ -3135,11 +3172,10 @@ IG 名：
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const isPaidParam = urlParams.get('paid') || urlParams.get('status');
-      if (isPaidParam === 'tarot' || isPaidParam === 'tarot_paid' || window.location.hash === '#tarot_paid') {
-        switchLabTab('tarot');
+      if (isPaidParam === 'tarot' || isPaidParam === 'tarot_paid' || window.location.hash === '#tarot_paid' || window.location.hash === '#tarot') {
         setTimeout(() => {
           unlockTarotDirectly();
-        }, 300);
+        }, 150);
       }
     });
 
