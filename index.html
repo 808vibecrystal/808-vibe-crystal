@@ -1153,714 +1153,849 @@
     }
     requestAnimationFrame(drawSpace);
 
-    // 2. Complete 34 Items Master Database (Real price intervals from 808 Inventory Table)
+// 2. Complete 63 Items Master Database (Synced with 808新產品圖片 .jpeg)
     const inventory = [
+      // ── 黑銀鈦與防小人系列 ──
       {
-            "id": "p01_black_silver_titanium",
-            "name": "頂級絕礦 · 天然黑銀鈦手串",
-            "filename": "黑銀鈦.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 228 - 6,918",
-            "beadSize": "約 5mm+ - 11mm",
-            "tags": [
-                  "確定絕礦",
-                  "職場防小人",
-                  "突破僵局"
-            ],
-            "desc": "產區已全面封礦！滿絲銀黑金屬反光，刺目閃耀。反彈小人是非、激發決策魄力，自帶暗黑尊貴氣場。",
-            "matchNumbers": [
-                  1,
-                  8,
-                  22
-            ],
-            "minPrice": 228,
-            "maxPrice": 6918
+        "id": "p01_black_silver_high",
+        "name": "頂級絕礦 · 天然黑銀鈦手串 (高品)",
+        "filename": "黑銀鈦 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 880 - 6,918",
+        "beadSize": "約 8mm - 11mm (高品滿絲貓眼)",
+        "tags": ["高品絕礦", "結界防小人", "銀白貓眼"],
+        "desc": "產區已封礦的高品黑銀鈦！滿絲銀黑金屬反光極度閃耀，反彈職場小人是非、激發決策魄力。",
+        "matchNumbers": [1, 8, 22],
+        "minPrice": 880,
+        "maxPrice": 6918
       },
       {
-            "id": "p02_black_silver_freeform",
-            "name": "孤品原石 · 黑銀鈦隨形手串",
-            "filename": "黑銀鈦隨形.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 388 - 2,180",
-            "beadSize": "天然隨形大顆粒",
-            "tags": [
-                  "自然原態",
-                  "重金屬光澤",
-                  "極度霸氣"
-            ],
-            "desc": "保留天然礦石原始輪廓，金屬銀黑髮絲濃密爆滿。能量純粹未經拘束，右手深層排濁擋煞天花板。",
-            "matchNumbers": [
-                  1,
-                  8,
-                  22
-            ],
-            "minPrice": 388,
-            "maxPrice": 2180
+        "id": "p02_black_silver_std",
+        "name": "強效防禦 · 天然黑銀鈦手串",
+        "filename": "黑銀鈦.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 228 - 880",
+        "beadSize": "約 5mm+ - 9mm",
+        "tags": ["職場防小人", "排濁辟邪", "高性價比"],
+        "desc": "晶體清透帶銀白鈦絲光芒，日常佩戴於右手形成隱形氣場護盾，擋走背後暗箭與負能量。",
+        "matchNumbers": [1, 8, 22],
+        "minPrice": 228,
+        "maxPrice": 880
       },
       {
-            "id": "p03_devil_aquamarine_new",
-            "name": "深海之息 · 魔鬼海藍寶手串",
-            "filename": "魔鬼海南寶.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 88 - 688",
-            "beadSize": "約 7mm - 9.5mm",
-            "tags": [
-                  "唱片海報同款",
-                  "平息情緒",
-                  "喉輪表達"
-            ],
-            "desc": "深邃濃郁的墨藍與冰透棉絮，微晃手腕折射出如同月下海浪的貓眼絲絹光澤。平息焦慮、勇敢發聲。",
-            "matchNumbers": [
-                  2,
-                  5,
-                  33
-            ],
-            "minPrice": 88,
-            "maxPrice": 688
+        "id": "p03_black_silver_freeform",
+        "name": "孤品原石 · 隨形黑銀鈦手串",
+        "filename": "隨形黑銀鈦.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 388 - 2,180",
+        "beadSize": "天然隨形大顆粒",
+        "tags": ["自然原態", "重金屬光澤", "極度霸氣"],
+        "desc": "保留天然礦石原始輪廓，金屬銀黑髮絲濃密爆滿。能量純粹未經拘束，右手深層排濁擋煞天花板。",
+        "matchNumbers": [1, 8, 22],
+        "minPrice": 388,
+        "maxPrice": 2180
+      },
+
+      // ── 黑金超七系列 (4個品級) ──
+      {
+        "id": "p04_super7_top2",
+        "name": "能量霸主 · 黑金超七手串 (高級二)",
+        "filename": "黑金超七 (高級二).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 488 - 638",
+        "beadSize": "約 9mm - 11mm (頂級滿絲)",
+        "tags": ["高級二典藏", "全方位調頻", "極致火光"],
+        "desc": "頂級高級二批次！滿礦黑金雲母片在光下爆閃璀璨火光，全方位放大七大脈輪能量，加速顯化財富與事業契機。",
+        "matchNumbers": [1, 8, 11, 22],
+        "minPrice": 488,
+        "maxPrice": 638
       },
       {
-            "id": "p04_devil_aquamarine_old",
-            "name": "老礦冰透 · 魔鬼海藍寶手串",
-            "filename": "魔鬼海藍寶，舊.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 128 - 688",
-            "beadSize": "約 7mm - 9mm",
-            "tags": [
-                  "老礦深藍",
-                  "貓眼絲光",
-                  "平息內耗"
-            ],
-            "desc": "老坑礦料！晶體通透度更高，深藍底色更顯深邃。安撫情緒暴風雨，恢復清明理智。",
-            "matchNumbers": [
-                  2,
-                  5,
-                  33
-            ],
-            "minPrice": 128,
-            "maxPrice": 688
+        "id": "p05_super7_high1",
+        "name": "高頻爆閃 · 黑金超七手串 (高品一)",
+        "filename": "黑金超七 (高品一).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 368 - 528",
+        "beadSize": "約 8.5mm - 10mm (高品一)",
+        "tags": ["高品一精選", "突破瓶頸", "黑金共生"],
+        "desc": "高品一順絲雲母共生，晶體通透度高，金銅色貓眼效應明顯，強效聚氣招財並穩固個人氣場。",
+        "matchNumbers": [1, 8, 11, 22],
+        "minPrice": 368,
+        "maxPrice": 528
       },
       {
-            "id": "p05_devil_aquamarine_vintage",
-            "name": "典藏老版 · 魔鬼海藍寶手串",
-            "filename": "魔鬼海藍寶，舊版.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 228 - 688",
-            "beadSize": "約 8.5mm - 10mm",
-            "tags": [
-                  "大珠典藏",
-                  "深海墨藍",
-                  "高頻定心"
-            ],
-            "desc": "大顆粒高油潤度！光照下呈現極致藍綢光效，舒緩喉輪壓力，適合經常演講、溝通及高壓人士。",
-            "matchNumbers": [
-                  2,
-                  5,
-                  33
-            ],
-            "minPrice": 228,
-            "maxPrice": 688
+        "id": "p06_super7_mid",
+        "name": "平衡破局 · 黑金超七手串 (中品)",
+        "filename": "黑金超七 (中品).jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 268 - 388",
+        "beadSize": "約 8mm - 9.5mm (中品)",
+        "tags": ["中品實惠", "轉運辟邪", "事業助力"],
+        "desc": "黑金髮絲層次分明，兼具招財與防小人雙重效能，適合日常職場穿搭與能量調頻。",
+        "matchNumbers": [1, 8, 11, 22],
+        "minPrice": 268,
+        "maxPrice": 388
       },
       {
-            "id": "p06_aquamarine_classic",
-            "name": "冰透清澈 · 天然海藍寶手串",
-            "filename": "海藍寶.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 88 - 248",
-            "beadSize": "約 7mm - 9mm",
-            "tags": [
-                  "水潤透亮",
-                  "旅行平安",
-                  "溝通暢順"
-            ],
-            "desc": "經典天藍果凍色澤，水潤清透。如初春融雪般柔和，促進真誠對話，帶來祥和平安。",
-            "matchNumbers": [
-                  2,
-                  5
-            ],
-            "minPrice": 88,
-            "maxPrice": 248
+        "id": "p07_super7_std",
+        "name": "入門首選 · 天然黑金超七手串",
+        "filename": "黑金超七.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 198 - 268",
+        "beadSize": "約 7.5mm - 8.5mm",
+        "tags": ["超七入門", "高頻共振", "氣場防護"],
+        "desc": "天然黑金雲母共生，無需刻意消磁的全能型晶石，幫你清理負能量並提升整體運勢。",
+        "matchNumbers": [1, 8, 11, 22],
+        "minPrice": 198,
+        "maxPrice": 268
+      },
+
+      // ── 海藍寶與魔鬼海藍寶系列 ──
+      {
+        "id": "p08_devil_aqua_high",
+        "name": "深海之息 · 魔鬼海藍寶手串 (高品)",
+        "filename": "魔鬼海藍寶 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 268 - 688",
+        "beadSize": "約 8mm - 10mm (高品深藍貓眼)",
+        "tags": ["高品魔鬼藍", "喉輪救星", "平息內耗"],
+        "desc": "高品深邃墨藍晶體，轉動手腕折射出絲絨般藍灰貓眼光澤！對應喉輪，化解開會演講緊張與跨部門溝通障礙。",
+        "matchNumbers": [2, 5, 33],
+        "minPrice": 268,
+        "maxPrice": 688
       },
       {
-            "id": "p07_black_gold_super7_new",
-            "name": "能量霸主 · 黑金超七手串 (新版)",
-            "filename": "黑金超七新版.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 198 - 638",
-            "beadSize": "約 8mm - 11mm",
-            "tags": [
-                  "全方位調頻",
-                  "金銅黑雲母",
-                  "突破瓶頸"
-            ],
-            "desc": "極度珍罕黑金超七！滿礦雲母片在光下爆閃金色與銅色火光，全方位放大七大脈輪能量，加速顯化財富與事業契機。",
-            "matchNumbers": [
-                  1,
-                  8,
-                  11,
-                  22
-            ],
-            "minPrice": 198,
-            "maxPrice": 638
+        "id": "p09_devil_aqua_std",
+        "name": "冷靜表達 · 天然魔鬼海藍寶手串",
+        "filename": "魔鬼海藍寶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 88 - 268",
+        "beadSize": "約 7mm - 9mm",
+        "tags": ["喉輪表達", "平復焦慮", "百搭丹寧色"],
+        "desc": "獨特藍灰共生色澤，幫助平息急躁情緒、理順言語邏輯，令你在職場談判中溫和而堅定地發聲。",
+        "matchNumbers": [2, 5, 33],
+        "minPrice": 88,
+        "maxPrice": 268
       },
       {
-            "id": "p08_black_gold_super7_classic",
-            "name": "滿礦閃片 · 黑金超七手串",
-            "filename": "黑金超七.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 198 - 638",
-            "beadSize": "約 7.5mm - 9.5mm",
-            "tags": [
-                  "轉運辟邪",
-                  "高頻共振",
-                  "黑金火光"
-            ],
-            "desc": "黑金雲母交融共生，層次分明。極具個人防護力，化解身邊低頻負能，強化自信與氣場威嚴。",
-            "matchNumbers": [
-                  1,
-                  8,
-                  11,
-                  22
-            ],
-            "minPrice": 198,
-            "maxPrice": 638
+        "id": "p10_aquamarine_high",
+        "name": "冰透清澈 · 天然海藍寶手串 (高品)",
+        "filename": "海藍寶 (高品).jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 128 - 248",
+        "beadSize": "約 7mm - 9mm (高品冰透)",
+        "tags": ["高品水潤", "溝通暢順", "平安守護"],
+        "desc": "高品天藍果凍色澤，水潤清透度極佳。舒緩喉輪緊繃與精神壓力，促進真誠溝通與內在平靜。",
+        "matchNumbers": [2, 5],
+        "minPrice": 128,
+        "maxPrice": 248
+      },
+
+      // ── 天河石系列 (3個品級) ──
+      {
+        "id": "p11_amazonite_high",
+        "name": "幸運希望 · 冰透天河石手串 (高品)",
+        "filename": "天河石 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 228 - 338",
+        "beadSize": "約 8.5mm - 11mm (高品冰潤)",
+        "tags": ["高品無棉", "自信希望", "逢凶化吉"],
+        "desc": "頂級冰潤蒂芬妮藍綠色澤！被譽為希望與幸運之石，幫助擺脫負面鑽牛角尖，提升決策勇氣與偏財機遇。",
+        "matchNumbers": [5, 6],
+        "minPrice": 228,
+        "maxPrice": 338
       },
       {
-            "id": "p09_copper_titanium",
-            "name": "招財魄力 · 頂級銅鈦晶手串",
-            "filename": "銅鈦晶.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 668 - 698",
-            "beadSize": "約 8.5mm - 10mm",
-            "tags": [
-                  "強勢招財",
-                  "銅紅光芒",
-                  "行動魄力"
-            ],
-            "desc": "鈦晶家族王者！濃郁銅紅色粗亮鈦絲，對應太陽神經叢與海底輪，消除恐懼猶豫，增強談判氣勢與事業實質收益。",
-            "matchNumbers": [
-                  1,
-                  8
-            ],
-            "minPrice": 668,
-            "maxPrice": 698
+        "id": "p12_amazonite_mid",
+        "name": "清爽療癒 · 天然天河石手串 (中品)",
+        "filename": "天河石 (中品).jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 158 - 228",
+        "beadSize": "約 8mm - 10mm (中品)",
+        "tags": ["中品色美", "平衡情緒", "商務溝通"],
+        "desc": "清新湖水綠色調，質地溫潤細膩，平復職場浮躁與焦慮，提升臨場應變與協商勝率。",
+        "matchNumbers": [5, 6],
+        "minPrice": 158,
+        "maxPrice": 228
       },
       {
-            "id": "p10_gold_rutilated",
-            "name": "招財霸主 · 金髮晶滿絲手串",
-            "filename": "金髮晶.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 388 - 1,288",
-            "beadSize": "約 8mm - 11mm",
-            "tags": [
-                  "正偏財運",
-                  "領袖魄力",
-                  "貓眼粗絲"
-            ],
-            "desc": "晶體清透，金髮絲粗且順，折射出耀眼金屬光芒。尊貴招財之王，強化自信與決斷魄力。",
-            "matchNumbers": [
-                  1,
-                  8,
-                  22
-            ],
-            "minPrice": 388,
-            "maxPrice": 1288
+        "id": "p13_amazonite_std",
+        "name": "日常開運 · 天然天河石手串",
+        "filename": "天河石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 118 - 158",
+        "beadSize": "約 7.5mm - 9.5mm",
+        "tags": ["天然微紋", "重拾信心", "入門首選"],
+        "desc": "帶有天然白色微斜長石紋理，溫和調理心輪與喉輪，助你在逆境中找回樂觀與轉機。",
+        "matchNumbers": [5, 6],
+        "minPrice": 118,
+        "maxPrice": 158
+      },
+
+      // ── 白阿塞、綠龍晶、極光紫幽靈、綠幽靈 ──
+      {
+        "id": "p14_white_azeztulite",
+        "name": "高頻覺醒 · 天然白阿塞斯特萊手串",
+        "filename": "白阿塞.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 128 - 488",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["高頻天花板", "清走腦霧", "天然冰裂虹光"],
+        "desc": "水晶界的高頻格式化神器！內部佈滿天然冰裂紋與微彩虹光，對應頂輪，一秒掃清返工腦霧與大腦雜訊。",
+        "matchNumbers": [9, 11, 33],
+        "minPrice": 128,
+        "maxPrice": 488
       },
       {
-            "id": "p11_black_rutilated",
-            "name": "領袖辟邪 · 天然黑髮晶手串",
-            "filename": "黑髮晶.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 168 - 388",
-            "beadSize": "約 8mm - 10mm",
-            "tags": [
-                  "防小人是非",
-                  "領袖石",
-                  "排除濁氣"
-            ],
-            "desc": "黑碧璽共生髮絲！如針尖般剛硬鋒利，強力吸收外界負能與病氣濁氣，提升執行力與職場抗壓韌性。",
-            "matchNumbers": [
-                  1,
-                  4,
-                  8
-            ],
-            "minPrice": 168,
-            "maxPrice": 388
+        "id": "p15_seraphinite",
+        "name": "天使之石 · 天然頂級綠龍晶手串",
+        "filename": "綠龍晶.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 188 - 580",
+        "beadSize": "約 8mm - 10.5mm",
+        "tags": ["天使羽毛紋", "卸下內耗", "心輪深度療癒"],
+        "desc": "深邃森林綠底色浮現立體銀白天使羽毛絲絨光澤！專門撫平長期緊繃與職場情緒內耗，吸引溫和貴人。",
+        "matchNumbers": [2, 6, 33],
+        "minPrice": 188,
+        "maxPrice": 580
       },
       {
-            "id": "p12_hypersthene",
-            "name": "黑馬逆襲 · 金運石手串 (紫蘇輝石)",
-            "filename": "金運石.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 468 - 1,288",
-            "beadSize": "約 8mm - 11mm+",
-            "tags": [
-                  "極致偏財",
-                  "古埃及護身符",
-                  "擋煞避邪"
-            ],
-            "desc": "深黑晶體帶著獨特金銅十字星芒！被譽為賭場黑馬石與極速聚財之王，強化偏財運與敏銳的直覺決策力。",
-            "matchNumbers": [
-                  4,
-                  8
-            ],
-            "minPrice": 468,
-            "maxPrice": 1288
+        "id": "p16_aurora_purple_phantom",
+        "name": "貴人破局 · 天然極光紫幽靈手串",
+        "filename": "極光紫幽靈.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 98 - 478",
+        "beadSize": "約 7mm - 13mm",
+        "tags": ["紫晶遇貴人", "幽靈催正偏財", "事業破局"],
+        "desc": "透亮紫水晶包裹紅綠幽靈聚寶盆共生礦！雙重高頻 Buff，既開智慧招貴人賞識，同時催旺正偏財事業運。",
+        "matchNumbers": [7, 9, 11],
+        "minPrice": 98,
+        "maxPrice": 478
       },
       {
-            "id": "p13_silver_sheen_obsidian",
-            "name": "深層排濁 · 極致銀曜石手串",
-            "filename": "銀曜石.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 68 - 198",
-            "beadSize": "約 8mm - 10mm",
-            "tags": [
-                  "右手排濁",
-                  "化煞擋小人",
-                  "雙面銀沙"
-            ],
-            "desc": "光線下閃爍如銀河般璀璨的雙面銀沙眼。專門佩戴於右手，急速將體內吸收的他人口舌與病氣濁氣排出。",
-            "matchNumbers": [
-                  1,
-                  4,
-                  8
-            ],
-            "minPrice": 68,
-            "maxPrice": 198
+        "id": "p17_green_phantom_high",
+        "name": "正財聚寶 · 頂級綠幽靈手串 (高品)",
+        "filename": "綠幽靈 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 368 - 738",
+        "beadSize": "約 8mm - 10.5mm (高品翠綠盆景)",
+        "tags": ["高品聚寶盆", "升職加薪", "鬼佬財神"],
+        "desc": "高品清透白晶底配濃郁翠綠聚寶盆千層景觀！主正財與事業格局，助你吸引大客、貴人提攜與升職加薪。",
+        "matchNumbers": [4, 8],
+        "minPrice": 368,
+        "maxPrice": 738
       },
       {
-            "id": "p14_silver_sheen_obsidian_old",
-            "name": "聚光銀沙 · 銀曜石手串 (高品版)",
-            "filename": "銀曜石，舊.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 118 - 198",
-            "beadSize": "約 8mm",
-            "tags": [
-                  "銀沙凝聚",
-                  "深層防護",
-                  "平穩心緒"
-            ],
-            "desc": "銀光眼集中度極高，晃動手腕銀沙翻滾。建立堅固的氣場護盾，適合夜歸或常出入雜亂場所人士。",
-            "matchNumbers": [
-                  1,
-                  4,
-                  8
-            ],
-            "minPrice": 118,
-            "maxPrice": 198
+        "id": "p18_green_phantom_std",
+        "name": "事業正財 · 天然綠幽靈手串",
+        "filename": "綠幽靈.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 168 - 368",
+        "beadSize": "約 5mm+ - 9.5mm",
+        "tags": ["事業正財", "火山泥共生", "穩固財庫"],
+        "desc": "天然火山泥綠幽靈共生景觀，強化工作執行力與正財收穫，讓每一分努力都轉化為實質回報。",
+        "matchNumbers": [4, 8],
+        "minPrice": 168,
+        "maxPrice": 368
+      },
+
+      // ── 金髮晶、銅髮晶、黃水晶、膠花招財系列 ──
+      {
+        "id": "p19_gold_rutilated",
+        "name": "招財霸主 · 天然金髮晶滿絲手串",
+        "filename": "金髮晶.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 388 - 1,288",
+        "beadSize": "約 8mm - 11mm",
+        "tags": ["正偏財之王", "領袖魄力", "閃耀金絲"],
+        "desc": "晶體清透、金髮絲濃密順直，折射出耀眼金屬光芒。對應太陽神經叢，強勢催旺正偏財與決斷氣場。",
+        "matchNumbers": [1, 8, 22],
+        "minPrice": 388,
+        "maxPrice": 1288
       },
       {
-            "id": "p15_labradorite_blue",
-            "name": "頂級藍光 · 拉長石手串 (灰月光)",
-            "filename": "拉長石.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 128 - 480",
-            "beadSize": "約 7.5mm - 8.5mm",
-            "tags": [
-                  "2號人命定",
-                  "修補氣場",
-                  "安神助眠"
-            ],
-            "desc": "深邃清澈的藍光暈！修補因過度共情造成的氣場破洞，防止精力被他人吸乾，高敏感族群必備。",
-            "matchNumbers": [
-                  2,
-                  7,
-                  11
-            ],
-            "minPrice": 128,
-            "maxPrice": 480
+        "id": "p20_copper_rutilated_high",
+        "name": "招財魄力 · 頂級銅髮晶手串 (高品)",
+        "filename": "銅髮晶 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 528 - 698",
+        "beadSize": "約 8.5mm - 10.5mm (高品順絲貓眼)",
+        "tags": ["高品銅鈦", "極致招財", "行動魄力"],
+        "desc": "高品濃密銅紅鈦絲，貓眼效應極強！消除猶豫不決，增強談判氣勢、管理威嚴與事業偏財收益。",
+        "matchNumbers": [1, 8],
+        "minPrice": 528,
+        "maxPrice": 698
       },
       {
-            "id": "p16_sunstone",
-            "name": "溫暖生機 · 頂級金草莓太陽石手串",
-            "filename": "太陽石.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 58 - 628",
-            "beadSize": "約 8mm - 11mm",
-            "tags": [
-                  "正能量自信",
-                  "驅散陰霾",
-                  "貴人運勢"
-            ],
-            "desc": "自帶小太陽般的金橙色閃耀礦片！點燃內在熱情與生命力，驅散抑鬱自卑，吸引同頻積極的正能量貴人。",
-            "matchNumbers": [
-                  1,
-                  3,
-                  5
-            ],
-            "minPrice": 58,
-            "maxPrice": 628
+        "id": "p21_copper_rutilated_std",
+        "name": "旺財避邪 · 天然銅髮晶手串",
+        "filename": "銅髮晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 268 - 528",
+        "beadSize": "約 7.5mm - 9.5mm",
+        "tags": ["銅紅髮絲", "激發企圖心", "正偏財運"],
+        "desc": "溫潤晶體內含滿滿銅紅髮絲，鎮宅避邪同時注入強大行動力，適合跑數、創業與投資人士。",
+        "matchNumbers": [1, 8],
+        "minPrice": 268,
+        "maxPrice": 528
       },
       {
-            "id": "p17_green_phantom",
-            "name": "正財聚富 · 頂級綠幽靈手串",
-            "filename": "綠幽靈.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 168 - 738",
-            "beadSize": "約 5mm+ - 10mm",
-            "tags": [
-                  "事業正財",
-                  "聚寶盆景",
-                  "心輪生機"
-            ],
-            "desc": "火山泥綠泥呈現天然聚寶盆或千層景觀！事業正財首選，吸引同頻工作夥伴與升職加薪機會。",
-            "matchNumbers": [
-                  4,
-                  8
-            ],
-            "minPrice": 168,
-            "maxPrice": 738
+        "id": "p22_citrine",
+        "name": "商人之石 · 巴西天然黃水晶手串",
+        "filename": "黃水晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 118 - 188",
+        "beadSize": "約 7mm - 9mm",
+        "tags": ["主招偏財", "太陽神經叢", "掃走匱乏焦慮"],
+        "desc": "溫潤明亮的金黃色澤！對應胃輪與太陽神經叢，聚焦偏財與副業機遇，提升自信與守財底氣。",
+        "matchNumbers": [3, 8],
+        "minPrice": 118,
+        "maxPrice": 188
       },
       {
-            "id": "p18_green_phantom_vintage",
-            "name": "老礦聚寶 · 綠幽靈手串 (舊版)",
-            "filename": "綠幽靈，舊版.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 168 - 738",
-            "beadSize": "約 6mm - 10.5mm",
-            "tags": [
-                  "深翠老綠",
-                  "千層山景",
-                  "招財納福"
-            ],
-            "desc": "老坑翠綠千層山！泥質濃郁不散，白水晶底純淨清透。穩固財庫底盤，給予事業開拓源源不斷的底氣。",
-            "matchNumbers": [
-                  4,
-                  8
-            ],
-            "minPrice": 168,
-            "maxPrice": 738
+        "id": "p23_yellow_phantom_tower",
+        "name": "步步高升 · 天然黃塔晶手串",
+        "filename": "黃塔晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 168 - 328",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["金字塔景觀", "事業晉升", "聚財磁場"],
+        "desc": "晶體內含天然黃色金字塔山峰紋理，寓意事業與財運步步高升，助你突破職場停滯期。",
+        "matchNumbers": [3, 4, 8],
+        "minPrice": 168,
+        "maxPrice": 328
       },
       {
-            "id": "p19_aurora_purple_phantom",
-            "name": "靈性招貴人 · 極光紫幽靈手串",
-            "filename": "極光紫幽靈.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 98 - 478",
-            "beadSize": "約 7mm - 13mm",
-            "tags": [
-                  "開智慧靈感",
-                  "頂輪眉心輪",
-                  "優雅貴氣"
-            ],
-            "desc": "紫水晶與火山泥幽靈共生景觀！對應頂輪與眉心輪，打開直覺靈感、轉化低頻思維，散發從容高雅的貴人磁場。",
-            "matchNumbers": [
-                  7,
-                  9,
-                  11
-            ],
-            "minPrice": 98,
-            "maxPrice": 478
+        "id": "p24_koi_jiaohua_top",
+        "name": "極品滿花 · 天然錦鯉膠花手串 (極品)",
+        "filename": "錦鯉膠花 (極品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 328 - 558",
+        "beadSize": "約 8mm - 10mm (極品冰透滿花)",
+        "tags": ["極品錦鯉", "轉運招財", "貴人提攜"],
+        "desc": "極品高透晶體包裹鮮豔橙紅錦鯉花片，生動立體如錦鯉躍水！極旺正偏財運與意外驚喜機緣。",
+        "matchNumbers": [1, 3, 8],
+        "minPrice": 328,
+        "maxPrice": 558
       },
       {
-            "id": "p20_aurora_purple_phantom_fine",
-            "name": "精巧高頻 · 極光紫幽靈 (細珠版)",
-            "filename": "極光紫幽靈，細.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 98 - 158",
-            "beadSize": "約 7mm - 8mm",
-            "tags": [
-                  "精緻疊戴",
-                  "啟迪靈思",
-                  "高貴紫光"
-            ],
-            "desc": "細緻規格，適合與銀飾或素手串疊戴。晶體紫度飽滿，伴隨絲絲幽靈景觀，靜心冥想的最佳靈感陪伴。",
-            "matchNumbers": [
-                  7,
-                  9,
-                  11
-            ],
-            "minPrice": 98,
-            "maxPrice": 158
+        "id": "p25_koi_jiaohua_std",
+        "name": "好運招財 · 天然錦鯉膠花手串",
+        "filename": "錦鯉膠花.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 118 - 328",
+        "beadSize": "約 7mm - 9mm",
+        "tags": ["錦鯉開運", "生動花片", "喜慶聚財"],
+        "desc": "天然紅黃礦物浸入晶體裂隙形成美麗花瓣，寓意吉祥如意、招財納福，為事業帶來生機。",
+        "matchNumbers": [1, 3, 8],
+        "minPrice": 118,
+        "maxPrice": 328
       },
       {
-            "id": "p21_uruguay_amethyst",
-            "name": "深邃靈智 · 烏拉圭天然深紫水晶手串",
-            "filename": "烏拉圭紫水晶.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 128 - 238",
-            "beadSize": "約 6mm - 8mm",
-            "tags": [
-                  "智慧文昌",
-                  "睡眠安穩",
-                  "開頂輪"
-            ],
-            "desc": "烏拉圭深邃紫羅蘭色調！不偏色不發黑，通透純正。激發腦力靈感、舒緩偏頭痛與緊繃神經，助旺學業考運。",
-            "matchNumbers": [
-                  7,
-                  9
-            ],
-            "minPrice": 128,
-            "maxPrice": 238
+        "id": "p26_yellow_jiaohua",
+        "name": "聚金生財 · 天然黃膠花手串",
+        "filename": "黃膠花.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 168 - 498",
+        "beadSize": "約 8mm - 9.5mm",
+        "tags": ["黃金花瓣", "意外偏財", "太陽能量"],
+        "desc": "璀璨金黃花片層疊盛放，對應太陽神經叢，強力吸引偏財商機與正向貴人人脈。",
+        "matchNumbers": [3, 8],
+        "minPrice": 168,
+        "maxPrice": 498
       },
       {
-            "id": "p22_white_azeztulite",
-            "name": "高頻覺醒 · 白阿塞斯特萊手串",
-            "filename": "白阿塞.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 128 - 488",
-            "beadSize": "約 8mm - 10mm",
-            "tags": [
-                  "高頻天花板",
-                  "自帶彩虹光",
-                  "無需消磁"
-            ],
-            "desc": "無需消磁的高維度光之石！晶體內部佈滿天然彩虹片與能量生長紋，強力淨化身心靈能量場，迅速清理脈輪淤堵。",
-            "matchNumbers": [
-                  9,
-                  11,
-                  33
-            ],
-            "minPrice": 128,
-            "maxPrice": 488
+        "id": "p27_red_jiaohua",
+        "name": "熱情開運 · 天然紅黃膠花手串",
+        "filename": "膠花.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 128 - 298",
+        "beadSize": "約 7.5mm - 9mm",
+        "tags": ["紅黃共生", "提升人緣", "招財開運"],
+        "desc": "溫暖紅橙色膠花礦片，點亮海底輪與臍輪活力，改善疲憊怠惰，吸引好運與人緣。",
+        "matchNumbers": [2, 3, 8],
+        "minPrice": 128,
+        "maxPrice": 298
+      },
+
+      // ── 金運石、黑髮晶、曜石、虎眼防禦招財系列 ──
+      {
+        "id": "p28_hypersthene",
+        "name": "黑馬逆襲 · 頂級埃及金運石手串",
+        "filename": "金運石.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 468 - 1,288",
+        "beadSize": "約 8mm - 11mm+",
+        "tags": ["極致偏財", "左右手皆宜", "黑金十字星芒"],
+        "desc": "深黑晶體浮現神秘金銅色眼線光暈！少數左右手皆可佩戴的招財防禦神石，左手聚財守庫、右手排濁防小人。",
+        "matchNumbers": [4, 8],
+        "minPrice": 468,
+        "maxPrice": 1288
       },
       {
-            "id": "p23_white_azeztulite_old",
-            "name": "彩虹爆閃 · 白阿塞手串 (老料)",
-            "filename": "白阿塞，舊.jpg",
-            "category": "featured",
-            "priceTier": "HK$ 128 - 488",
-            "beadSize": "約 9mm",
-            "tags": [
-                  "密集彩虹",
-                  "通透如冰",
-                  "頻率歸零"
-            ],
-            "desc": "老礦晶體彩虹片密集度極高！在日光下一顆珠能閃出多重霓虹光暈。打破能量阻滯，調頻回歸初生平衡。",
-            "matchNumbers": [
-                  9,
-                  11,
-                  33
-            ],
-            "minPrice": 128,
-            "maxPrice": 488
+        "id": "p29_black_rutilated",
+        "name": "領袖辟邪 · 天然黑髮晶手串",
+        "filename": "黑髮晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 168 - 388",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["防小人是非", "領袖之石", "排除濁氣"],
+        "desc": "黑碧璽共生髮絲剛硬分明，強力吸收並排出外界負能、病氣與職場小人暗箭，提升抗壓韌性。",
+        "matchNumbers": [1, 4, 8],
+        "minPrice": 168,
+        "maxPrice": 388
       },
       {
-            "id": "p24_amazonite",
-            "name": "幸運希望 · 冰透天河石手串",
-            "filename": "天河石.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 118 - 338",
-            "beadSize": "約 8mm - 11mm+",
-            "tags": [
-                  "自信希望",
-                  "逢凶化吉",
-                  "平衡情緒"
-            ],
-            "desc": "清爽怡人的湖水青綠色！被稱為希望之石，幫助猶豫不決的人下定決心，在逆境中找回信心與轉機。",
-            "matchNumbers": [
-                  5,
-                  6
-            ],
-            "minPrice": 118,
-            "maxPrice": 338
+        "id": "p30_silver_obsidian_high",
+        "name": "深層排濁 · 極致銀曜石手串 (高品)",
+        "filename": "銀曜石 (高品).jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 118 - 198",
+        "beadSize": "約 8mm - 10mm (高品強銀眼)",
+        "tags": ["高品銀沙眼", "右手排濁", "化煞擋小人"],
+        "desc": "高品雙面銀沙貓眼極度凝聚，晃動手腕如銀河閃耀。佩戴於右手急速排出體內濁氣與是非口舌。",
+        "matchNumbers": [1, 4, 8],
+        "minPrice": 118,
+        "maxPrice": 198
       },
       {
-            "id": "p25_amazonite_old",
-            "name": "莫三比克天河石手串 (老料)",
-            "filename": "天河石，舊.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 118 - 338",
-            "beadSize": "約 8mm - 10mm",
-            "tags": [
-                  "白條紋路",
-                  "舒緩神經",
-                  "勇於決策"
-            ],
-            "desc": "微帶天然微斜長石白色交織紋理，質地細膩溫和。平復浮躁衝動，提升臨場溝通與商務協商勝率。",
-            "matchNumbers": [
-                  5,
-                  6
-            ],
-            "minPrice": 118,
-            "maxPrice": 338
+        "id": "p31_silver_obsidian_cat",
+        "name": "萌寵護主 · 天然銀曜石貓咪手串",
+        "filename": "銀曜石貓咪.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 98 - 198",
+        "beadSize": "精緻立體貓咪雕件配圓珠",
+        "tags": ["招財貓咪", "避邪防小人", "可愛百搭"],
+        "desc": "立體銀曜石招財貓咪造型，銀光靈動討喜！打破傳統辟邪晶石的沉悶感，溫柔守護你遠離小人是非。",
+        "matchNumbers": [1, 2, 4, 8],
+        "minPrice": 98,
+        "maxPrice": 198
       },
       {
-            "id": "p26_kunzite",
-            "name": "無條件自愛 · 頂級紫鋰輝手串",
-            "filename": "紫鋰輝.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 208 - 248",
-            "beadSize": "約 7mm - 8mm",
-            "tags": [
-                  "暢通心輪",
-                  "撫平創傷",
-                  "溫柔粉紫"
-            ],
-            "desc": "散發柔和夢幻粉紫雙色調！對應心輪的頂級療癒石，釋放積壓已久的情感壓抑與委屈，重新找回愛自己的能量。",
-            "matchNumbers": [
-                  2,
-                  6,
-                  33
-            ],
-            "minPrice": 208,
-            "maxPrice": 248
+        "id": "p32_gold_obsidian",
+        "name": "招財避邪 · 天然金曜石手串",
+        "filename": "金曜石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 88 - 188",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["金沙貓眼", "招財護身", "右手排負"],
+        "desc": "黑底浮現璀璨金沙眼，兼具黑曜石強效化煞與金色招財能量，職場防小人兼聚財實用之選。",
+        "matchNumbers": [1, 4, 8],
+        "minPrice": 88,
+        "maxPrice": 188
       },
       {
-            "id": "p27_kunzite_old",
-            "name": "冰透粉紫 · 紫鋰輝手串 (早期料)",
-            "filename": "紫鋰輝，舊.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 208 - 248",
-            "beadSize": "約 7mm - 8mm",
-            "tags": [
-                  "貓眼絲絹",
-                  "純淨通透",
-                  "軟化防衛"
-            ],
-            "desc": "早期高淨度礦料！透光性極佳，微帶貓眼絲絹光彩。化解內在焦慮抗拒，讓心輪充滿柔軟與被愛的包容力。",
-            "matchNumbers": [
-                  2,
-                  6,
-                  33
-            ],
-            "minPrice": 208,
-            "maxPrice": 248
+        "id": "p33_black_obsidian",
+        "name": "經典護身 · 天然彩虹眼黑曜石手串",
+        "filename": "黑曜石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 68 - 148",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["入門辟邪王", "右手排病氣", "穩固海底輪"],
+        "desc": "高性價比天然黑曜石，專門佩戴於右手吸納並排走負能量、改善睡眠不安與出入醫院雜亂場所防護。",
+        "matchNumbers": [1, 4, 8],
+        "minPrice": 68,
+        "maxPrice": 148
       },
       {
-            "id": "p28_morganite",
-            "name": "柔潤甜美 · 天然馬卡龍摩根石手串",
-            "filename": "摩根石.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 168 - 368",
-            "beadSize": "約 8mm - 9.5mm",
-            "tags": [
-                  "馬卡龍色調",
-                  "真誠姻緣",
-                  "打開心門"
-            ],
-            "desc": "綠柱石家族的甜蜜代表！粉藍、粉紅、粉綠柔和交織，撫慰孤獨與不安感，軟化社交隔閡，吸引溫柔靈魂相遇。",
-            "matchNumbers": [
-                  2,
-                  6
-            ],
-            "minPrice": 168,
-            "maxPrice": 368
+        "id": "p34_blue_tigereye_1",
+        "name": "鷹眼洞察 · 天然藍虎眼石手串",
+        "filename": "藍虎眼.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 98 - 228",
+        "beadSize": "約 8mm - 11mm",
+        "tags": ["鷹眼石", "看清局勢", "霸氣貓眼"],
+        "desc": "又名鷹眼石，深邃墨藍底色閃現銳利貓眼絲光。助你保持絕對冷靜理性，一眼看穿問題核心與小人伎倆。",
+        "matchNumbers": [1, 7, 8],
+        "minPrice": 98,
+        "maxPrice": 228
       },
       {
-            "id": "p29_koi_jiaohua",
-            "name": "好運招財 · 錦鯉膠花手串",
-            "filename": "錦鯉膠花.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 118 - 558",
-            "beadSize": "約 7mm - 8mm",
-            "tags": [
-                  "錦鯉開運",
-                  "正偏財運",
-                  "生動片狀"
-            ],
-            "desc": "晶體清透，內部天然橙紅片狀礦物如同池中游動的錦鯉！寓意吉祥如意、招財納福，為事業帶來突破生機。",
-            "matchNumbers": [
-                  1,
-                  3,
-                  8
-            ],
-            "minPrice": 118,
-            "maxPrice": 558
+        "id": "p35_blue_tigereye_2",
+        "name": "深邃極光 · 精選藍虎眼石手串 (二款)",
+        "filename": "藍虎眼 2.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 98 - 228",
+        "beadSize": "約 7.5mm - 9.5mm",
+        "tags": ["絲絨藍光", "鎮定思緒", "辟邪護身"],
+        "desc": "精選細膩藍綠絲光批次，佩戴上手低調顯白，穩定浮躁心緒並強化個人執行決斷力。",
+        "matchNumbers": [1, 7, 8],
+        "minPrice": 98,
+        "maxPrice": 228
       },
       {
-            "id": "p30_yellow_jiaohua",
-            "name": "聚金生財 · 天然黃膠花手串",
-            "filename": "黃膠花.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 168 - 498",
-            "beadSize": "約 8mm - 9.5mm",
-            "tags": [
-                  "黃金花瓣",
-                  "意外之財",
-                  "貴人提攜"
-            ],
-            "desc": "天然黃色氧化鐵浸入晶體裂隙形成花瓣層疊！璀璨金黃如花盛放，對應太陽神經叢，聚焦偏財與意外機緣。",
-            "matchNumbers": [
-                  3,
-                  8
-            ],
-            "minPrice": 168,
-            "maxPrice": 498
+        "id": "p36_mixed_tigereye",
+        "name": "全能魄力 · 天然混色三色虎眼石手串",
+        "filename": "混色虎眼.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 98 - 218",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["黃紅藍三色", "招財勇氣", "全方位守護"],
+        "desc": "集合黃虎眼招財、紅虎眼旺人緣氣血、藍虎眼冷靜洞察三重能量，色彩斑斕且氣場強大。",
+        "matchNumbers": [1, 3, 8],
+        "minPrice": 98,
+        "maxPrice": 218
+      },
+
+      // ── 太陽石與拉長石系列 ──
+      {
+        "id": "p37_gold_sunstone",
+        "name": "璀璨回血 · 天然金太陽石手串",
+        "filename": "金太陽.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 168 - 628",
+        "beadSize": "約 8mm - 10.5mm",
+        "tags": ["滿砂金光", "正能量小太陽", "驅散陰霾"],
+        "desc": "滿滿金紅砂閃光，在陽光下耀眼奪目！為身心瞬間充電回血，掃走職場疲勞與負面悲觀，吸引陽光貴人。",
+        "matchNumbers": [1, 3, 5],
+        "minPrice": 168,
+        "maxPrice": 628
       },
       {
-            "id": "p31_citrine",
-            "name": "聚財豐盛 · 巴西天然黃水晶手串",
-            "filename": "黃水晶.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 118 - 188",
-            "beadSize": "約 7mm - 8mm",
-            "tags": [
-                  "財富之石",
-                  "自信活力",
-                  "太陽神經叢"
-            ],
-            "desc": "溫潤明亮的金黃色澤！對應太陽神經叢，聚焦偏財與意外財富機會，激發自信心與自我肯定感。",
-            "matchNumbers": [
-                  3,
-                  8
-            ],
-            "minPrice": 118,
-            "maxPrice": 188
+        "id": "p38_sunstone_std",
+        "name": "溫暖生機 · 天然太陽石手串",
+        "filename": "太陽石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 58 - 298",
+        "beadSize": "約 7.5mm - 9.5mm",
+        "tags": ["溫暖橙光", "提升自信", "人際活力"],
+        "desc": "清潤亮麗的陽光橙色調，點燃內在熱情與行動力，改善社恐與手腳冰冷低頻狀態。",
+        "matchNumbers": [1, 3, 5],
+        "minPrice": 58,
+        "maxPrice": 298
       },
       {
-            "id": "p32_citrine_old",
-            "name": "焦糖深蜜 · 天然黃水晶手串 (老款)",
-            "filename": "黃水晶，舊.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 118 - 188",
-            "beadSize": "約 7mm - 8mm",
-            "tags": [
-                  "濃蜜焦糖",
-                  "充實財庫",
-                  "堅定勇氣"
-            ],
-            "desc": "深邃濃郁的焦糖蜜金色，透度上乘。為內心帶來溫暖的自我篤定，踏實開拓生意與財務版圖。",
-            "matchNumbers": [
-                  3,
-                  8
-            ],
-            "minPrice": 118,
-            "maxPrice": 188
+        "id": "p39_black_sunstone",
+        "name": "破局權威 · 天然骨幹太陽石手串",
+        "filename": "骨幹太陽.jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 188 - 528",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["黑金日食光", "領袖氣場", "排濁招財"],
+        "desc": "深沉骨幹晶體帶古銅金貓眼星光，兼具黑系晶石的防小人排濁力與太陽石的正向招財魄力。",
+        "matchNumbers": [1, 4, 8],
+        "minPrice": 188,
+        "maxPrice": 528
       },
       {
-            "id": "p33_rabbit_hair",
-            "name": "柔和治癒 · 天然彩兔毛水晶手串",
-            "filename": "彩兔毛.jpg",
-            "category": "bracelet",
-            "priceTier": "HK$ 458 - 478",
-            "beadSize": "約 6mm - 7mm",
-            "tags": [
-                  "細密發絲",
-                  "溫和包容",
-                  "氣血能量"
-            ],
-            "desc": "如兔毛般細膩順滑的共生髮絲！色彩柔和多樣，能溫和調理身心節奏，提升女性氣血與個人親和力。",
-            "matchNumbers": [
-                  2,
-                  6
-            ],
-            "minPrice": 458,
-            "maxPrice": 478
+        "id": "p40_labradorite_mid",
+        "name": "極光護盾 · 天然拉長石手串 (中品)",
+        "filename": "拉長石 (中品).jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 198 - 480",
+        "beadSize": "約 8mm - 9.5mm (中品強藍光)",
+        "tags": ["強藍綠極光", "修補氣場破洞", "安神助眠"],
+        "desc": "粒粒綻放深邃藍綠蝶翼極光！專門為高敏感、常熬夜 OT 人士修補氣場漏洞，防止能量被他人吸乾。",
+        "matchNumbers": [2, 7, 11],
+        "minPrice": 198,
+        "maxPrice": 480
       },
       {
-            "id": "p34_petroleum_herkimer",
-            "name": "高頻充電 · 巴基斯坦天然油膽閃靈鑽",
-            "filename": "油膽閃靈鑽.jpg",
-            "category": "raw",
-            "priceTier": "HK$ 128 - 198",
-            "beadSize": "天然雙尖高頻原石 (100g 裝)",
-            "tags": [
-                  "能量高鐵",
-                  "365nm UV螢光",
-                  "深層充電"
-            ],
-            "desc": "封存億年遠古天然石油！在 UV 紫光燈下折射出耀眼霓虹黃綠螢光。混入碎石盤中迅速打破手串能量疲乏。",
-            "matchNumbers": [
-                  1,
-                  7,
-                  9,
-                  11,
-                  33
-            ],
-            "minPrice": 128,
-            "maxPrice": 198
+        "id": "p41_labradorite_std",
+        "name": "靈性安神 · 天然拉長石手串",
+        "filename": "拉長石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 128 - 228",
+        "beadSize": "約 7.5mm - 8.5mm",
+        "tags": ["灰月光", "清理疲勞", "直覺守護"],
+        "desc": "溫和幽藍暈彩，幫助放工後的大腦停止胡思亂想，安定焦躁神經，提升睡眠品質。",
+        "matchNumbers": [2, 7, 11],
+        "minPrice": 128,
+        "maxPrice": 228
+      },
+
+      // ── 粉晶、紫鋰輝、摩根石、月亮石、兔毛 (人緣桃花自愛系列) ──
+      {
+        "id": "p42_star_rose_high",
+        "name": "六道星芒 · 莫桑比克星光粉晶 (高品)",
+        "filename": "星光粉晶 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 168 - 388",
+        "beadSize": "約 8mm - 10mm (高品冰透星芒)",
+        "tags": ["高品六道星芒", "頂級正桃花", "客戶人緣王"],
+        "desc": "果凍般冰透粉潤，單一光源下浮現清晰六道星芒！點亮心輪自愛魅力，強效招引優質正緣與客戶好人緣。",
+        "matchNumbers": [2, 6, 33],
+        "minPrice": 168,
+        "maxPrice": 388
+      },
+      {
+        "id": "p43_madagascar_rose",
+        "name": "溫柔姻緣 · 天然馬達加斯加馬粉晶手串",
+        "filename": "馬粉晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 98 - 228",
+        "beadSize": "約 8mm - 9.5mm",
+        "tags": ["濃郁嫩粉", "招桃花人緣", "軟化衝突"],
+        "desc": "馬達加斯加產區經典粉嫩色澤，撫平感情創傷與人際隔閡，讓你散發令人如沐春風的親和力。",
+        "matchNumbers": [2, 6],
+        "minPrice": 98,
+        "maxPrice": 228
+      },
+      {
+        "id": "p44_rose_quartz_std",
+        "name": "心輪初戀 · 天然粉晶手串",
+        "filename": "粉晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 68 - 148",
+        "beadSize": "約 7.5mm - 9mm",
+        "tags": ["清透淡粉", "日常好人緣", "溫柔自愛"],
+        "desc": "清新淡雅的天然粉晶，適合首次佩戴水晶的新手，舒緩緊繃心情並增進日常社交人緣。",
+        "matchNumbers": [2, 6],
+        "minPrice": 68,
+        "maxPrice": 148
+      },
+      {
+        "id": "p45_kunzite_ice_high",
+        "name": "極致冰透 · 天然紫鋰輝手串 (高品)",
+        "filename": "紫鋰輝冰透 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 228 - 398",
+        "beadSize": "約 7.5mm - 9mm (冰透貓眼)",
+        "tags": ["冰透高品", "無條件自愛", "解開鬱結"],
+        "desc": "極高淨度冰透體紫鋰輝，散發絲絨般粉紫光暈。深層釋放積壓已久的委屈與壓力，重拾內在快樂。",
+        "matchNumbers": [2, 6, 33],
+        "minPrice": 228,
+        "maxPrice": 398
+      },
+      {
+        "id": "p46_kunzite_high",
+        "name": "夢幻粉紫 · 天然紫鋰輝手串 (高品)",
+        "filename": "紫鋰輝 (高品).jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 208 - 288",
+        "beadSize": "約 7mm - 8.5mm",
+        "tags": ["暢通心輪", "溫柔粉紫", "拒絕內耗"],
+        "desc": "濃郁粉紫雙色貓眼光澤，被譽為心情愉悅之石，助你卸下防備與討好型疲憊。",
+        "matchNumbers": [2, 6, 33],
+        "minPrice": 208,
+        "maxPrice": 288
+      },
+      {
+        "id": "p47_morganite",
+        "name": "柔潤甜美 · 天然馬卡龍摩根石手串",
+        "filename": "摩根石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 168 - 368",
+        "beadSize": "約 8mm - 9.5mm",
+        "tags": ["馬卡龍色調", "真誠姻緣", "貴人人脈"],
+        "desc": "綠柱石家族的甜蜜代表！粉藍、粉紅、粉綠柔和交織，軟化社交隔閡，吸引溫柔同頻的伴侶與客戶。",
+        "matchNumbers": [2, 6],
+        "minPrice": 168,
+        "maxPrice": 368
+      },
+      {
+        "id": "p48_white_moonstone",
+        "name": "溫柔月光 · 天然白月亮石手串",
+        "filename": "白月亮石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 128 - 298",
+        "beadSize": "約 7.5mm - 9mm",
+        "tags": ["戀人之石", "柔和月光暈", "平復急躁"],
+        "desc": "乳白半透明晶體泛起幽藍月光效應，調和女性荷爾蒙與情緒起伏，守護甜蜜穩定的感情關係。",
+        "matchNumbers": [2, 6, 7],
+        "minPrice": 128,
+        "maxPrice": 298
+      },
+      {
+        "id": "p49_multi_strawberry",
+        "name": "繽紛人緣 · 天然多寶草莓晶手串",
+        "filename": "多寶草莓.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 118 - 248",
+        "beadSize": "約 7.5mm - 9mm",
+        "tags": ["多色共生", "催旺桃花", "業務人緣"],
+        "desc": "匯聚紅、綠、金草莓晶多寶配色，滿滿纖細礦點，助旺愛情運勢與業務銷售人緣。",
+        "matchNumbers": [2, 3, 6],
+        "minPrice": 118,
+        "maxPrice": 248
+      },
+      {
+        "id": "p50_rabbit_hair_top",
+        "name": "糖果極品 · 天然彩兔毛水晶手串",
+        "filename": "彩兔毛 (糖果極品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 458 - 478",
+        "beadSize": "約 6.5mm - 8mm (糖果極品)",
+        "tags": ["糖果極品色", "細密絨毛", "氣血親和力"],
+        "desc": "如兔毛般細膩順滑的共生髮絲，糖果色澤柔和飽滿，溫和調理身心節奏，提升女性氣血與貴人親和力。",
+        "matchNumbers": [2, 6],
+        "minPrice": 458,
+        "maxPrice": 478
+      },
+
+      // ── 紫水晶、白水晶、螢石、葡萄石、瑪瑙 (智慧與平衡系列) ──
+      {
+        "id": "p51_uruguay_amethyst_high",
+        "name": "深邃靈智 · 烏拉圭深紫水晶手串 (高品)",
+        "filename": "烏拉圭紫水晶 (高品).jpeg",
+        "category": "featured",
+        "priceTier": "HK$ 128 - 238",
+        "beadSize": "約 6.5mm - 8.5mm (高品帝王紫)",
+        "tags": ["高品烏拉圭", "智慧文昌", "開頂輪遇貴人"],
+        "desc": "烏拉圭頂級深邃紫羅蘭色調，晶體通透火光足！激發腦力靈感、舒緩失眠偏頭痛，助旺學業考運與貴人扶助。",
+        "matchNumbers": [7, 9],
+        "minPrice": 128,
+        "maxPrice": 238
+      },
+      {
+        "id": "p52_brazil_amethyst_high",
+        "name": "冰透貴氣 · 巴西天然紫水晶手串 (高品)",
+        "filename": "巴西紫水晶 (高品).jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 118 - 228",
+        "beadSize": "約 8mm - 10mm (高品冰透)",
+        "tags": ["高品清透紫", "安定心神", "提升專注力"],
+        "desc": "巴西高品冰透紫水晶，色澤清亮優雅，幫助沉澱雜念、提升工作讀書專注力並招引良師益友。",
+        "matchNumbers": [7, 9],
+        "minPrice": 118,
+        "maxPrice": 228
+      },
+      {
+        "id": "p53_lavender_amethyst",
+        "name": "溫柔減壓 · 天然薰衣草紫水晶手串",
+        "filename": "薰衣草紫水晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 88 - 168",
+        "beadSize": "約 7.5mm - 9mm",
+        "tags": ["淡雅薰衣草", "舒緩焦慮", "甜美顯白"],
+        "desc": "清新柔和的薰衣草淡紫色，上手極度顯白！溫柔放鬆緊繃神經，適合高壓失眠與學生族群。",
+        "matchNumbers": [2, 7, 9],
+        "minPrice": 88,
+        "maxPrice": 168
+      },
+      {
+        "id": "p54_chevron_amethyst",
+        "name": "靈性直覺 · 天然夢幻紫水晶手串",
+        "filename": "夢幻紫水晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 88 - 178",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["紫白共生紋", "眉心輪直覺", "清理雜訊"],
+        "desc": "天然紫水晶與白水晶交織出獨特夢幻羽毛紋路，結合雙重淨化與開智力量，打通思維卡點。",
+        "matchNumbers": [7, 9, 11],
+        "minPrice": 88,
+        "maxPrice": 178
+      },
+      {
+        "id": "p55_clear_quartz",
+        "name": "晶王之王 · 天然純淨白水晶手串",
+        "filename": "白水晶.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 68 - 168",
+        "beadSize": "約 8mm - 10mm",
+        "tags": ["純淨冰透", "綜合調頻", "專注記憶"],
+        "desc": "純淨無瑕的天然白水晶，統合全光譜能量，幫助屏蔽外界干擾、提升記憶力並放大同行疊戴手串的功效。",
+        "matchNumbers": [1, 7, 9],
+        "minPrice": 68,
+        "maxPrice": 168
+      },
+      {
+        "id": "p56_fluorite",
+        "name": "靈感天才石 · 天然多寶彩虹螢石手串",
+        "filename": "螢石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 88 - 188",
+        "beadSize": "約 7.5mm - 9.5mm",
+        "tags": ["天才之石", "活化腦力", "清理氣場濁氣"],
+        "desc": "集合翠綠、薰衣草紫與冰藍漸變色澤，被譽為「天才之石」，特別適合從事創意、設計與需要大量用腦人士。",
+        "matchNumbers": [3, 5, 7],
+        "minPrice": 88,
+        "maxPrice": 188
+      },
+      {
+        "id": "p57_prehnite",
+        "name": "希望聚財 · 天然冰潤葡萄石手串",
+        "filename": "葡萄石.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 98 - 228",
+        "beadSize": "約 8mm - 9.5mm",
+        "tags": ["清新果凍綠", "招正偏財", "撫平焦躁"],
+        "desc": "如剝皮青提子般水潤透亮！對應心輪，帶來希望與轉機，助你在混亂中保持冷靜並吸引財富機遇。",
+        "matchNumbers": [4, 6, 8],
+        "minPrice": 98,
+        "maxPrice": 228
+      },
+      {
+        "id": "p58_gradient_agate",
+        "name": "元氣漸變 · 天然漸變瑪瑙手串",
+        "filename": "漸變瑪瑙.jpeg",
+        "category": "bracelet",
+        "priceTier": "HK$ 88 - 168",
+        "beadSize": "約 7.5mm - 9mm",
+        "tags": ["漸變暖色", "平衡體能", "溫潤百搭"],
+        "desc": "由淺入深的溫潤漸變橘粉色調，帶來踏實安全感與好氣色，日常穿搭極具溫柔氣質。",
+        "matchNumbers": [2, 3, 6],
+        "minPrice": 88,
+        "maxPrice": 168
+      },
+
+      // ── 油膽閃靈鑽、白水晶消磁碎石、秘魯聖木 (高頻原石與淨化系列) ──
+      {
+        "id": "p59_petroleum_herkimer_large",
+        "name": "高頻充電 · 巴基斯坦油膽閃靈鑽 (大顆裝)",
+        "filename": "油膽閃靈鑽 (大).jpeg",
+        "category": "raw",
+        "priceTier": "HK$ 158 - 198",
+        "beadSize": "天然雙尖大顆粒原石 (100g 裝)",
+        "tags": ["大顆飽滿油膽", "365nm UV螢光", "手串深層叉電"],
+        "desc": "封存億年遠古天然石油的大顆粒雙尖閃靈鑽！UV 紫光燈下折射耀眼螢光，混入碎石盤中迅速放大並恢復手串高頻能量。",
+        "matchNumbers": [1, 7, 9, 11, 33],
+        "minPrice": 158,
+        "maxPrice": 198
+      },
+      {
+        "id": "p60_petroleum_herkimer_small",
+        "name": "閃耀淨化 · 巴基斯坦油膽閃靈鑽 (細顆裝)",
+        "filename": "油膽閃靈鑽 (細).jpeg",
+        "category": "raw",
+        "priceTier": "HK$ 128 - 168",
+        "beadSize": "天然雙尖精緻原石 (100g 裝)",
+        "tags": ["精緻高透", "隨身調頻", "消磁必備"],
+        "desc": "高透度細顆粒油膽閃靈鑽，接觸面積更廣，適合鋪於消磁碗表層為日常手串進行深度能量充電。",
+        "matchNumbers": [1, 7, 9, 11, 33],
+        "minPrice": 128,
+        "maxPrice": 168
+      },
+      {
+        "id": "p61_clear_gravel_large",
+        "name": "居家消磁 · 天然高透白水晶碎石 100g (大粒)",
+        "filename": "白水晶碎石 100 g (大).jpeg",
+        "category": "raw",
+        "priceTier": "HK$ 38 - 68",
+        "beadSize": "大顆粒冰透白晶碎石 (100g)",
+        "tags": ["大粒冰透", "手串消磁床", "淨化磁場"],
+        "desc": "精選大顆粒高透度天然白水晶原石碎石，每晚除下手串放於其上即可自動清理負能量、穩定頻率。",
+        "matchNumbers": [1, 4, 7, 9],
+        "minPrice": 38,
+        "maxPrice": 68
+      },
+      {
+        "id": "p62_clear_gravel_small",
+        "name": "細膩養護 · 天然白水晶消磁碎石 100g (細粒)",
+        "filename": "白水晶碎石 100g (細).jpeg",
+        "category": "raw",
+        "priceTier": "HK$ 38 - 68",
+        "beadSize": "細顆粒天然白晶碎石 (100g)",
+        "tags": ["細緻貼合", "溫和充電", "百搭消磁"],
+        "desc": "細顆粒天然白水晶碎石，能均勻承托各尺寸手串與吊墜，避免刮花同時提供穩定純淨的消磁場域。",
+        "matchNumbers": [1, 4, 7, 9],
+        "minPrice": 38,
+        "maxPrice": 68
+      },
+      {
+        "id": "p63_palo_santo",
+        "name": "神聖調頻 · 秘魯天然聖木原木條",
+        "filename": "聖木.jpeg",
+        "category": "raw",
+        "priceTier": "HK$ 38 - 88",
+        "beadSize": "秘魯陳年高油脂原木條",
+        "tags": ["808出貨標準", "秒速淨化氣場", "天然木質乳香"],
+        "desc": "秘魯原產高油脂陳年聖木！點燃後釋放清甜白煙，順時針繞手串 3–5 圈即可瞬間分解負能量記憶、安定空間磁場。",
+        "matchNumbers": [1, 2, 7, 9, 11, 33],
+        "minPrice": 38,
+        "maxPrice": 88
       }
-];
+    ];
 
     // Helper: Build robust URL for GitHub Pages with encoded Chinese filenames
     function getProductImageUrl(filename) {
